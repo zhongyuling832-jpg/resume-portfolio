@@ -1,1 +1,1116 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Resume Portfolio</title><style>body{font-family:system-ui,-apple-system,sans-serif;line-height:1.6;margin:0;padding:20px;background:#fff;color:#333}h1,h2,h3{margin-top:0}a{color:#0366d6;text-decoration:none}a:hover{text-decoration:underline}.container{max-width:800px;margin:0 auto}.section{margin-bottom:2rem}.card{border:1px solid #ddd;border-radius:8px;padding:1rem;margin-bottom:1rem}.skills{display:flex;flex-wrap:wrap;gap:.5rem}.skill{background:#e1f0ff;color:#0366d6;padding:.25rem .5rem;border-radius:4px;font-size:.875rem}</style></head><body><div class="container"><header class="section"><h1>Your Name</h1><p>Professional Title</p></header><section class="section"><h2>About</h2><p>I am a passionate professional with experience in building web applications.</p></section><section class="section"><h2>Experience</h2><div class="card"><h3>Job Title</h3><p>Company Name | 2020 - Present</p><p>Description of responsibilities and achievements.</p></div></section><section class="section"><h2>Skills</h2><div class="skills"><span class="skill">HTML</span><span class="skill">CSS</span><span class="skill">JavaScript</span><span class="skill">React</span></div></section><section class="section"><h2>Contact</h2><p>Email: <a href="mailto:example@example.com">example@example.com</a></p></section><footer><p>&copy; 2026 Your Name</p></footer></div></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钟毓灵 | PORTFOLIO 作品集</title>
+    <style>
+        @font-face {
+            font-family: 'PixelMono';
+            src: local('Courier New');
+        }
+
+        :root {
+            --hot-pink: #FF69B4;
+            --hot-pink-dark: #E62E8A;
+            --electric-blue: #4169E1;
+            --electric-blue-dark: #2B50CC;
+            --lemon-yellow: #FFE600;
+            --lemon-yellow-soft: #FFF89E;
+            --light-purple: #C8B6FF;
+            --light-blue: #B8D4FF;
+            --light-pink: #FFD6EC;
+            --win-gray: #E8E8E8;
+            --win-dark: #808080;
+            --win-darker: #404040;
+            --win-light: #FFFFFF;
+            --text-black: #1a1a1a;
+            --text-gray: #555;
+            --grid-color: rgba(0,0,0,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f0eb;
+            color: var(--text-black);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Grid background */
+        .grid-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-color: #f5f0eb;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* Floating decorations */
+        .deco-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .float-deco {
+            position: absolute;
+            opacity: 0.5;
+            animation: floatY 6s ease-in-out infinite;
+        }
+
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 80px 20px 40px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--lemon-yellow);
+            color: var(--text-black);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border: 2px solid var(--text-black);
+            box-shadow: 3px 3px 0 var(--text-black);
+            margin-bottom: 24px;
+            transform: rotate(-3deg);
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 12vw, 7rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 0.9;
+            color: var(--hot-pink);
+            text-shadow: 4px 4px 0 var(--electric-blue);
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .hero-title .char-1 { color: var(--electric-blue); text-shadow: 4px 4px 0 var(--hot-pink); }
+        .hero-title .char-2 { color: var(--hot-pink); text-shadow: 4px 4px 0 var(--lemon-yellow); }
+        .hero-title .char-3 { color: var(--hot-pink); text-shadow: 4px 4px 0 var(--electric-blue); }
+        .hero-title .char-4 { color: var(--electric-blue); text-shadow: 4px 4px 0 var(--hot-pink); }
+
+        .hero-vertical {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--electric-blue);
+            text-shadow: 3px 3px 0 var(--light-purple);
+            letter-spacing: 0.3em;
+            opacity: 0.85;
+        }
+
+        .hero-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-black);
+            margin: 24px 0 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-name::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--lemon-yellow);
+            z-index: -1;
+        }
+
+        .hero-tagline {
+            font-size: 1rem;
+            color: var(--text-gray);
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border: 2px solid var(--text-black);
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 2px 2px 0 var(--text-black);
+            cursor: default;
+            transition: transform 0.2s ease;
+        }
+
+        .tag:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--text-black); }
+
+        .tag-pink { background: var(--hot-pink); color: white; }
+        .tag-blue { background: var(--electric-blue); color: white; }
+        .tag-yellow { background: var(--lemon-yellow); color: var(--text-black); }
+
+        /* Arrow down */
+        .arrow-down {
+            margin-top: 40px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* ===== WINDOWS 95 STYLE WINDOW ===== */
+        .win95-window {
+            background: #E8E8E8;
+            border: 2px solid;
+            border-color: #FFFFFF #808080 #808080 #FFFFFF;
+            box-shadow: 2px 2px 0 #404040, 3px 3px 0 rgba(0,0,0,0.2);
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .win95-window.glow-pink {
+            box-shadow: 0 0 0 3px var(--hot-pink), 2px 2px 0 #404040, 6px 6px 0 rgba(255,105,180,0.3);
+        }
+
+        .win95-window.glow-blue {
+            box-shadow: 0 0 0 3px var(--electric-blue), 2px 2px 0 #404040, 6px 6px 0 rgba(65,105,225,0.3);
+        }
+
+        .win95-titlebar {
+            background: linear-gradient(90deg, var(--hot-pink) 0%, var(--electric-blue) 100%);
+            color: white;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            height: 34px;
+        }
+
+        .win95-titlebar .title-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .win95-titlebar .title-icon {
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--electric-blue);
+        }
+
+        .win95-controls {
+            display: flex;
+            gap: 3px;
+        }
+
+        .win95-btn {
+            width: 22px;
+            height: 20px;
+            background: #E8E8E8;
+            border: 1.5px solid;
+            border-color: #FFFFFF #404040 #404040 #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--text-black);
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .win95-btn:hover { background: #d0d0d0; }
+
+        .win95-content {
+            padding: 24px;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            padding: 60px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .about-photo {
+            width: 200px;
+            height: 260px;
+            background: white;
+            border: 2px solid;
+            border-color: #FFFFFF #808080 #808080 #FFFFFF;
+            box-shadow: 2px 2px 0 #404040;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-photo .photo-placeholder {
+            font-size: 3rem;
+            color: var(--hot-pink);
+        }
+
+        .about-photo .photo-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--electric-blue);
+            color: white;
+            font-size: 0.7rem;
+            text-align: center;
+            padding: 3px 0;
+            font-weight: 600;
+        }
+
+        .about-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.88rem;
+        }
+
+        .info-row .info-label {
+            font-weight: 700;
+            color: var(--electric-blue);
+            white-space: nowrap;
+            min-width: 70px;
+        }
+
+        .info-row .info-value {
+            color: var(--text-black);
+            font-weight: 500;
+        }
+
+        .about-summary {
+            font-size: 0.88rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            padding: 12px;
+            background: #F5F5F5;
+            border-left: 4px solid var(--hot-pink);
+            margin-top: 8px;
+        }
+
+        .about-quote {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--electric-blue);
+            margin-top: 12px;
+            padding: 8px 0 8px 20px;
+            border-left: 3px solid var(--lemon-yellow);
+        }
+
+        /* ===== SKILLS SECTION ===== */
+        .skills-section {
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            position: relative;
+        }
+
+        .skill-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border: 2px solid var(--text-black);
+            box-shadow: 3px 3px 0 var(--text-black);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: default;
+            background: white;
+        }
+
+        .skill-chip:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--text-black);
+        }
+
+        .skill-chip .chip-icon {
+            font-size: 1.1rem;
+        }
+
+        .skill-chip.pink { background: var(--light-pink); }
+        .skill-chip.blue { background: var(--light-blue); }
+        .skill-chip.yellow { background: var(--lemon-yellow-soft); }
+        .skill-chip.purple { background: var(--light-purple); }
+
+        /* Section headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 36px;
+            position: relative;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            display: inline-block;
+            position: relative;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header h2 .accent-pink { color: var(--hot-pink); }
+        .section-header h2 .accent-blue { color: var(--electric-blue); }
+
+        .section-header .section-num {
+            display: inline-block;
+            background: var(--text-black);
+            color: var(--lemon-yellow);
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            font-weight: 700;
+            vertical-align: super;
+            margin-left: 6px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== PORTFOLIO SECTION ===== */
+        .portfolio-section {
+            padding: 60px 0;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .portfolio-card {
+            background: white;
+            border: 2px solid var(--text-black);
+            box-shadow: 4px 4px 0 var(--text-black);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--text-black);
+        }
+
+        .video-area {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            background: #1a1a2e;
+            overflow: hidden;
+        }
+
+        .video-area iframe,
+        .video-area video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: #1a1a2e;
+            color: white;
+            gap: 8px;
+        }
+
+        .video-placeholder:hover {
+            background: #25254a;
+        }
+
+        .play-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--hot-pink);
+            border: 3px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .video-placeholder:hover .play-btn {
+            transform: scale(1.15);
+            background: var(--electric-blue);
+            box-shadow: 0 0 20px rgba(255,105,180,0.5);
+        }
+
+        .play-btn svg {
+            width: 22px; height: 22px;
+            fill: white;
+            margin-left: 3px;
+        }
+
+        .video-placeholder .file-label {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: var(--lemon-yellow);
+            margin-top: 4px;
+        }
+
+        .portfolio-meta {
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .portfolio-meta .meta-left h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .portfolio-meta .meta-left p {
+            font-size: 0.78rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+
+        .portfolio-meta .meta-tag {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border: 1.5px solid var(--text-black);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .meta-tag.pink { background: var(--hot-pink); color: white; }
+        .meta-tag.blue { background: var(--electric-blue); color: white; }
+        .meta-tag.yellow { background: var(--lemon-yellow); color: var(--text-black); }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-section {
+            padding: 60px 0 100px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .contact-card {
+            background: white;
+            border: 2px solid var(--text-black);
+            box-shadow: 3px 3px 0 var(--text-black);
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-black);
+            transition: all 0.2s ease;
+        }
+
+        .contact-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--text-black);
+        }
+
+        .contact-card .card-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-card .card-label {
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .contact-card .card-value {
+            font-size: 0.9rem;
+            font-weight: 700;
+            word-break: break-all;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-window {
+            background: #E8E8E8;
+            border: 2px solid;
+            border-color: #FFFFFF #808080 #808080 #FFFFFF;
+            box-shadow: 4px 4px 0 #404040;
+            width: 90%;
+            max-width: 460px;
+        }
+
+        .modal-titlebar {
+            background: linear-gradient(90deg, var(--electric-blue), var(--hot-pink));
+            color: white;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            height: 34px;
+        }
+
+        .modal-body { padding: 20px; }
+
+        .modal-body .input-group { margin-bottom: 14px; }
+
+        .modal-body label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-black);
+            margin-bottom: 4px;
+        }
+
+        .modal-body input,
+        .modal-body textarea {
+            width: 100%;
+            padding: 8px 10px;
+            background: white;
+            border: 2px solid;
+            border-color: #808080 #FFFFFF #FFFFFF #808080;
+            font-size: 0.85rem;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .modal-body input:focus,
+        .modal-body textarea:focus {
+            border-color: var(--electric-blue);
+        }
+
+        .modal-body textarea {
+            resize: vertical;
+            min-height: 50px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 16px;
+        }
+
+        .modal-btn {
+            padding: 6px 18px;
+            border: 2px solid;
+            border-color: #FFFFFF #404040 #404040 #FFFFFF;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: #E8E8E8;
+            color: var(--text-black);
+        }
+
+        .modal-btn:hover { background: #d8d8d8; }
+
+        .modal-btn.primary {
+            background: var(--electric-blue);
+            color: white;
+            border-color: #6B8EFF #2B50CC #2B50CC #6B8EFF;
+        }
+
+        .modal-btn.primary:hover { background: var(--electric-blue-dark); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--text-black);
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        footer .footer-name {
+            color: var(--hot-pink);
+            font-weight: 700;
+        }
+
+        /* ===== STICKER decorations ===== */
+        .sticker {
+            position: absolute;
+            z-index: 5;
+        }
+
+        .sticker-star {
+            width: 40px; height: 40px;
+        }
+
+        .sticker-pushpin {
+            width: 24px; height: 24px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero-vertical { display: none; }
+            .hero-title { font-size: 3rem; }
+            .about-grid { grid-template-columns: 1fr; justify-items: center; }
+            .about-info-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #E8E8E8; }
+        ::-webkit-scrollbar-thumb {
+            background: var(--electric-blue);
+            border: 2px solid #E8E8E8;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--hot-pink); }
+
+        /* Selection */
+        ::selection { background: var(--lemon-yellow); color: var(--text-black); }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="deco-layer">
+        <!-- Floating star -->
+        <svg class="float-deco" style="top:15%;left:8%;" width="36" height="36" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L14.5 9H22L16 13.5L18.5 21L12 16.5L5.5 21L8 13.5L2 9H9.5L12 2Z" fill="#FF69B4" stroke="#1a1a1a" stroke-width="1.5"/>
+        </svg>
+        <!-- Pixel cursor -->
+        <svg class="float-deco" style="top:60%;right:6%;animation-delay:-3s;" width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M5 3L5 19L9 15L12 21L14 20L11 14L17 14L5 3Z" fill="#4169E1" stroke="#1a1a1a" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <!-- Small star -->
+        <svg class="float-deco" style="top:80%;left:12%;animation-delay:-2s;" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L14.5 9H22L16 13.5L18.5 21L12 16.5L5.5 21L8 13.5L2 9H9.5L12 2Z" fill="#FFE600" stroke="#1a1a1a" stroke-width="1.5"/>
+        </svg>
+        <!-- Squiggle -->
+        <svg class="float-deco" style="top:40%;left:3%;animation-delay:-1s;" width="60" height="20" viewBox="0 0 60 20" fill="none">
+            <path d="M2 10 Q10 2 18 10 T34 10 T50 10 T58 10" stroke="#C8B6FF" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </svg>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-badge">★ 2026 PORTFOLIO ★</div>
+        <h1 class="hero-title">
+            <span class="char-1">P</span><span class="char-2">O</span><span class="char-3">R</span><span class="char-4">T</span>FOLIO
+        </h1>
+        <div class="hero-vertical">作品集</div>
+        <div class="hero-name">钟毓灵</div>
+        <p class="hero-tagline">拥有数字媒体艺术与动画IT硕士背景 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业</p>
+        <div class="hero-tags">
+            <span class="tag tag-pink">🎬 视频设计师</span>
+            <span class="tag tag-blue">✨ AE动效设计师</span>
+            <span class="tag tag-yellow">🤖 AI视频设计师</span>
+        </div>
+        <div class="arrow-down">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5V19M12 19L6 13M12 19L18 13" stroke="#4169E1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <!-- ===== ABOUT (Win95 Window) ===== -->
+        <section class="about-section" id="about">
+            <div class="section-header">
+                <h2><span class="accent-blue">关于</span><span class="accent-pink">我</span><span class="section-num">01</span></h2>
+            </div>
+            <div class="win95-window glow-pink">
+                <div class="win95-titlebar">
+                    <div class="title-left">
+                        <span class="title-icon">i</span>
+                        <span>about_me.exe — 个人信息</span>
+                    </div>
+                    <div class="win95-controls">
+                        <div class="win95-btn">_</div>
+                        <div class="win95-btn">□</div>
+                        <div class="win95-btn">x</div>
+                    </div>
+                </div>
+                <div class="win95-content">
+                    <div class="about-grid">
+                        <div class="about-photo">
+                            <span class="photo-placeholder">📸</span>
+                            <div class="photo-label">PHOTO.jpg</div>
+                        </div>
+                        <div>
+                            <div class="about-info-grid">
+                                <div class="info-row">
+                                    <span class="info-label">> 姓名:</span>
+                                    <span class="info-value">钟毓灵</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">> 生日:</span>
+                                    <span class="info-value">1998.02</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">> 学历:</span>
+                                    <span class="info-value">数字媒体艺术与动画IT硕士</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">> 所在地:</span>
+                                    <span class="info-value">上海</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">> 经验:</span>
+                                    <span class="info-value">4年以上视频设计</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">> 求职:</span>
+                                    <span class="info-value">视频设计/AE动效/AI视频</span>
+                                </div>
+                            </div>
+                            <div class="about-summary">
+                                拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，能精准把控作品风格与传播效果。熟练掌握即梦、Suno等主流AI生图、生视频、音乐等技术，能够将AIGC工具深度融入工作流以提升产出效率。具备优秀的跨部门协作与独立解决复杂项目的能力，致力于为品牌提供高质量、创新性的视觉传播解决方案。
+                            </div>
+                            <div class="about-quote">
+                                "致力于为品牌提供高质量、创新性的视觉传播解决方案。"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SKILLS ===== -->
+        <section class="skills-section" id="skills">
+            <div class="section-header">
+                <h2><span class="accent-pink">技能</span><span class="accent-blue">工具</span><span class="section-num">02</span></h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-chip pink">
+                    <span class="chip-icon">🎬</span> 视频设计
+                </div>
+                <div class="skill-chip blue">
+                    <span class="chip-icon">✨</span> AE动效
+                </div>
+                <div class="skill-chip yellow">
+                    <span class="chip-icon">🤖</span> AI视频生成
+                </div>
+                <div class="skill-chip purple">
+                    <span class="chip-icon">🎨</span> AI生图
+                </div>
+                <div class="skill-chip pink">
+                    <span class="chip-icon">🎵</span> Suno音乐
+                </div>
+                <div class="skill-chip blue">
+                    <span class="chip-icon">🚀</span> 即梦AI
+                </div>
+                <div class="skill-chip yellow">
+                    <span class="chip-icon">💡</span> 创意策划
+                </div>
+                <div class="skill-chip purple">
+                    <span class="chip-icon">📱</span> 品牌广告
+                </div>
+                <div class="skill-chip pink">
+                    <span class="chip-icon">🎮</span> 游戏行业
+                </div>
+                <div class="skill-chip blue">
+                    <span class="chip-icon">🔄</span> AIGC工作流
+                </div>
+                <div class="skill-chip yellow">
+                    <span class="chip-icon">🤝</span> 跨部门协作
+                </div>
+                <div class="skill-chip purple">
+                    <span class="chip-icon">📊</span> 项目管理
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PORTFOLIO (Win95 Window) ===== -->
+        <section class="portfolio-section" id="portfolio">
+            <div class="section-header">
+                <h2><span class="accent-blue">作品</span><span class="accent-pink">集</span><span class="section-num">03</span></h2>
+                <p style="color:var(--text-gray);font-size:0.85rem;margin-top:8px;">点击作品卡片添加视频链接 · 支持B站 / YouTube / 视频文件</p>
+            </div>
+            <div class="win95-window glow-blue">
+                <div class="win95-titlebar">
+                    <div class="title-left">
+                        <span class="title-icon">▶</span>
+                        <span>portfolio.exe — 作品展示</span>
+                    </div>
+                    <div class="win95-controls">
+                        <div class="win95-btn">_</div>
+                        <div class="win95-btn">□</div>
+                        <div class="win95-btn">x</div>
+                    </div>
+                </div>
+                <div class="win95-content">
+                    <div class="portfolio-grid" id="portfolioGrid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT ===== -->
+        <section class="contact-section" id="contact">
+            <div class="section-header">
+                <h2><span class="accent-pink">联系</span><span class="accent-blue">我</span><span class="section-num">04</span></h2>
+            </div>
+            <div class="contact-grid">
+                <a href="tel:15202155210" class="contact-card">
+                    <div class="card-icon">💬</div>
+                    <div class="card-label">微信 / 手机</div>
+                    <div class="card-value">15202155210</div>
+                </a>
+                <a href="mailto:15202155210@163.com" class="contact-card">
+                    <div class="card-icon">📮</div>
+                    <div class="card-label">邮箱</div>
+                    <div class="card-value">15202155210@163.com</div>
+                </a>
+                <div class="contact-card">
+                    <div class="card-icon">📍</div>
+                    <div class="card-label">所在地</div>
+                    <div class="card-value">上海</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>© 2026 <span class="footer-name">钟毓灵</span> · 视频设计师 · AI视频设计师 · AE动效设计师</p>
+        <p style="margin-top:6px;opacity:0.5;">Made with ♥ — Y2K Portfolio Edition</p>
+    </footer>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="videoModal">
+        <div class="modal-window">
+            <div class="modal-titlebar">
+                <span>add_video.exe — 添加视频作品</span>
+                <div class="win95-controls">
+                    <div class="win95-btn" onclick="closeModal()">x</div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label>作品标题</label>
+                    <input type="text" id="videoTitle" placeholder="例：品牌广告宣传片">
+                </div>
+                <div class="input-group">
+                    <label>视频链接（B站 / YouTube / 视频文件URL）</label>
+                    <input type="text" id="videoUrl" placeholder="粘贴视频链接">
+                </div>
+                <div class="input-group">
+                    <label>作品描述（选填）</label>
+                    <textarea id="videoDesc" placeholder="简要描述作品..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label>分类标签</label>
+                    <input type="text" id="videoTag" placeholder="例：品牌广告 / AI视频 / 动效设计">
+                </div>
+                <div class="modal-buttons">
+                    <button class="modal-btn" onclick="closeModal()">取消</button>
+                    <button class="modal-btn primary" onclick="saveVideo()">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const portfolioItems = [
+            { title: '作品一', desc: '点击添加您的视频作品', tag: '待添加', url: '', type: 'placeholder', fileExt: '.mp4' },
+            { title: '作品二', desc: '点击添加您的视频作品', tag: '待添加', url: '', type: 'placeholder', fileExt: '.mp4' },
+            { title: '作品三', desc: '点击添加您的视频作品', tag: '待添加', url: '', type: 'placeholder', fileExt: '.mp4' },
+            { title: '作品四', desc: '点击添加您的视频作品', tag: '待添加', url: '', type: 'placeholder', fileExt: '.mp4' }
+        ];
+
+        const tagColors = ['pink', 'blue', 'yellow'];
+        let currentEditIndex = -1;
+
+        function renderPortfolio() {
+            const grid = document.getElementById('portfolioGrid');
+            grid.innerHTML = '';
+            portfolioItems.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card';
+
+                let videoHTML;
+                if (item.type === 'placeholder' || !item.url) {
+                    videoHTML = `
+                        <div class="video-area">
+                            <div class="video-placeholder" onclick="openModal(${index})">
+                                <div class="play-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                                <div class="file-label">${item.fileExt}</div>
+                            </div>
+                        </div>
+                    `;
+                } else if (item.type === 'iframe') {
+                    videoHTML = `<div class="video-area">${item.url}</div>`;
+                } else if (item.type === 'video') {
+                    videoHTML = `<div class="video-area"><video src="${item.url}" controls></video></div>`;
+                }
+
+                const tagColor = tagColors[index % 3];
+                card.innerHTML = `
+                    ${videoHTML}
+                    <div class="portfolio-meta">
+                        <div class="meta-left">
+                            <h4>${item.title}</h4>
+                            <p>${item.desc}</p>
+                        </div>
+                        <span class="meta-tag ${tagColor}">${item.tag}</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function openModal(index) {
+            currentEditIndex = index;
+            document.getElementById('videoTitle').value = '';
+            document.getElementById('videoUrl').value = '';
+            document.getElementById('videoDesc').value = '';
+            document.getElementById('videoTag').value = '';
+            document.getElementById('videoModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('videoModal').classList.remove('active');
+            currentEditIndex = -1;
+        }
+
+        function saveVideo() {
+            const title = document.getElementById('videoTitle').value.trim() || `作品${currentEditIndex + 1}`;
+            const url = document.getElementById('videoUrl').value.trim();
+            const desc = document.getElementById('videoDesc').value.trim() || '精彩视频作品';
+            const tag = document.getElementById('videoTag').value.trim() || '视频设计';
+
+            if (!url) { alert('请输入视频链接'); return; }
+
+            const embedInfo = parseVideoUrl(url);
+            portfolioItems[currentEditIndex] = {
+                title, desc, tag,
+                url: embedInfo.content,
+                type: embedInfo.type,
+                fileExt: getFileExt(url)
+            };
+
+            closeModal();
+            renderPortfolio();
+        }
+
+        function getFileExt(url) {
+            if (url.includes('bilibili')) return '.bilibili';
+            if (url.includes('youtube')) return '.youtube';
+            if (url.match(/\.(mp4|webm|ogg)/i)) return '.mp4';
+            return '.video';
+        }
+
+        function parseVideoUrl(url) {
+            if (url.includes('bilibili.com') || url.includes('b23.tv')) {
+                const bvidMatch = url.match(/BV[a-zA-Z0-9]+/);
+                if (bvidMatch) {
+                    return {
+                        type: 'iframe',
+                        content: `<iframe src="//player.bilibili.com/player.html?bvid=${bvidMatch[0]}&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>`
+                    };
+                }
+            }
+            if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                let videoId = '';
+                if (url.includes('youtu.be/')) videoId = url.split('youtu.be/')[1].split('?')[0];
+                else if (url.includes('watch?v=')) videoId = url.split('watch?v=')[1].split('&')[0];
+                else if (url.includes('embed/')) videoId = url.split('embed/')[1].split('?')[0];
+                if (videoId) {
+                    return { type: 'iframe', content: `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>` };
+                }
+            }
+            if (url.includes('<iframe')) return { type: 'iframe', content: url };
+            if (url.match(/\.(mp4|webm|ogg)(\?|$)/i)) return { type: 'video', content: url };
+            return { type: 'iframe', content: `<iframe src="${url}" allowfullscreen></iframe>` };
+        }
+
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        renderPortfolio();
+    </script>
+</body>
+</html>
