@@ -3,30 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>钟毓灵 | PORTFOLIO 作品集</title>
+    <title>钟毓灵 | 个人作品集</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        @font-face {
-            font-family: 'PixelMono';
-            src: local('Courier New');
-        }
-
         :root {
-            --hot-pink: #FF69B4;
-            --hot-pink-dark: #E62E8A;
-            --electric-blue: #4169E1;
-            --electric-blue-dark: #2B50CC;
-            --lemon-yellow: #FFE600;
-            --lemon-yellow-soft: #FFF89E;
-            --light-purple: #C8B6FF;
-            --light-blue: #B8D4FF;
-            --light-pink: #FFD6EC;
-            --win-gray: #E8E8E8;
-            --win-dark: #808080;
-            --win-darker: #404040;
-            --win-light: #FFFFFF;
-            --text-black: #1a1a1a;
-            --text-gray: #555;
-            --grid-color: rgba(0,0,0,0.06);
+            --bg: #FAFAF8;
+            --surface: #FFFFFF;
+            --text: #2C2C2C;
+            --text-secondary: #6B6B6B;
+            --text-light: #999999;
+            --accent: #3A3A3A;
+            --accent-light: #E8E6E1;
+            --divider: #EAEAEA;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,437 +24,191 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
-            background: #f5f0eb;
-            color: var(--text-black);
-            line-height: 1.7;
-            overflow-x: hidden;
+            font-family: 'Noto Sans SC', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Grid background */
-        .grid-bg {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            background-color: #f5f0eb;
-            background-image:
-                linear-gradient(var(--grid-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
-
-        /* Floating decorations */
-        .deco-layer {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .float-deco {
-            position: absolute;
-            opacity: 0.5;
-            animation: floatY 6s ease-in-out infinite;
-        }
-
-        @keyframes floatY {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        /* Container */
         .container {
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO ===== */
         .hero {
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            position: relative;
-            padding: 80px 20px 40px;
-            text-align: center;
+            padding: 80px 0 60px;
         }
 
-        .hero-badge {
-            display: inline-block;
-            background: var(--lemon-yellow);
-            color: var(--text-black);
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 6px 16px;
-            border: 2px solid var(--text-black);
-            box-shadow: 3px 3px 0 var(--text-black);
-            margin-bottom: 24px;
-            transform: rotate(-3deg);
-            letter-spacing: 2px;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 12vw, 7rem);
-            font-weight: 900;
-            letter-spacing: -0.03em;
-            line-height: 0.9;
-            color: var(--hot-pink);
-            text-shadow: 4px 4px 0 var(--electric-blue);
-            margin-bottom: 8px;
-            position: relative;
-        }
-
-        .hero-title .char-1 { color: var(--electric-blue); text-shadow: 4px 4px 0 var(--hot-pink); }
-        .hero-title .char-2 { color: var(--hot-pink); text-shadow: 4px 4px 0 var(--lemon-yellow); }
-        .hero-title .char-3 { color: var(--hot-pink); text-shadow: 4px 4px 0 var(--electric-blue); }
-        .hero-title .char-4 { color: var(--electric-blue); text-shadow: 4px 4px 0 var(--hot-pink); }
-
-        .hero-vertical {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            writing-mode: vertical-rl;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--electric-blue);
-            text-shadow: 3px 3px 0 var(--light-purple);
-            letter-spacing: 0.3em;
-            opacity: 0.85;
+        .hero-greeting {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
         }
 
         .hero-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-black);
-            margin: 24px 0 8px;
-            position: relative;
-            display: inline-block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 8px;
         }
 
-        .hero-name::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: var(--lemon-yellow);
-            z-index: -1;
+        .hero-name-cn {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 0.15em;
+            margin-bottom: 28px;
         }
 
         .hero-tagline {
             font-size: 1rem;
-            color: var(--text-gray);
-            max-width: 500px;
-            margin: 0 auto 32px;
+            color: var(--text-secondary);
+            max-width: 480px;
+            line-height: 1.9;
+            margin-bottom: 32px;
         }
 
         .hero-tags {
             display: flex;
-            gap: 10px;
-            justify-content: center;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
-        .tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            border: 2px solid var(--text-black);
-            font-size: 0.8rem;
-            font-weight: 600;
-            box-shadow: 2px 2px 0 var(--text-black);
-            cursor: default;
-            transition: transform 0.2s ease;
-        }
-
-        .tag:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--text-black); }
-
-        .tag-pink { background: var(--hot-pink); color: white; }
-        .tag-blue { background: var(--electric-blue); color: white; }
-        .tag-yellow { background: var(--lemon-yellow); color: var(--text-black); }
-
-        /* Arrow down */
-        .arrow-down {
-            margin-top: 40px;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-        }
-
-        /* ===== WINDOWS 95 STYLE WINDOW ===== */
-        .win95-window {
-            background: #E8E8E8;
-            border: 2px solid;
-            border-color: #FFFFFF #808080 #808080 #FFFFFF;
-            box-shadow: 2px 2px 0 #404040, 3px 3px 0 rgba(0,0,0,0.2);
-            margin: 0 auto 40px;
-            position: relative;
-        }
-
-        .win95-window.glow-pink {
-            box-shadow: 0 0 0 3px var(--hot-pink), 2px 2px 0 #404040, 6px 6px 0 rgba(255,105,180,0.3);
-        }
-
-        .win95-window.glow-blue {
-            box-shadow: 0 0 0 3px var(--electric-blue), 2px 2px 0 #404040, 6px 6px 0 rgba(65,105,225,0.3);
-        }
-
-        .win95-titlebar {
-            background: linear-gradient(90deg, var(--hot-pink) 0%, var(--electric-blue) 100%);
-            color: white;
-            padding: 5px 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            font-weight: 700;
-            height: 34px;
-        }
-
-        .win95-titlebar .title-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .win95-titlebar .title-icon {
-            width: 18px;
-            height: 18px;
-            background: white;
+        .hero-tag {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            padding: 5px 14px;
+            border: 1px solid var(--divider);
             border-radius: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            color: var(--electric-blue);
+            letter-spacing: 0.03em;
         }
 
-        .win95-controls {
-            display: flex;
-            gap: 3px;
+        .hero-line {
+            width: 48px;
+            height: 2px;
+            background: var(--text);
+            margin: 40px 0 0;
         }
 
-        .win95-btn {
-            width: 22px;
-            height: 20px;
-            background: #E8E8E8;
-            border: 1.5px solid;
-            border-color: #FFFFFF #404040 #404040 #FFFFFF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            color: var(--text-black);
-            cursor: pointer;
-            font-weight: 700;
+        /* ===== SECTION COMMON ===== */
+        section {
+            padding: 72px 0;
+            border-top: 1px solid var(--divider);
         }
 
-        .win95-btn:hover { background: #d0d0d0; }
-
-        .win95-content {
-            padding: 24px;
+        .section-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
         }
 
-        /* ===== ABOUT SECTION ===== */
-        .about-section {
-            padding: 60px 0;
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 36px;
+            letter-spacing: -0.01em;
         }
 
+        /* ===== ABOUT ===== */
         .about-grid {
             display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 24px;
-            align-items: start;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 40px;
+            margin-bottom: 28px;
         }
 
-        .about-photo {
-            width: 200px;
-            height: 260px;
-            background: white;
-            border: 2px solid;
-            border-color: #FFFFFF #808080 #808080 #FFFFFF;
-            box-shadow: 2px 2px 0 #404040;
+        .about-item {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
+            gap: 2px;
         }
 
-        .about-photo .photo-placeholder {
-            font-size: 3rem;
-            color: var(--hot-pink);
+        .about-item-label {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            letter-spacing: 0.05em;
         }
 
-        .about-photo .photo-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--electric-blue);
-            color: white;
-            font-size: 0.7rem;
-            text-align: center;
-            padding: 3px 0;
-            font-weight: 600;
-        }
-
-        .about-info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .info-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            font-size: 0.88rem;
-        }
-
-        .info-row .info-label {
-            font-weight: 700;
-            color: var(--electric-blue);
-            white-space: nowrap;
-            min-width: 70px;
-        }
-
-        .info-row .info-value {
-            color: var(--text-black);
+        .about-item-value {
+            font-size: 0.92rem;
+            color: var(--text);
             font-weight: 500;
         }
 
         .about-summary {
-            font-size: 0.88rem;
-            line-height: 1.8;
-            color: var(--text-gray);
-            padding: 12px;
-            background: #F5F5F5;
-            border-left: 4px solid var(--hot-pink);
-            margin-top: 8px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 2;
+            padding: 24px 0;
+            border-top: 1px solid var(--divider);
         }
 
-        .about-quote {
-            font-size: 0.85rem;
-            font-style: italic;
-            color: var(--electric-blue);
-            margin-top: 12px;
-            padding: 8px 0 8px 20px;
-            border-left: 3px solid var(--lemon-yellow);
-        }
-
-        /* ===== SKILLS SECTION ===== */
-        .skills-section {
-            padding: 60px 0;
-            position: relative;
-        }
-
-        .skills-container {
+        /* ===== SKILLS ===== */
+        .skills-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            position: relative;
+            gap: 10px;
         }
 
-        .skill-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            border: 2px solid var(--text-black);
-            box-shadow: 3px 3px 0 var(--text-black);
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            cursor: default;
-            background: white;
+        .skill-item {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            padding: 7px 16px;
+            background: var(--surface);
+            border: 1px solid var(--divider);
+            transition: border-color 0.2s;
         }
 
-        .skill-chip:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 5px 5px 0 var(--text-black);
+        .skill-item:hover {
+            border-color: var(--text-secondary);
         }
 
-        .skill-chip .chip-icon {
-            font-size: 1.1rem;
-        }
-
-        .skill-chip.pink { background: var(--light-pink); }
-        .skill-chip.blue { background: var(--light-blue); }
-        .skill-chip.yellow { background: var(--lemon-yellow-soft); }
-        .skill-chip.purple { background: var(--light-purple); }
-
-        /* Section headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 36px;
-            position: relative;
-        }
-
-        .section-header h2 {
-            font-size: 2.2rem;
-            font-weight: 900;
-            display: inline-block;
-            position: relative;
-            letter-spacing: -0.02em;
-        }
-
-        .section-header h2 .accent-pink { color: var(--hot-pink); }
-        .section-header h2 .accent-blue { color: var(--electric-blue); }
-
-        .section-header .section-num {
-            display: inline-block;
-            background: var(--text-black);
-            color: var(--lemon-yellow);
-            font-size: 0.7rem;
-            padding: 3px 10px;
-            font-weight: 700;
-            vertical-align: super;
-            margin-left: 6px;
-            letter-spacing: 1px;
-        }
-
-        /* ===== PORTFOLIO SECTION ===== */
-        .portfolio-section {
-            padding: 60px 0;
+        /* ===== PORTFOLIO ===== */
+        .portfolio-hint {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin-bottom: 28px;
+            line-height: 1.7;
         }
 
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 24px;
         }
 
         .portfolio-card {
-            background: white;
-            border: 2px solid var(--text-black);
-            box-shadow: 4px 4px 0 var(--text-black);
+            background: var(--surface);
+            border: 1px solid var(--divider);
             overflow: hidden;
-            transition: all 0.2s ease;
+            transition: box-shadow 0.25s;
         }
 
         .portfolio-card:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 var(--text-black);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
         }
 
         .video-area {
             position: relative;
             width: 100%;
             padding-top: 56.25%;
-            background: #1a1a2e;
+            background: #F5F5F3;
             overflow: hidden;
         }
 
@@ -484,83 +228,70 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            background: #1a1a2e;
-            color: white;
-            gap: 8px;
+            gap: 12px;
+            transition: background 0.2s;
         }
 
         .video-placeholder:hover {
-            background: #25254a;
+            background: #EFEFEC;
         }
 
-        .play-btn {
-            width: 56px;
-            height: 56px;
+        .play-icon {
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background: var(--hot-pink);
-            border: 3px solid white;
+            border: 1.5px solid var(--text-secondary);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
         }
 
-        .video-placeholder:hover .play-btn {
-            transform: scale(1.15);
-            background: var(--electric-blue);
-            box-shadow: 0 0 20px rgba(255,105,180,0.5);
+        .video-placeholder:hover .play-icon {
+            border-color: var(--text);
+            transform: scale(1.05);
         }
 
-        .play-btn svg {
-            width: 22px; height: 22px;
-            fill: white;
-            margin-left: 3px;
+        .play-icon svg {
+            width: 18px; height: 18px;
+            fill: var(--text-secondary);
+            margin-left: 2px;
+            transition: fill 0.2s;
         }
 
-        .video-placeholder .file-label {
-            font-family: 'Courier New', monospace;
-            font-size: 0.75rem;
-            color: var(--lemon-yellow);
-            margin-top: 4px;
+        .video-placeholder:hover .play-icon svg {
+            fill: var(--text);
+        }
+
+        .video-placeholder-text {
+            font-size: 0.8rem;
+            color: var(--text-light);
         }
 
         .portfolio-meta {
-            padding: 14px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 10px;
+            padding: 16px 18px;
         }
 
-        .portfolio-meta .meta-left h4 {
+        .portfolio-meta h4 {
             font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 2px;
+            font-weight: 500;
+            margin-bottom: 4px;
         }
 
-        .portfolio-meta .meta-left p {
-            font-size: 0.78rem;
-            color: var(--text-gray);
-            line-height: 1.5;
+        .portfolio-meta p {
+            font-size: 0.82rem;
+            color: var(--text-light);
         }
 
-        .portfolio-meta .meta-tag {
-            font-size: 0.7rem;
-            padding: 3px 8px;
-            border: 1.5px solid var(--text-black);
-            font-weight: 700;
-            white-space: nowrap;
+        .portfolio-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            color: var(--text-light);
+            margin-top: 8px;
+            letter-spacing: 0.03em;
         }
 
-        .meta-tag.pink { background: var(--hot-pink); color: white; }
-        .meta-tag.blue { background: var(--electric-blue); color: white; }
-        .meta-tag.yellow { background: var(--lemon-yellow); color: var(--text-black); }
-
-        /* ===== CONTACT SECTION ===== */
-        .contact-section {
-            padding: 60px 0 100px;
-        }
-
+        /* ===== CONTACT ===== */
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -568,37 +299,30 @@
         }
 
         .contact-card {
-            background: white;
-            border: 2px solid var(--text-black);
-            box-shadow: 3px 3px 0 var(--text-black);
-            padding: 20px;
-            text-align: center;
+            padding: 24px;
+            background: var(--surface);
+            border: 1px solid var(--divider);
             text-decoration: none;
-            color: var(--text-black);
-            transition: all 0.2s ease;
+            color: var(--text);
+            text-align: center;
+            transition: box-shadow 0.25s;
         }
 
         .contact-card:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 5px 5px 0 var(--text-black);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
         }
 
-        .contact-card .card-icon {
-            font-size: 2rem;
+        .contact-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             margin-bottom: 8px;
         }
 
-        .contact-card .card-label {
-            font-size: 0.7rem;
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-
-        .contact-card .card-value {
+        .contact-value {
             font-size: 0.9rem;
-            font-weight: 700;
+            font-weight: 500;
             word-break: break-all;
         }
 
@@ -606,7 +330,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.3);
             display: none;
             align-items: center;
             justify-content: center;
@@ -615,335 +339,218 @@
 
         .modal-overlay.active { display: flex; }
 
-        .modal-window {
-            background: #E8E8E8;
-            border: 2px solid;
-            border-color: #FFFFFF #808080 #808080 #FFFFFF;
-            box-shadow: 4px 4px 0 #404040;
+        .modal {
+            background: var(--surface);
             width: 90%;
-            max-width: 460px;
+            max-width: 440px;
+            padding: 32px;
         }
 
-        .modal-titlebar {
-            background: linear-gradient(90deg, var(--electric-blue), var(--hot-pink));
-            color: white;
-            padding: 5px 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            font-weight: 700;
-            height: 34px;
-        }
-
-        .modal-body { padding: 20px; }
-
-        .modal-body .input-group { margin-bottom: 14px; }
-
-        .modal-body label {
-            display: block;
-            font-size: 0.8rem;
+        .modal h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
             font-weight: 600;
-            color: var(--text-black);
-            margin-bottom: 4px;
+            margin-bottom: 24px;
         }
 
-        .modal-body input,
-        .modal-body textarea {
+        .modal .field { margin-bottom: 18px; }
+
+        .modal label {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-bottom: 6px;
+            letter-spacing: 0.03em;
+        }
+
+        .modal input,
+        .modal textarea {
             width: 100%;
-            padding: 8px 10px;
-            background: white;
-            border: 2px solid;
-            border-color: #808080 #FFFFFF #FFFFFF #808080;
-            font-size: 0.85rem;
+            padding: 10px 12px;
+            background: var(--bg);
+            border: 1px solid var(--divider);
+            font-size: 0.88rem;
             font-family: inherit;
             outline: none;
+            transition: border-color 0.2s;
         }
 
-        .modal-body input:focus,
-        .modal-body textarea:focus {
-            border-color: var(--electric-blue);
+        .modal input:focus,
+        .modal textarea:focus {
+            border-color: var(--text-secondary);
         }
 
-        .modal-body textarea {
+        .modal textarea {
             resize: vertical;
-            min-height: 50px;
+            min-height: 60px;
         }
 
-        .modal-buttons {
+        .modal-actions {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: flex-end;
-            margin-top: 16px;
+            margin-top: 24px;
         }
 
-        .modal-btn {
-            padding: 6px 18px;
-            border: 2px solid;
-            border-color: #FFFFFF #404040 #404040 #FFFFFF;
-            font-size: 0.82rem;
-            font-weight: 700;
+        .btn {
+            padding: 9px 22px;
+            font-size: 0.85rem;
+            font-family: inherit;
             cursor: pointer;
-            background: #E8E8E8;
-            color: var(--text-black);
+            border: 1px solid var(--divider);
+            background: var(--surface);
+            color: var(--text-secondary);
+            transition: all 0.2s;
         }
 
-        .modal-btn:hover { background: #d8d8d8; }
-
-        .modal-btn.primary {
-            background: var(--electric-blue);
-            color: white;
-            border-color: #6B8EFF #2B50CC #2B50CC #6B8EFF;
+        .btn:hover {
+            border-color: var(--text-secondary);
+            color: var(--text);
         }
 
-        .modal-btn.primary:hover { background: var(--electric-blue-dark); }
+        .btn.primary {
+            background: var(--text);
+            color: var(--surface);
+            border-color: var(--text);
+        }
+
+        .btn.primary:hover {
+            background: var(--text-secondary);
+        }
 
         /* ===== FOOTER ===== */
         footer {
             text-align: center;
-            padding: 30px 20px;
-            background: var(--text-black);
-            color: #888;
+            padding: 40px 24px;
+            border-top: 1px solid var(--divider);
+        }
+
+        footer p {
             font-size: 0.8rem;
+            color: var(--text-light);
+            line-height: 1.8;
         }
 
         footer .footer-name {
-            color: var(--hot-pink);
-            font-weight: 700;
-        }
-
-        /* ===== STICKER decorations ===== */
-        .sticker {
-            position: absolute;
-            z-index: 5;
-        }
-
-        .sticker-star {
-            width: 40px; height: 40px;
-        }
-
-        .sticker-pushpin {
-            width: 24px; height: 24px;
+            color: var(--text-secondary);
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .hero-vertical { display: none; }
-            .hero-title { font-size: 3rem; }
-            .about-grid { grid-template-columns: 1fr; justify-items: center; }
-            .about-info-grid { grid-template-columns: 1fr; }
+        @media (max-width: 640px) {
+            .about-grid { grid-template-columns: 1fr; }
             .portfolio-grid { grid-template-columns: 1fr; }
             .contact-grid { grid-template-columns: 1fr; }
+            .hero { min-height: 60vh; }
+            section { padding: 56px 0; }
         }
 
-        /* Scrollbar styling */
-        ::-webkit-scrollbar { width: 12px; }
-        ::-webkit-scrollbar-track { background: #E8E8E8; }
-        ::-webkit-scrollbar-thumb {
-            background: var(--electric-blue);
-            border: 2px solid #E8E8E8;
-        }
-        ::-webkit-scrollbar-thumb:hover { background: var(--hot-pink); }
-
-        /* Selection */
-        ::selection { background: var(--lemon-yellow); color: var(--text-black); }
+        ::selection { background: #E8E6E1; color: var(--text); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--divider); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-light); }
     </style>
 </head>
 <body>
-    <div class="grid-bg"></div>
-    <div class="deco-layer">
-        <!-- Floating star -->
-        <svg class="float-deco" style="top:15%;left:8%;" width="36" height="36" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L14.5 9H22L16 13.5L18.5 21L12 16.5L5.5 21L8 13.5L2 9H9.5L12 2Z" fill="#FF69B4" stroke="#1a1a1a" stroke-width="1.5"/>
-        </svg>
-        <!-- Pixel cursor -->
-        <svg class="float-deco" style="top:60%;right:6%;animation-delay:-3s;" width="28" height="28" viewBox="0 0 24 24" fill="none">
-            <path d="M5 3L5 19L9 15L12 21L14 20L11 14L17 14L5 3Z" fill="#4169E1" stroke="#1a1a1a" stroke-width="1.5" stroke-linejoin="round"/>
-        </svg>
-        <!-- Small star -->
-        <svg class="float-deco" style="top:80%;left:12%;animation-delay:-2s;" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L14.5 9H22L16 13.5L18.5 21L12 16.5L5.5 21L8 13.5L2 9H9.5L12 2Z" fill="#FFE600" stroke="#1a1a1a" stroke-width="1.5"/>
-        </svg>
-        <!-- Squiggle -->
-        <svg class="float-deco" style="top:40%;left:3%;animation-delay:-1s;" width="60" height="20" viewBox="0 0 60 20" fill="none">
-            <path d="M2 10 Q10 2 18 10 T34 10 T50 10 T58 10" stroke="#C8B6FF" stroke-width="3" fill="none" stroke-linecap="round"/>
-        </svg>
-    </div>
 
     <!-- ===== HERO ===== -->
-    <section class="hero">
-        <div class="hero-badge">★ 2026 PORTFOLIO ★</div>
-        <h1 class="hero-title">
-            <span class="char-1">P</span><span class="char-2">O</span><span class="char-3">R</span><span class="char-4">T</span>FOLIO
-        </h1>
-        <div class="hero-vertical">作品集</div>
-        <div class="hero-name">钟毓灵</div>
-        <p class="hero-tagline">拥有数字媒体艺术与动画IT硕士背景 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业</p>
+    <header class="hero container">
+        <p class="hero-greeting">Hello, I'm</p>
+        <h1 class="hero-name">Zhong Yuling</h1>
+        <p class="hero-name-cn">钟毓灵</p>
+        <p class="hero-tagline">数字媒体艺术与动画IT硕士 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业</p>
         <div class="hero-tags">
-            <span class="tag tag-pink">🎬 视频设计师</span>
-            <span class="tag tag-blue">✨ AE动效设计师</span>
-            <span class="tag tag-yellow">🤖 AI视频设计师</span>
+            <span class="hero-tag">视频设计师</span>
+            <span class="hero-tag">AE动效设计师</span>
+            <span class="hero-tag">AI视频设计师</span>
         </div>
-        <div class="arrow-down">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                <path d="M12 5V19M12 19L6 13M12 19L18 13" stroke="#4169E1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </div>
-    </section>
+        <div class="hero-line"></div>
+    </header>
 
     <div class="container">
 
-        <!-- ===== ABOUT (Win95 Window) ===== -->
-        <section class="about-section" id="about">
-            <div class="section-header">
-                <h2><span class="accent-blue">关于</span><span class="accent-pink">我</span><span class="section-num">01</span></h2>
-            </div>
-            <div class="win95-window glow-pink">
-                <div class="win95-titlebar">
-                    <div class="title-left">
-                        <span class="title-icon">i</span>
-                        <span>about_me.exe — 个人信息</span>
-                    </div>
-                    <div class="win95-controls">
-                        <div class="win95-btn">_</div>
-                        <div class="win95-btn">□</div>
-                        <div class="win95-btn">x</div>
-                    </div>
+        <!-- ===== ABOUT ===== -->
+        <section id="about">
+            <p class="section-label">About</p>
+            <h2 class="section-title">关于我</h2>
+            <div class="about-grid">
+                <div class="about-item">
+                    <span class="about-item-label">姓名</span>
+                    <span class="about-item-value">钟毓灵</span>
                 </div>
-                <div class="win95-content">
-                    <div class="about-grid">
-                        <div class="about-photo">
-                            <span class="photo-placeholder">📸</span>
-                            <div class="photo-label">PHOTO.jpg</div>
-                        </div>
-                        <div>
-                            <div class="about-info-grid">
-                                <div class="info-row">
-                                    <span class="info-label">> 姓名:</span>
-                                    <span class="info-value">钟毓灵</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">> 生日:</span>
-                                    <span class="info-value">1998.02</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">> 学历:</span>
-                                    <span class="info-value">数字媒体艺术与动画IT硕士</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">> 所在地:</span>
-                                    <span class="info-value">上海</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">> 经验:</span>
-                                    <span class="info-value">4年以上视频设计</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">> 求职:</span>
-                                    <span class="info-value">视频设计/AE动效/AI视频</span>
-                                </div>
-                            </div>
-                            <div class="about-summary">
-                                拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，能精准把控作品风格与传播效果。熟练掌握即梦、Suno等主流AI生图、生视频、音乐等技术，能够将AIGC工具深度融入工作流以提升产出效率。具备优秀的跨部门协作与独立解决复杂项目的能力，致力于为品牌提供高质量、创新性的视觉传播解决方案。
-                            </div>
-                            <div class="about-quote">
-                                "致力于为品牌提供高质量、创新性的视觉传播解决方案。"
-                            </div>
-                        </div>
-                    </div>
+                <div class="about-item">
+                    <span class="about-item-label">学历</span>
+                    <span class="about-item-value">数字媒体艺术与动画IT硕士</span>
+                </div>
+                <div class="about-item">
+                    <span class="about-item-label">所在地</span>
+                    <span class="about-item-value">上海</span>
+                </div>
+                <div class="about-item">
+                    <span class="about-item-label">工作经验</span>
+                    <span class="about-item-value">4年以上视频设计</span>
+                </div>
+                <div class="about-item">
+                    <span class="about-item-label">求职方向</span>
+                    <span class="about-item-value">视频设计 / AE动效 / AI视频</span>
+                </div>
+                <div class="about-item">
+                    <span class="about-item-label">联系方式</span>
+                    <span class="about-item-value">15202155210</span>
                 </div>
             </div>
+            <p class="about-summary">
+                拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，能精准把控作品风格与传播效果。熟练掌握即梦、Suno等主流AI生图、生视频、音乐等技术，能够将AIGC工具深度融入工作流以提升产出效率。具备优秀的跨部门协作与独立解决复杂项目的能力，致力于为品牌提供高质量、创新性的视觉传播解决方案。
+            </p>
         </section>
 
         <!-- ===== SKILLS ===== -->
-        <section class="skills-section" id="skills">
-            <div class="section-header">
-                <h2><span class="accent-pink">技能</span><span class="accent-blue">工具</span><span class="section-num">02</span></h2>
-            </div>
-            <div class="skills-container">
-                <div class="skill-chip pink">
-                    <span class="chip-icon">🎬</span> 视频设计
-                </div>
-                <div class="skill-chip blue">
-                    <span class="chip-icon">✨</span> AE动效
-                </div>
-                <div class="skill-chip yellow">
-                    <span class="chip-icon">🤖</span> AI视频生成
-                </div>
-                <div class="skill-chip purple">
-                    <span class="chip-icon">🎨</span> AI生图
-                </div>
-                <div class="skill-chip pink">
-                    <span class="chip-icon">🎵</span> Suno音乐
-                </div>
-                <div class="skill-chip blue">
-                    <span class="chip-icon">🚀</span> 即梦AI
-                </div>
-                <div class="skill-chip yellow">
-                    <span class="chip-icon">💡</span> 创意策划
-                </div>
-                <div class="skill-chip purple">
-                    <span class="chip-icon">📱</span> 品牌广告
-                </div>
-                <div class="skill-chip pink">
-                    <span class="chip-icon">🎮</span> 游戏行业
-                </div>
-                <div class="skill-chip blue">
-                    <span class="chip-icon">🔄</span> AIGC工作流
-                </div>
-                <div class="skill-chip yellow">
-                    <span class="chip-icon">🤝</span> 跨部门协作
-                </div>
-                <div class="skill-chip purple">
-                    <span class="chip-icon">📊</span> 项目管理
-                </div>
+        <section id="skills">
+            <p class="section-label">Skills</p>
+            <h2 class="section-title">技能与工具</h2>
+            <div class="skills-grid">
+                <span class="skill-item">视频设计</span>
+                <span class="skill-item">AE动效</span>
+                <span class="skill-item">AI视频生成</span>
+                <span class="skill-item">AI生图</span>
+                <span class="skill-item">Suno音乐</span>
+                <span class="skill-item">即梦AI</span>
+                <span class="skill-item">创意策划</span>
+                <span class="skill-item">品牌广告</span>
+                <span class="skill-item">游戏行业</span>
+                <span class="skill-item">AIGC工作流</span>
+                <span class="skill-item">跨部门协作</span>
+                <span class="skill-item">项目管理</span>
             </div>
         </section>
 
-        <!-- ===== PORTFOLIO (Win95 Window) ===== -->
-        <section class="portfolio-section" id="portfolio">
-            <div class="section-header">
-                <h2><span class="accent-blue">作品</span><span class="accent-pink">集</span><span class="section-num">03</span></h2>
-                <p style="color:var(--text-gray);font-size:0.85rem;margin-top:8px;">点击作品卡片添加视频链接 · 支持B站 / YouTube / 视频文件</p>
-            </div>
-            <div class="win95-window glow-blue">
-                <div class="win95-titlebar">
-                    <div class="title-left">
-                        <span class="title-icon">▶</span>
-                        <span>portfolio.exe — 作品展示</span>
-                    </div>
-                    <div class="win95-controls">
-                        <div class="win95-btn">_</div>
-                        <div class="win95-btn">□</div>
-                        <div class="win95-btn">x</div>
-                    </div>
-                </div>
-                <div class="win95-content">
-                    <div class="portfolio-grid" id="portfolioGrid"></div>
-                </div>
-            </div>
+        <!-- ===== PORTFOLIO ===== -->
+        <section id="portfolio">
+            <p class="section-label">Portfolio</p>
+            <h2 class="section-title">作品集</h2>
+            <p class="portfolio-hint">
+                点击作品卡片即可添加视频链接，支持 B站、YouTube、视频文件直链。<br>
+                添加后视频会直接嵌入展示，访客可在线播放。
+            </p>
+            <div class="portfolio-grid" id="portfolioGrid"></div>
         </section>
 
         <!-- ===== CONTACT ===== -->
-        <section class="contact-section" id="contact">
-            <div class="section-header">
-                <h2><span class="accent-pink">联系</span><span class="accent-blue">我</span><span class="section-num">04</span></h2>
-            </div>
+        <section id="contact">
+            <p class="section-label">Contact</p>
+            <h2 class="section-title">联系方式</h2>
             <div class="contact-grid">
                 <a href="tel:15202155210" class="contact-card">
-                    <div class="card-icon">💬</div>
-                    <div class="card-label">微信 / 手机</div>
-                    <div class="card-value">15202155210</div>
+                    <p class="contact-label">Phone</p>
+                    <p class="contact-value">15202155210</p>
                 </a>
                 <a href="mailto:15202155210@163.com" class="contact-card">
-                    <div class="card-icon">📮</div>
-                    <div class="card-label">邮箱</div>
-                    <div class="card-value">15202155210@163.com</div>
+                    <p class="contact-label">Email</p>
+                    <p class="contact-value">15202155210@163.com</p>
                 </a>
                 <div class="contact-card">
-                    <div class="card-icon">📍</div>
-                    <div class="card-label">所在地</div>
-                    <div class="card-value">上海</div>
+                    <p class="contact-label">Location</p>
+                    <p class="contact-value">上海</p>
                 </div>
             </div>
         </section>
@@ -952,53 +559,44 @@
 
     <!-- ===== FOOTER ===== -->
     <footer>
-        <p>© 2026 <span class="footer-name">钟毓灵</span> · 视频设计师 · AI视频设计师 · AE动效设计师</p>
-        <p style="margin-top:6px;opacity:0.5;">Made with ♥ — Y2K Portfolio Edition</p>
+        <p>© 2026 <span class="footer-name">钟毓灵</span> · 视频设计师 · AE动效设计师 · AI视频设计师</p>
     </footer>
 
     <!-- ===== MODAL ===== -->
     <div class="modal-overlay" id="videoModal">
-        <div class="modal-window">
-            <div class="modal-titlebar">
-                <span>add_video.exe — 添加视频作品</span>
-                <div class="win95-controls">
-                    <div class="win95-btn" onclick="closeModal()">x</div>
-                </div>
+        <div class="modal">
+            <h3>添加视频作品</h3>
+            <div class="field">
+                <label>作品标题</label>
+                <input type="text" id="videoTitle" placeholder="例：品牌广告宣传片">
             </div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <label>作品标题</label>
-                    <input type="text" id="videoTitle" placeholder="例：品牌广告宣传片">
-                </div>
-                <div class="input-group">
-                    <label>视频链接（B站 / YouTube / 视频文件URL）</label>
-                    <input type="text" id="videoUrl" placeholder="粘贴视频链接">
-                </div>
-                <div class="input-group">
-                    <label>作品描述（选填）</label>
-                    <textarea id="videoDesc" placeholder="简要描述作品..."></textarea>
-                </div>
-                <div class="input-group">
-                    <label>分类标签</label>
-                    <input type="text" id="videoTag" placeholder="例：品牌广告 / AI视频 / 动效设计">
-                </div>
-                <div class="modal-buttons">
-                    <button class="modal-btn" onclick="closeModal()">取消</button>
-                    <button class="modal-btn primary" onclick="saveVideo()">确认</button>
-                </div>
+            <div class="field">
+                <label>视频链接</label>
+                <input type="text" id="videoUrl" placeholder="粘贴 B站 / YouTube / 视频文件链接">
+            </div>
+            <div class="field">
+                <label>作品描述（选填）</label>
+                <textarea id="videoDesc" placeholder="简要描述作品..."></textarea>
+            </div>
+            <div class="field">
+                <label>分类标签（选填）</label>
+                <input type="text" id="videoTag" placeholder="例：品牌广告 / AI视频 / 动效设计">
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal()">取消</button>
+                <button class="btn primary" onclick="saveVideo()">确认添加</button>
             </div>
         </div>
     </div>
 
     <script>
         const portfolioItems = [
-            { title: '作品一', desc: '点击添加您的视频作品', tag: '待添加', url: '', type: 'placeholder', fileExt: '.mp4' },
-            { title: '作品二', desc: '点击添加您的视频作品', tag: '待添加', url: '', type: 'placeholder', fileExt: '.mp4' },
-            { title: '作品三', desc: '点击添加您的视频作品', tag: '待添加', url: '', type: 'placeholder', fileExt: '.mp4' },
-            { title: '作品四', desc: '点击添加您的视频作品', tag: '待添加', url: '', type: 'placeholder', fileExt: '.mp4' }
+            { title: '作品一', desc: '点击添加您的视频作品', tag: '', url: '', type: 'placeholder' },
+            { title: '作品二', desc: '点击添加您的视频作品', tag: '', url: '', type: 'placeholder' },
+            { title: '作品三', desc: '点击添加您的视频作品', tag: '', url: '', type: 'placeholder' },
+            { title: '作品四', desc: '点击添加您的视频作品', tag: '', url: '', type: 'placeholder' }
         ];
 
-        const tagColors = ['pink', 'blue', 'yellow'];
         let currentEditIndex = -1;
 
         function renderPortfolio() {
@@ -1013,10 +611,10 @@
                     videoHTML = `
                         <div class="video-area">
                             <div class="video-placeholder" onclick="openModal(${index})">
-                                <div class="play-btn">
+                                <div class="play-icon">
                                     <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                                 </div>
-                                <div class="file-label">${item.fileExt}</div>
+                                <span class="video-placeholder-text">点击添加视频</span>
                             </div>
                         </div>
                     `;
@@ -1026,15 +624,12 @@
                     videoHTML = `<div class="video-area"><video src="${item.url}" controls></video></div>`;
                 }
 
-                const tagColor = tagColors[index % 3];
                 card.innerHTML = `
                     ${videoHTML}
                     <div class="portfolio-meta">
-                        <div class="meta-left">
-                            <h4>${item.title}</h4>
-                            <p>${item.desc}</p>
-                        </div>
-                        <span class="meta-tag ${tagColor}">${item.tag}</span>
+                        <h4>${item.title}</h4>
+                        <p>${item.desc}</p>
+                        ${item.tag ? `<span class="portfolio-tag">${item.tag}</span>` : ''}
                     </div>
                 `;
                 grid.appendChild(card);
@@ -1059,7 +654,7 @@
             const title = document.getElementById('videoTitle').value.trim() || `作品${currentEditIndex + 1}`;
             const url = document.getElementById('videoUrl').value.trim();
             const desc = document.getElementById('videoDesc').value.trim() || '精彩视频作品';
-            const tag = document.getElementById('videoTag').value.trim() || '视频设计';
+            const tag = document.getElementById('videoTag').value.trim();
 
             if (!url) { alert('请输入视频链接'); return; }
 
@@ -1067,19 +662,11 @@
             portfolioItems[currentEditIndex] = {
                 title, desc, tag,
                 url: embedInfo.content,
-                type: embedInfo.type,
-                fileExt: getFileExt(url)
+                type: embedInfo.type
             };
 
             closeModal();
             renderPortfolio();
-        }
-
-        function getFileExt(url) {
-            if (url.includes('bilibili')) return '.bilibili';
-            if (url.includes('youtube')) return '.youtube';
-            if (url.match(/\.(mp4|webm|ogg)/i)) return '.mp4';
-            return '.video';
         }
 
         function parseVideoUrl(url) {
