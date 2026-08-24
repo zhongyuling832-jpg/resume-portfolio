@@ -9,28 +9,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Caveat:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --cream: #F5F0EB;
-            --cream-2: #EDE6DD;
-            --paper: #FDFAF6;
-            --ink: #2D2A26;
+            --cream: #F2EBE0;
+            --paper: #FDFAF5;
+            --paper-2: #F8F2E8;
+            --ink: #3A352D;
             --ink-soft: #6B655C;
             --ink-faint: #A8A097;
             --blue: #2E5BBA;
-            --blue-soft: #E8EEF9;
+            --blue-soft: #DDE6F7;
             --green: #7BC67E;
-            --green-soft: #E5F3E6;
+            --green-soft: #E2F0E3;
             --lime: #9ED65A;
             --orange: #F4A261;
             --orange-soft: #FCE8D5;
             --yellow: #E9C46A;
-            --yellow-soft: #FBF1D9;
+            --yellow-soft: #FAF0D4;
             --rose: #E07A9A;
             --rose-soft: #F9E1E8;
             --lavender: #A67BC4;
-            --lavender-soft: #EFE5F5;
+            --lavender-soft: #EBE0F2;
             --red: #D9483B;
-            --red-soft: #FAE0DC;
-            --divider: rgba(45,42,38,0.1);
+            --red-soft: #F9E0DC;
+            --teal: #5BB3A8;
+            --teal-soft: #D9EFEA;
+            --divider: rgba(58,53,45,0.12);
+            --ease: cubic-bezier(0.25,1,0.5,1);
         }
 
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -46,26 +49,82 @@
             position:relative;
         }
 
-        /* Background blobs */
+        /* Background blobs — soft watercolor spots */
         body::before {
             content:''; position:fixed; inset:0; z-index:-1;
             background:
-                radial-gradient(ellipse 40% 30% at 10% 5%, rgba(160,123,196,0.08) 0%, transparent 70%),
-                radial-gradient(ellipse 35% 25% at 90% 50%, rgba(244,162,97,0.06) 0%, transparent 70%),
-                radial-gradient(ellipse 30% 20% at 15% 90%, rgba(123,198,126,0.06) 0%, transparent 70%);
+                radial-gradient(ellipse 35% 28% at 8% 5%, rgba(160,123,196,0.07) 0%, transparent 65%),
+                radial-gradient(ellipse 30% 22% at 92% 40%, rgba(244,162,97,0.06) 0%, transparent 65%),
+                radial-gradient(ellipse 28% 20% at 12% 85%, rgba(123,198,126,0.06) 0%, transparent 65%),
+                radial-gradient(ellipse 25% 18% at 85% 95%, rgba(224,122,154,0.05) 0%, transparent 65%);
             pointer-events:none;
         }
 
         .container { max-width:860px; margin:0 auto; padding:0 28px; }
+
+        /* --- Paper texture effect --- */
+        .paper {
+            background:
+                linear-gradient(135deg, var(--paper) 0%, var(--paper-2) 100%);
+            box-shadow:
+                0 1px 3px rgba(58,53,45,0.08),
+                0 4px 12px rgba(58,53,45,0.06),
+                inset 0 0 40px rgba(200,180,140,0.05);
+            position:relative;
+        }
+        .paper::before {
+            content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(200,180,140,0.04) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(200,180,140,0.03) 0%, transparent 50%);
+        }
+
+        /* --- Washi tape decoration --- */
+        .tape {
+            position:absolute; width:60px; height:20px;
+            background:var(--yellow); opacity:0.55;
+            z-index:5;
+            box-shadow:1px 1px 3px rgba(58,53,45,0.1);
+        }
+        .tape::before, .tape::after {
+            content:''; position:absolute; top:0; bottom:0; width:3px;
+            background:inherit; opacity:0.6;
+        }
+        .tape::before { left:-2px; clip-path:polygon(0 20%, 100% 0, 100% 100%, 0 80%); }
+        .tape::after { right:-2px; clip-path:polygon(0 0, 100% 20%, 100% 80%, 0 100%); }
+
+        /* --- Pushpin --- */
+        .pushpin {
+            position:absolute; top:-8px; z-index:10; width:16px; height:16px;
+        }
+        .pushpin::before {
+            content:''; position:absolute; inset:0; border-radius:50%;
+            background:var(--red); box-shadow:1px 1px 2px rgba(0,0,0,0.2);
+        }
+        .pushpin::after {
+            content:''; position:absolute; top:5px; left:5px; width:4px; height:4px;
+            border-radius:50%; background:rgba(255,255,255,0.4);
+        }
+
+        /* --- Paper clip --- */
+        .clip {
+            position:absolute; z-index:10; width:14px; height:36px;
+            border:2px solid #B0B0B0; border-radius:6px; border-bottom:none;
+            background:transparent;
+        }
+        .clip::after {
+            content:''; position:absolute; bottom:-2px; left:-2px; right:-2px; height:14px;
+            border:2px solid #B0B0B0; border-radius:6px; border-top:none;
+            background:transparent;
+        }
 
         /* --- Nav + Lang --- */
         .nav-bar {
             position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:200;
             display:flex; gap:2px;
             background:var(--paper);
-            border:2px solid var(--ink);
             border-radius:100px; padding:4px;
-            box-shadow:3px 3px 0 var(--ink);
+            box-shadow:0 2px 8px rgba(58,53,45,0.12), inset 0 0 20px rgba(200,180,140,0.04);
         }
         .nav-link {
             padding:7px 18px; font-size:0.8rem; font-family:'Plus Jakarta Sans',sans-serif;
@@ -79,9 +138,8 @@
             position:fixed; top:18px; right:24px; z-index:200;
             display:flex; gap:2px;
             background:var(--paper);
-            border:2px solid var(--ink);
             border-radius:100px; padding:3px;
-            box-shadow:3px 3px 0 var(--ink);
+            box-shadow:0 2px 8px rgba(58,53,45,0.12);
         }
         .lang-btn {
             padding:6px 12px; font-size:0.75rem; font-family:'Plus Jakarta Sans',sans-serif;
@@ -92,19 +150,19 @@
         .lang-btn:not(.active):hover { color:var(--ink); }
 
         /* ===== HERO ===== */
-        .hero { padding:120px 0 70px; text-align:center; position:relative; }
+        .hero { padding:120px 0 60px; text-align:center; position:relative; }
 
         .hero-portfolio {
             font-family:'Fredoka One',sans-serif;
-            font-size:clamp(3rem,11vw,6rem);
+            font-size:clamp(2.8rem,10vw,5.5rem);
             line-height:1; letter-spacing:-0.02em;
-            margin-bottom:8px;
-            display:flex; justify-content:center; gap:0.02em;
+            margin-bottom:4px;
+            display:flex; justify-content:center; gap:0.01em;
             flex-wrap:wrap;
         }
         .hero-portfolio span {
             display:inline-block;
-            text-shadow:3px 3px 0 var(--ink);
+            text-shadow:2px 2px 0 rgba(58,53,45,0.15);
         }
         .hero-portfolio span:nth-child(1) { color:var(--blue); }
         .hero-portfolio span:nth-child(2) { color:var(--blue); }
@@ -116,21 +174,33 @@
         .hero-portfolio span:nth-child(8) { color:var(--rose); }
         .hero-portfolio span:nth-child(9) { color:var(--lavender); }
 
-        .hero-year {
-            font-family:'Fredoka One',sans-serif;
-            font-size:clamp(1.5rem,5vw,2.5rem);
-            color:var(--lavender); line-height:1; margin-bottom:32px;
-            text-shadow:2px 2px 0 var(--ink);
+        /* "作品集" label — handwritten, next to PORTFOLIO */
+        .hero-zuo {
+            font-family:'Caveat',cursive; font-size:1.6rem; font-weight:700;
+            color:var(--rose); display:inline-block; margin-bottom:16px;
+            transform:rotate(-3deg);
         }
 
-        .hero-name-badge {
-            display:inline-block; background:var(--ink); color:var(--paper);
-            padding:8px 24px; border-radius:8px; margin-bottom:12px;
-            box-shadow:3px 3px 0 var(--rose);
+        .hero-year {
+            font-family:'Fredoka One',sans-serif;
+            font-size:clamp(1.3rem,4vw,2rem);
+            color:var(--lavender); line-height:1; margin-bottom:28px;
+            text-shadow:1px 1px 0 rgba(58,53,45,0.1);
         }
-        .hero-name-badge span {
-            font-family:'Caveat',cursive; font-size:1.6rem; font-weight:700;
-            letter-spacing:0.02em;
+
+        /* Name — NO frame, handwritten large */
+        .hero-name {
+            font-family:'Caveat',cursive;
+            font-size:clamp(2.5rem,7vw,3.5rem);
+            font-weight:700; line-height:1.1;
+            color:var(--ink); margin-bottom:8px;
+        }
+        .hero-name .accent { color:var(--rose); }
+
+        .hero-name-en {
+            font-family:'Caveat',cursive; font-size:1.1rem;
+            color:var(--ink-faint); letter-spacing:0.1em;
+            margin-bottom:24px;
         }
 
         .hero-tagline {
@@ -142,80 +212,107 @@
         .hero-tag {
             font-size:0.82rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:600;
             padding:6px 16px; border-radius:100px;
-            border:2px solid var(--ink);
-            box-shadow:2px 2px 0 var(--ink);
+            box-shadow:0 2px 6px rgba(58,53,45,0.1);
             transition:transform 0.2s;
         }
-        .hero-tag:hover { transform:translate(-1px,-1px); box-shadow:3px 3px 0 var(--ink); }
+        .hero-tag:hover { transform:translateY(-2px); }
         .hero-tag:nth-child(1) { background:var(--yellow); color:var(--ink); }
-        .hero-tag:nth-child(2) { background:var(--green-soft); color:var(--ink); }
-        .hero-tag:nth-child(3) { background:var(--rose-soft); color:var(--ink); }
+        .hero-tag:nth-child(2) { background:var(--green-soft); color:var(--ink); border:1px solid rgba(123,198,126,0.3); }
+        .hero-tag:nth-child(3) { background:var(--rose-soft); color:var(--ink); border:1px solid rgba(224,122,154,0.3); }
 
         .hero-scroll {
             font-family:'Caveat',cursive; font-size:1.1rem;
             color:var(--ink-faint); margin-top:24px;
         }
 
-        /* Decorative star */
-        .deco-star {
-            position:absolute; font-family:'Fredoka One',sans-serif;
-            color:var(--yellow); font-size:1.5rem; pointer-events:none;
-            text-shadow:1px 1px 0 var(--ink);
+        /* Decorative scattered elements */
+        .deco {
+            position:absolute; pointer-events:none; z-index:0;
         }
-        .deco-star.s1 { top:8%; left:8%; transform:rotate(-15deg); }
-        .deco-star.s2 { top:15%; right:10%; transform:rotate(20deg); color:var(--rose); }
-        .deco-star.s3 { bottom:10%; left:12%; transform:rotate(10deg); color:var(--lavender); }
+        .deco-star {
+            font-family:'Fredoka One',sans-serif; font-size:1.4rem;
+            text-shadow:1px 1px 0 rgba(58,53,45,0.1);
+        }
+        .deco-star.s1 { top:8%; left:6%; transform:rotate(-15deg); color:var(--yellow); }
+        .deco-star.s2 { top:12%; right:8%; transform:rotate(20deg); color:var(--rose); font-size:1.1rem; }
+        .deco-star.s3 { bottom:8%; left:10%; transform:rotate(8deg); color:var(--lavender); }
+        .deco-star.s4 { bottom:12%; right:12%; transform:rotate(-10deg); color:var(--teal); font-size:1.2rem; }
+
+        /* Doodle arrow */
+        .deco-arrow {
+            font-family:'Caveat',cursive; font-size:1.3rem; color:var(--orange);
+        }
+        .deco-arrow.a1 { top:5%; right:20%; transform:rotate(-10deg); }
+
+        /* Doodle scribble circle */
+        .deco-scribble {
+            width:40px; height:40px; border:2px solid var(--green);
+            border-radius:50%; opacity:0.3;
+            border-style:dashed;
+        }
+        .deco-scribble.sc1 { top:18%; left:3%; }
 
         /* ===== SECTION ===== */
-        section { padding:56px 0; position:relative; }
+        section { padding:52px 0; position:relative; }
 
-        .section-head { margin-bottom:32px; }
+        .section-head { margin-bottom:28px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
         .section-title {
-            font-family:'Caveat',cursive; font-size:2rem; font-weight:700;
-            color:var(--ink); display:inline-block; position:relative;
+            font-family:'Caveat',cursive; font-size:1.8rem; font-weight:700;
+            color:var(--ink); position:relative; display:inline-block;
         }
         .section-title::after {
-            content:''; position:absolute; bottom:2px; left:0; right:0; height:8px;
-            background:var(--yellow); z-index:-1; opacity:0.5;
-            border-radius:4px;
+            content:''; position:absolute; bottom:2px; left:-2px; right:-2px; height:7px;
+            background:var(--yellow); z-index:-1; opacity:0.45;
+            border-radius:4px; transform:skewX(-5deg);
         }
         .section-num {
-            font-family:'Fredoka One',sans-serif; font-size:0.85rem;
-            color:var(--paper); padding:2px 10px; border-radius:6px;
-            display:inline-block; margin-right:8px;
-            box-shadow:2px 2px 0 var(--ink);
-            border:2px solid var(--ink);
+            font-family:'Fredoka One',sans-serif; font-size:0.82rem;
+            color:var(--paper); padding:3px 10px; border-radius:6px;
+            display:inline-block;
+            box-shadow:0 2px 4px rgba(58,53,45,0.15);
         }
         .section-num.blue { background:var(--blue); }
         .section-num.green { background:var(--green); color:var(--ink); }
         .section-num.orange { background:var(--orange); }
         .section-num.rose { background:var(--rose); }
 
-        /* ===== ABOUT ===== */
+        /* ===== ABOUT — paper card with tape + clip ===== */
         .about-card {
-            background:var(--paper);
-            border:2px solid var(--ink);
-            border-radius:16px; padding:32px;
-            box-shadow:4px 4px 0 var(--ink);
+            border-radius:12px; padding:32px;
             display:grid; grid-template-columns:140px 1fr; gap:28px; align-items:start;
+            position:relative;
+            transform:rotate(-0.5deg);
         }
+        .about-card .tape { top:-8px; left:24px; background:var(--yellow); transform:rotate(-8deg); }
+        .about-card .pushpin { top:-6px; right:20px; }
+
         .about-photo-wrap { position:relative; }
         .about-photo-clip {
-            position:absolute; top:-12px; left:50%; transform:translateX(-50%) rotate(5deg);
-            width:20px; height:40px; background:var(--green);
-            border:1.5px solid var(--ink); border-radius:2px; z-index:3;
-            box-shadow:1px 1px 0 var(--ink);
+            position:absolute; top:-14px; left:50%; transform:translateX(-50%) rotate(8deg);
+            width:16px; height:44px; z-index:3;
+            border:2px solid #B0B0B0; border-radius:8px; border-bottom:none;
+            background:transparent;
+        }
+        .about-photo-clip::after {
+            content:''; position:absolute; bottom:-2px; left:-2px; right:-2px; height:18px;
+            border:2px solid #B0B0B0; border-radius:8px; border-top:none;
         }
         .about-photo {
-            width:140px; height:180px; border-radius:8px;
+            width:140px; height:180px; border-radius:6px;
             background:linear-gradient(135deg, var(--blue-soft), var(--rose-soft));
-            border:2px solid var(--ink);
             display:flex; align-items:center; justify-content:center;
             font-family:'Caveat',cursive; font-size:1rem; color:var(--ink-faint);
-            transform:rotate(-2deg);
+            transform:rotate(-3deg);
+            box-shadow:0 4px 12px rgba(58,53,45,0.12);
+            padding:6px;
+        }
+        .about-photo-inner {
+            width:100%; height:100%; border-radius:4px;
+            display:flex; align-items:center; justify-content:center;
+            background:var(--paper);
         }
 
-        .about-info { display:grid; gap:10px; }
+        .about-info { display:grid; gap:10px; position:relative; z-index:1; }
         .about-row { display:flex; gap:16px; align-items:baseline; }
         .about-row .label {
             font-size:0.72rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700;
@@ -231,16 +328,19 @@
         .about-tags span {
             font-size:0.78rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:600;
             padding:4px 14px; border-radius:100px;
-            border:1.5px solid var(--ink);
+            box-shadow:0 1px 4px rgba(58,53,45,0.08);
         }
         .about-tags span:nth-child(6n+1) { background:var(--yellow-soft); }
         .about-tags span:nth-child(6n+2) { background:var(--green-soft); }
         .about-tags span:nth-child(6n+3) { background:var(--rose-soft); }
         .about-tags span:nth-child(6n+4) { background:var(--lavender-soft); }
         .about-tags span:nth-child(6n+5) { background:var(--orange-soft); }
-        .about-tags span:nth-child(6n+6) { background:var(--blue-soft); }
+        .about-tags span:nth-child(6n+6) { background:var(--teal-soft); }
 
-        /* ===== SKILLS — sticker badges ===== */
+        /* ===== SKILLS — sticker badges on paper ===== */
+        .skills-card { border-radius:12px; padding:28px; position:relative; transform:rotate(0.5deg); }
+        .skills-card .tape { top:-8px; right:30px; background:var(--green); transform:rotate(12deg); opacity:0.4; }
+
         .skills-wrap { display:grid; gap:24px; }
         .skill-group h3 {
             font-family:'Caveat',cursive; font-size:1.3rem; font-weight:700;
@@ -255,12 +355,11 @@
         .skill-badge {
             font-size:0.84rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:600;
             color:var(--ink); padding:8px 18px; border-radius:100px;
-            border:2px solid var(--ink);
-            box-shadow:2px 2px 0 var(--ink);
-            transition:all 0.2s;
+            box-shadow:0 2px 6px rgba(58,53,45,0.08);
+            transition:transform 0.2s;
             display:inline-flex; align-items:center; gap:8px;
         }
-        .skill-badge:hover { transform:translate(-1px,-1px); box-shadow:3px 3px 0 var(--ink); }
+        .skill-badge:hover { transform:translateY(-2px); }
         .skill-badge .level {
             font-family:'Caveat',cursive; font-size:0.9rem; font-weight:700;
             opacity:0.6;
@@ -270,16 +369,29 @@
         .skill-badge:nth-child(3n+3) { background:var(--rose-soft); }
 
         /* ===== PORTFOLIO ===== */
+        .portfolio-head-wrap { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:28px; }
+        .portfolio-zuo {
+            font-family:'Caveat',cursive; font-size:1.4rem; color:var(--rose);
+            font-weight:700; transform:rotate(-3deg);
+        }
+        .portfolio-hint {
+            font-family:'Caveat',cursive; font-size:1rem; color:var(--ink-faint);
+            margin-bottom:20px;
+        }
         .portfolio-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
         .portfolio-card {
-            background:var(--paper); border:2px solid var(--ink);
-            border-radius:14px; overflow:hidden; transition:all 0.2s;
-            position:relative; box-shadow:3px 3px 0 var(--ink);
+            border-radius:12px; overflow:hidden; transition:all 0.2s;
+            position:relative;
+            box-shadow:0 4px 14px rgba(58,53,45,0.08);
         }
-        .portfolio-card:hover { box-shadow:5px 5px 0 var(--ink); transform:translate(-1px,-1px); }
+        .portfolio-card:nth-child(odd) { transform:rotate(-0.5deg); }
+        .portfolio-card:nth-child(even) { transform:rotate(0.5deg); }
+        .portfolio-card:hover { box-shadow:0 8px 24px rgba(58,53,45,0.12); transform:rotate(0) translateY(-3px); }
+        .portfolio-card .tape { top:-6px; left:20px; }
+
         .video-area {
             position:relative; width:100%; padding-top:56.25%;
-            background:var(--cream-2); overflow:hidden;
+            background:var(--cream); overflow:hidden;
         }
         .video-area iframe, .video-area video {
             position:absolute; top:0; left:0; width:100%; height:100%; border:none;
@@ -288,12 +400,12 @@
             position:absolute; inset:0; display:flex; flex-direction:column;
             align-items:center; justify-content:center; cursor:pointer; gap:12px;
         }
-        .video-placeholder:hover { background:rgba(233,196,106,0.08); }
+        .video-placeholder:hover { background:rgba(233,196,106,0.06); }
         .play-icon {
             width:44px; height:44px; border-radius:12px;
-            border:2px solid var(--ink);
             display:flex; align-items:center; justify-content:center;
-            background:var(--yellow); box-shadow:2px 2px 0 var(--ink);
+            background:var(--yellow);
+            box-shadow:0 2px 8px rgba(58,53,45,0.12);
             transition:all 0.2s;
         }
         .video-placeholder:hover .play-icon { background:var(--orange); transform:scale(1.05); }
@@ -301,7 +413,7 @@
         .placeholder-text {
             font-family:'Caveat',cursive; font-size:1rem; color:var(--ink-faint);
         }
-        .portfolio-meta { padding:14px 18px; }
+        .portfolio-meta { padding:14px 18px; position:relative; }
         .portfolio-meta h4 {
             font-family:'Plus Jakarta Sans',sans-serif; font-size:0.95rem; font-weight:600;
             margin-bottom:4px; color:var(--ink);
@@ -313,24 +425,25 @@
         }
         .card-num {
             position:absolute; top:10px; right:10px; z-index:5;
-            font-family:'Fredoka One',sans-serif; font-size:0.75rem;
+            font-family:'Fredoka One',sans-serif; font-size:0.72rem;
             background:var(--ink); color:var(--paper);
             padding:2px 8px; border-radius:6px;
+            box-shadow:0 2px 4px rgba(58,53,45,0.15);
         }
 
         /* ===== CONTACT — grid paper section ===== */
-        .contact-section {
-            background:var(--paper);
-            border:2px solid var(--ink);
-            border-radius:16px; padding:36px;
-            box-shadow:4px 4px 0 var(--ink);
-            position:relative;
+        .contact-card {
+            border-radius:12px; padding:36px;
+            position:relative; overflow:hidden;
+            box-shadow:0 4px 14px rgba(58,53,45,0.08);
         }
-        .contact-section::before {
-            content:''; position:absolute; inset:0; border-radius:14px;
+        .contact-card .tape { top:-8px; left:40px; background:var(--rose); transform:rotate(-5deg); opacity:0.4; }
+        .contact-card .pushpin { top:-6px; right:30px; }
+        .contact-card::before {
+            content:''; position:absolute; inset:0; border-radius:inherit;
             background-image:
-                linear-gradient(rgba(45,42,38,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(45,42,38,0.04) 1px, transparent 1px);
+                linear-gradient(rgba(58,53,45,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(58,53,45,0.035) 1px, transparent 1px);
             background-size:20px 20px;
             pointer-events:none;
         }
@@ -365,13 +478,13 @@
         }
 
         /* ===== OUTRO ===== */
-        .outro { padding:64px 0 48px; text-align:center; position:relative; }
+        .outro { padding:64px 0 40px; text-align:center; position:relative; }
         .outro-text {
             font-family:'Fredoka One',sans-serif;
-            font-size:clamp(2.5rem,8vw,4rem);
+            font-size:clamp(2.2rem,7vw,3.5rem);
             line-height:1; letter-spacing:-0.02em;
             color:var(--blue);
-            text-shadow:3px 3px 0 var(--ink);
+            text-shadow:2px 2px 0 rgba(58,53,45,0.12);
             margin-bottom:16px;
         }
         .outro-sub {
@@ -380,9 +493,7 @@
         }
 
         /* ===== FOOTER ===== */
-        footer {
-            text-align:center; padding:24px;
-        }
+        footer { text-align:center; padding:24px; }
         footer p {
             font-size:0.78rem; color:var(--ink-faint);
             font-family:'Plus Jakarta Sans',sans-serif;
@@ -394,15 +505,16 @@
 
         /* ===== MODAL ===== */
         .modal-overlay {
-            position:fixed; inset:0; background:rgba(45,42,38,0.3);
+            position:fixed; inset:0; background:rgba(58,53,45,0.25);
             display:none; align-items:center; justify-content:center; z-index:1000;
         }
         .modal-overlay.active { display:flex; }
         .modal {
-            background:var(--paper); border:2px solid var(--ink);
             border-radius:16px; width:90%; max-width:420px; padding:32px;
-            box-shadow:4px 4px 0 var(--ink);
+            box-shadow:0 8px 30px rgba(58,53,45,0.2);
+            position:relative;
         }
+        .modal .tape { top:-8px; right:30px; background:var(--yellow); transform:rotate(8deg); }
         .modal h3 {
             font-family:'Caveat',cursive; font-size:1.5rem; font-weight:700;
             margin-bottom:24px; color:var(--ink);
@@ -415,7 +527,7 @@
         }
         .field input, .field textarea {
             width:100%; padding:10px 14px; background:var(--cream);
-            border:2px solid var(--ink); border-radius:8px;
+            border:1px solid var(--divider); border-radius:8px;
             font-size:0.86rem; font-family:inherit; color:var(--ink);
             outline:none; transition:border-color 0.2s;
         }
@@ -424,11 +536,11 @@
         .modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:22px; }
         .btn {
             padding:9px 22px; font-size:0.82rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:600;
-            cursor:pointer; border:2px solid var(--ink); border-radius:100px;
+            cursor:pointer; border:none; border-radius:100px;
             background:var(--paper); color:var(--ink-soft); transition:all 0.2s;
-            box-shadow:2px 2px 0 var(--ink);
+            box-shadow:0 2px 6px rgba(58,53,45,0.08);
         }
-        .btn:hover { transform:translate(-1px,-1px); box-shadow:3px 3px 0 var(--ink); }
+        .btn:hover { transform:translateY(-1px); }
         .btn.primary {
             background:var(--yellow); color:var(--ink);
         }
@@ -438,12 +550,12 @@
             .about-card { grid-template-columns:1fr; justify-items:center; text-align:center; }
             .about-row { justify-content:center; }
             .portfolio-grid { grid-template-columns:1fr; }
-            section { padding:48px 0; }
+            section { padding:44px 0; }
             .hero { padding:100px 0 50px; }
             .nav-bar { display:none; }
             .lang-switch { top:14px; right:14px; }
             .container { padding:0 20px; }
-            .deco-star { display:none; }
+            .deco { display:none; }
         }
 
         ::selection { background:var(--yellow); color:var(--ink); }
@@ -477,17 +589,20 @@
 
     <!-- ===== HERO ===== -->
     <header class="hero">
-        <span class="deco-star s1">✱</span>
-        <span class="deco-star s2">✱</span>
-        <span class="deco-star s3">✱</span>
+        <span class="deco deco-star s1">✱</span>
+        <span class="deco deco-star s2">✱</span>
+        <span class="deco deco-star s3">✱</span>
+        <span class="deco deco-star s4">✱</span>
+        <span class="deco deco-arrow a1">↗</span>
+        <span class="deco deco-scribble sc1"></span>
         <div class="container">
             <div class="hero-portfolio">
                 <span>P</span><span>O</span><span>R</span><span>T</span><span>F</span><span>O</span><span>L</span><span>I</span><span>O</span>
             </div>
+            <p class="hero-zuo" data-zh="作品集" data-en="精选作品">作品集</p>
             <p class="hero-year">2026</p>
-            <div class="hero-name-badge">
-                <span data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span>
-            </div>
+            <h1 class="hero-name" data-zh="钟毓<span class='accent'>灵</span>" data-en="Zhong <span class='accent'>Yuling</span>">钟毓<span class="accent">灵</span></h1>
+            <p class="hero-name-en" data-zh="ZHONG YULING" data-en="钟 毓 灵">ZHONG YULING</p>
             <p class="hero-tagline" data-zh="数字媒体艺术与动画IT硕士，4年以上视频设计经验。深耕品牌广告与游戏行业，擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。" data-en="MA in Digital Media Art & Animation IT, 4+ years of video design experience. Specializing in brand advertising and gaming, from creative planning to final delivery, with AIGC integrated throughout.">数字媒体艺术与动画IT硕士，4年以上视频设计经验。深耕品牌广告与游戏行业，擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。</p>
             <div class="hero-tags">
                 <span class="hero-tag" data-zh="视频设计" data-en="Video Design">视频设计</span>
@@ -506,10 +621,14 @@
                 <span class="section-num blue" data-zh="01" data-en="01">01</span>
                 <span class="section-title" data-zh="关于我" data-en="About Me">关于我</span>
             </div>
-            <div class="about-card">
+            <div class="about-card paper">
+                <div class="tape"></div>
+                <div class="pushpin"></div>
                 <div class="about-photo-wrap">
                     <div class="about-photo-clip"></div>
-                    <div class="about-photo" data-zh="照片" data-en="photo">照片</div>
+                    <div class="about-photo">
+                        <div class="about-photo-inner" data-zh="照片" data-en="photo">照片</div>
+                    </div>
                 </div>
                 <div>
                     <div class="about-info">
@@ -537,33 +656,36 @@
                 <span class="section-num green" data-zh="02" data-en="02">02</span>
                 <span class="section-title" data-zh="技能与工具" data-en="Skills & Tools">技能与工具</span>
             </div>
-            <div class="skills-wrap">
-                <div class="skill-group">
-                    <h3 data-zh="核心技能" data-en="Core Skills">核心技能</h3>
-                    <div class="skill-list">
-                        <span class="skill-badge" data-zh="视频设计 <span class='level'>精通</span>" data-en="Video Design <span class='level'>Expert</span>">视频设计 <span class="level">精通</span></span>
-                        <span class="skill-badge" data-zh="AE动效 <span class='level'>熟练</span>" data-en="AE Motion <span class='level'>Advanced</span>">AE动效 <span class="level">熟练</span></span>
-                        <span class="skill-badge" data-zh="创意策划 <span class='level'>精通</span>" data-en="Creative Planning <span class='level'>Expert</span>">创意策划 <span class="level">精通</span></span>
-                        <span class="skill-badge" data-zh="品牌广告 <span class='level'>熟练</span>" data-en="Brand Ads <span class='level'>Advanced</span>">品牌广告 <span class="level">熟练</span></span>
-                        <span class="skill-badge" data-zh="游戏行业 <span class='level'>熟悉</span>" data-en="Gaming <span class='level'>Familiar</span>">游戏行业 <span class="level">熟悉</span></span>
+            <div class="skills-card paper">
+                <div class="tape"></div>
+                <div class="skills-wrap">
+                    <div class="skill-group">
+                        <h3 data-zh="核心技能" data-en="Core Skills">核心技能</h3>
+                        <div class="skill-list">
+                            <span class="skill-badge" data-zh="视频设计 <span class='level'>精通</span>" data-en="Video Design <span class='level'>Expert</span>">视频设计 <span class="level">精通</span></span>
+                            <span class="skill-badge" data-zh="AE动效 <span class='level'>熟练</span>" data-en="AE Motion <span class='level'>Advanced</span>">AE动效 <span class="level">熟练</span></span>
+                            <span class="skill-badge" data-zh="创意策划 <span class='level'>精通</span>" data-en="Creative Planning <span class='level'>Expert</span>">创意策划 <span class="level">精通</span></span>
+                            <span class="skill-badge" data-zh="品牌广告 <span class='level'>熟练</span>" data-en="Brand Ads <span class='level'>Advanced</span>">品牌广告 <span class="level">熟练</span></span>
+                            <span class="skill-badge" data-zh="游戏行业 <span class='level'>熟悉</span>" data-en="Gaming <span class='level'>Familiar</span>">游戏行业 <span class="level">熟悉</span></span>
+                        </div>
                     </div>
-                </div>
-                <div class="skill-group">
-                    <h3 data-zh="AI 工具" data-en="AI Tools">AI 工具</h3>
-                    <div class="skill-list">
-                        <span class="skill-badge" data-zh="AI视频生成 <span class='level'>熟练</span>" data-en="AI Video <span class='level'>Advanced</span>">AI视频生成 <span class="level">熟练</span></span>
-                        <span class="skill-badge" data-zh="AI生图 <span class='level'>熟练</span>" data-en="AI Image <span class='level'>Advanced</span>">AI生图 <span class="level">熟练</span></span>
-                        <span class="skill-badge" data-zh="即梦AI <span class='level'>熟练</span>" data-en="Jimeng AI <span class='level'>Advanced</span>">即梦AI <span class="level">熟练</span></span>
-                        <span class="skill-badge" data-zh="Suno音乐 <span class='level'>熟练</span>" data-en="Suno Music <span class='level'>Advanced</span>">Suno音乐 <span class="level">熟练</span></span>
-                        <span class="skill-badge" data-zh="AIGC工作流 <span class='level'>熟练</span>" data-en="AIGC Workflow <span class='level'>Advanced</span>">AIGC工作流 <span class="level">熟练</span></span>
+                    <div class="skill-group">
+                        <h3 data-zh="AI 工具" data-en="AI Tools">AI 工具</h3>
+                        <div class="skill-list">
+                            <span class="skill-badge" data-zh="AI视频生成 <span class='level'>熟练</span>" data-en="AI Video <span class='level'>Advanced</span>">AI视频生成 <span class="level">熟练</span></span>
+                            <span class="skill-badge" data-zh="AI生图 <span class='level'>熟练</span>" data-en="AI Image <span class='level'>Advanced</span>">AI生图 <span class="level">熟练</span></span>
+                            <span class="skill-badge" data-zh="即梦AI <span class='level'>熟练</span>" data-en="Jimeng AI <span class='level'>Advanced</span>">即梦AI <span class="level">熟练</span></span>
+                            <span class="skill-badge" data-zh="Suno音乐 <span class='level'>熟练</span>" data-en="Suno Music <span class='level'>Advanced</span>">Suno音乐 <span class="level">熟练</span></span>
+                            <span class="skill-badge" data-zh="AIGC工作流 <span class='level'>熟练</span>" data-en="AIGC Workflow <span class='level'>Advanced</span>">AIGC工作流 <span class="level">熟练</span></span>
+                        </div>
                     </div>
-                </div>
-                <div class="skill-group">
-                    <h3 data-zh="综合能力" data-en="Soft Skills">综合能力</h3>
-                    <div class="skill-list">
-                        <span class="skill-badge" data-zh="跨部门协作 <span class='level'>熟练</span>" data-en="Cross-team Collab <span class='level'>Advanced</span>">跨部门协作 <span class="level">熟练</span></span>
-                        <span class="skill-badge" data-zh="项目管理 <span class='level'>熟练</span>" data-en="Project Mgmt <span class='level'>Advanced</span>">项目管理 <span class="level">熟练</span></span>
-                        <span class="skill-badge" data-zh="独立交付 <span class='level'>精通</span>" data-en="Solo Delivery <span class='level'>Expert</span>">独立交付 <span class="level">精通</span></span>
+                    <div class="skill-group">
+                        <h3 data-zh="综合能力" data-en="Soft Skills">综合能力</h3>
+                        <div class="skill-list">
+                            <span class="skill-badge" data-zh="跨部门协作 <span class='level'>熟练</span>" data-en="Cross-team Collab <span class='level'>Advanced</span>">跨部门协作 <span class="level">熟练</span></span>
+                            <span class="skill-badge" data-zh="项目管理 <span class='level'>熟练</span>" data-en="Project Mgmt <span class='level'>Advanced</span>">项目管理 <span class="level">熟练</span></span>
+                            <span class="skill-badge" data-zh="独立交付 <span class='level'>精通</span>" data-en="Solo Delivery <span class='level'>Expert</span>">独立交付 <span class="level">精通</span></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -571,11 +693,12 @@
 
         <!-- ===== PORTFOLIO ===== -->
         <section id="portfolio">
-            <div class="section-head">
+            <div class="portfolio-head-wrap">
                 <span class="section-num orange" data-zh="03" data-en="03">03</span>
                 <span class="section-title" data-zh="作品集" data-en="Portfolio">作品集</span>
+                <span class="portfolio-zuo" data-zh="精选作品 ✱" data-en="Selected Works ✱">精选作品 ✱</span>
             </div>
-            <p style="font-family:'Caveat',cursive;font-size:1.1rem;color:var(--ink-faint);margin-bottom:24px;" data-zh="点击卡片添加视频 — 支持 B站 / YouTube / 视频直链" data-en="Click a card to add a video — Bilibili / YouTube / direct links">点击卡片添加视频 — 支持 B站 / YouTube / 视频直链</p>
+            <p class="portfolio-hint" data-zh="点击卡片添加视频 — 支持 B站 / YouTube / 视频直链" data-en="Click a card to add a video — Bilibili / YouTube / direct links">点击卡片添加视频 — 支持 B站 / YouTube / 视频直链</p>
             <div class="portfolio-grid" id="portfolioGrid"></div>
         </section>
 
@@ -585,7 +708,9 @@
                 <span class="section-num rose" data-zh="04" data-en="04">04</span>
                 <span class="section-title" data-zh="联系我" data-en="Contact Me">联系我</span>
             </div>
-            <div class="contact-section">
+            <div class="contact-card paper">
+                <div class="tape"></div>
+                <div class="pushpin"></div>
                 <div class="contact-inner">
                     <p class="contact-title" data-zh="Get in Touch!" data-en="Get in Touch!">Get in Touch!</p>
                     <div class="contact-items">
@@ -611,6 +736,8 @@
 
     <!-- ===== OUTRO ===== -->
     <div class="outro">
+        <span class="deco deco-star s1" style="position:absolute;top:10%;left:15%;">✱</span>
+        <span class="deco deco-star s2" style="position:absolute;top:20%;right:15%;">✱</span>
         <p class="outro-text" data-zh="Let's Talk!" data-en="Let's Talk!">Let's Talk!</p>
         <p class="outro-sub" data-zh="钟毓灵 — 2026" data-en="Zhong Yuling — 2026">钟毓灵 — 2026</p>
     </div>
@@ -623,7 +750,8 @@
 
     <!-- ===== MODAL ===== -->
     <div class="modal-overlay" id="videoModal">
-        <div class="modal">
+        <div class="modal paper">
+            <div class="tape"></div>
             <h3 data-zh="添加视频作品" data-en="Add Video Work">添加视频作品</h3>
             <div class="field">
                 <label data-zh="作品标题" data-en="Title">作品标题</label>
@@ -673,7 +801,7 @@
             const pText = ph[currentLang].addVideo;
             portfolioItems.forEach((item, index) => {
                 const card = document.createElement('div');
-                card.className = 'portfolio-card';
+                card.className = 'portfolio-card paper';
                 let videoHTML;
                 if (item.type === 'placeholder' || !item.url) {
                     videoHTML = `<div class="video-area"><div class="video-placeholder" onclick="openModal(${index})"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="placeholder-text">${pText}</span></div></div>`;
@@ -685,7 +813,9 @@
                 const title = currentLang === 'zh' ? item.t_zh : item.t_en;
                 const desc = currentLang === 'zh' ? item.d_zh : item.d_en;
                 const num = String(index + 1).padStart(2, '0');
-                card.innerHTML = `${videoHTML}<span class="card-num">${num}</span><div class="portfolio-meta"><h4>${title}</h4><p>${desc}</p>${item.tag ? `<span class="portfolio-tag">${item.tag}</span>` : ''}</div>`;
+                const tapeColors = ['var(--yellow)','var(--green)','var(--rose)','var(--lavender)'];
+                const tapeColor = tapeColors[index % 4];
+                card.innerHTML = `${videoHTML}<div class="tape" style="background:${tapeColor};"></div><span class="card-num">${num}</span><div class="portfolio-meta"><h4>${title}</h4><p>${desc}</p>${item.tag ? `<span class="portfolio-tag">${item.tag}</span>` : ''}</div>`;
                 grid.appendChild(card);
             });
         }
