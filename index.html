@@ -3,556 +3,544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>钟毓灵 | 个人作品集</title>
+    <title>钟毓灵 | 作品集 Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #FAFAF8;
-            --surface: #FFFFFF;
-            --text: #2C2C2C;
-            --text-secondary: #6B6B6B;
-            --text-light: #999999;
-            --accent: #3A3A3A;
-            --accent-light: #E8E6E1;
-            --divider: #EAEAEA;
+            --bg: #F7F4EF;
+            --paper: #FDFAF4;
+            --ink: #2D2A26;
+            --ink-soft: #6B655C;
+            --ink-faint: #A8A097;
+            --tape: rgba(230, 200, 160, 0.45);
+            --accent: #C97B5A;
+            --accent-soft: #E8D5C9;
+            --mint: #C9DDD3;
+            --lilac: #D4C9DD;
+            --peach: #F0D4C4;
+            --sky: #C9D7E8;
+            --divider: rgba(45, 42, 38, 0.12);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Noto Sans SC', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Noto Sans SC', -apple-system, sans-serif;
             background: var(--bg);
-            color: var(--text);
+            color: var(--ink);
             line-height: 1.8;
-            font-weight: 400;
             -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 0 24px;
+        .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+        /* Paper texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(201,123,90,0.04) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(201,123,90,0.03) 0%, transparent 40%);
         }
 
         /* ===== HERO ===== */
         .hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 80px 0 60px;
+            padding: 80px 0 48px;
+            text-align: center;
+            position: relative;
         }
 
-        .hero-greeting {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            color: var(--text-light);
-            letter-spacing: 0.05em;
-            margin-bottom: 12px;
+        .hero-strips {
+            display: flex;
+            height: 6px;
+            margin-bottom: 40px;
+            border-radius: 1px;
+            overflow: hidden;
+        }
+        .hero-strips div { flex: 1; }
+        .hero-strips div:nth-child(1) { background: var(--peach); }
+        .hero-strips div:nth-child(2) { background: var(--mint); }
+        .hero-strips div:nth-child(3) { background: var(--sky); }
+        .hero-strips div:nth-child(4) { background: var(--lilac); }
+
+        .hero-label {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 4px;
         }
 
         .hero-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin-bottom: 8px;
+            font-style: italic;
+            font-size: clamp(2.8rem, 8vw, 4.5rem);
+            font-weight: 500;
+            line-height: 1.05;
+            margin-bottom: 6px;
         }
 
         .hero-name-cn {
-            font-size: 1.3rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            letter-spacing: 0.15em;
-            margin-bottom: 28px;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--ink-soft);
+            letter-spacing: 0.2em;
+            margin-bottom: 24px;
         }
 
         .hero-tagline {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            max-width: 480px;
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+            max-width: 440px;
+            margin: 0 auto 28px;
             line-height: 1.9;
-            margin-bottom: 32px;
         }
 
-        .hero-tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
+        .hero-tags { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
         .hero-tag {
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-            padding: 5px 14px;
+            font-size: 0.8rem;
+            color: var(--ink-soft);
+            padding: 4px 14px;
             border: 1px solid var(--divider);
             border-radius: 2px;
-            letter-spacing: 0.03em;
         }
 
-        .hero-line {
-            width: 48px;
-            height: 2px;
-            background: var(--text);
-            margin: 40px 0 0;
+        /* Handwritten note */
+        .handnote {
+            font-family: 'Caveat', cursive;
+            color: var(--ink-faint);
+            font-size: 1.05rem;
+            transform: rotate(-2deg);
+            display: inline-block;
+            margin-top: 20px;
         }
 
         /* ===== SECTION COMMON ===== */
-        section {
-            padding: 72px 0;
-            border-top: 1px solid var(--divider);
-        }
+        section { padding: 60px 0; border-top: 1px solid var(--divider); }
 
-        .section-label {
+        .section-num {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.85rem;
-            color: var(--text-light);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 8px;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--ink-faint);
+            margin-bottom: 2px;
         }
 
         .section-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 36px;
-            letter-spacing: -0.01em;
+            font-style: italic;
+            font-size: 1.9rem;
+            font-weight: 500;
+            margin-bottom: 32px;
         }
 
         /* ===== ABOUT ===== */
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px 40px;
-            margin-bottom: 28px;
+            grid-template-columns: 180px 1fr;
+            gap: 32px;
+            align-items: start;
         }
 
-        .about-item {
+        .about-photo {
+            position: relative;
+        }
+
+        .photo-frame {
+            background: var(--paper);
+            padding: 8px 8px 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transform: rotate(-2deg);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, var(--accent-soft) 0%, var(--peach) 100%);
             display: flex;
-            flex-direction: column;
-            gap: 2px;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-soft);
+            font-family: 'Caveat', cursive;
+            font-size: 1rem;
         }
 
-        .about-item-label {
+        .photo-caption {
+            font-family: 'Caveat', cursive;
+            text-align: center;
+            margin-top: 8px;
+            color: var(--ink-soft);
+            font-size: 0.95rem;
+        }
+
+        .photo-tape {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%) rotate(3deg);
+            width: 60px;
+            height: 20px;
+            background: var(--tape);
+        }
+
+        .about-info { display: grid; gap: 16px; }
+        .about-row { display: flex; gap: 12px; align-items: baseline; }
+        .about-row .label {
             font-size: 0.78rem;
-            color: var(--text-light);
+            color: var(--ink-faint);
+            min-width: 72px;
             letter-spacing: 0.05em;
         }
-
-        .about-item-value {
-            font-size: 0.92rem;
-            color: var(--text);
-            font-weight: 500;
-        }
+        .about-row .value { font-size: 0.92rem; color: var(--ink); font-weight: 500; }
 
         .about-summary {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
+            font-size: 0.9rem;
+            color: var(--ink-soft);
             line-height: 2;
-            padding: 24px 0;
-            border-top: 1px solid var(--divider);
+            margin-top: 16px;
+            padding: 16px 0;
+            border-top: 1px dashed var(--divider);
+        }
+
+        /* Crossword-style personality descriptors */
+        .crossword {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 16px;
+        }
+        .crossword span {
+            font-family: 'Caveat', cursive;
+            font-size: 1rem;
+            color: var(--accent);
+            padding: 2px 8px;
+            border: 1px dashed var(--accent-soft);
         }
 
         /* ===== SKILLS ===== */
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-item {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            padding: 7px 16px;
-            background: var(--surface);
+        .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill {
+            font-size: 0.84rem;
+            color: var(--ink-soft);
+            padding: 6px 14px;
+            background: var(--paper);
             border: 1px solid var(--divider);
-            transition: border-color 0.2s;
+            transition: all 0.2s;
         }
-
-        .skill-item:hover {
-            border-color: var(--text-secondary);
-        }
+        .skill:hover { border-color: var(--accent); color: var(--ink); }
 
         /* ===== PORTFOLIO ===== */
         .portfolio-hint {
-            font-size: 0.82rem;
-            color: var(--text-light);
+            font-family: 'Caveat', cursive;
+            font-size: 1.05rem;
+            color: var(--ink-faint);
             margin-bottom: 28px;
-            line-height: 1.7;
         }
 
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            gap: 20px;
         }
 
         .portfolio-card {
-            background: var(--surface);
+            background: var(--paper);
             border: 1px solid var(--divider);
             overflow: hidden;
             transition: box-shadow 0.25s;
         }
-
-        .portfolio-card:hover {
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
+        .portfolio-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 
         .video-area {
             position: relative;
             width: 100%;
             padding-top: 56.25%;
-            background: #F5F5F3;
+            background: #F0EDE7;
             overflow: hidden;
         }
-
-        .video-area iframe,
-        .video-area video {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
+        .video-area iframe, .video-area video {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; border: none;
         }
 
         .video-placeholder {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            gap: 12px;
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            cursor: pointer; gap: 10px;
             transition: background 0.2s;
         }
+        .video-placeholder:hover { background: #EAE6DD; }
 
-        .video-placeholder:hover {
-            background: #EFEFEC;
-        }
-
-        .play-icon {
-            width: 48px;
-            height: 48px;
+        .play-circle {
+            width: 44px; height: 44px;
             border-radius: 50%;
-            border: 1.5px solid var(--text-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 1.5px solid var(--ink-soft);
+            display: flex; align-items: center; justify-content: center;
             transition: all 0.2s;
         }
-
-        .video-placeholder:hover .play-icon {
-            border-color: var(--text);
+        .video-placeholder:hover .play-circle {
+            border-color: var(--accent);
             transform: scale(1.05);
         }
+        .play-circle svg { width: 16px; height: 16px; fill: var(--ink-soft); margin-left: 2px; transition: fill 0.2s; }
+        .video-placeholder:hover .play-circle svg { fill: var(--accent); }
 
-        .play-icon svg {
-            width: 18px; height: 18px;
-            fill: var(--text-secondary);
-            margin-left: 2px;
-            transition: fill 0.2s;
+        .placeholder-text {
+            font-family: 'Caveat', cursive;
+            font-size: 1rem;
+            color: var(--ink-faint);
         }
 
-        .video-placeholder:hover .play-icon svg {
-            fill: var(--text);
-        }
-
-        .video-placeholder-text {
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-
-        .portfolio-meta {
-            padding: 16px 18px;
-        }
-
-        .portfolio-meta h4 {
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
-
-        .portfolio-meta p {
-            font-size: 0.82rem;
-            color: var(--text-light);
-        }
-
+        .portfolio-meta { padding: 14px 16px; }
+        .portfolio-meta h4 { font-size: 0.93rem; font-weight: 500; margin-bottom: 3px; }
+        .portfolio-meta p { font-size: 0.8rem; color: var(--ink-faint); }
         .portfolio-tag {
             display: inline-block;
-            font-size: 0.72rem;
-            color: var(--text-light);
-            margin-top: 8px;
-            letter-spacing: 0.03em;
+            font-family: 'Caveat', cursive;
+            font-size: 0.95rem;
+            color: var(--accent);
+            margin-top: 6px;
         }
 
-        /* ===== CONTACT ===== */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+        /* ===== CONTACT (Tear-off tabs) ===== */
+        .contact-section { text-align: center; }
+        .contact-tearoff {
+            display: inline-block;
+            background: var(--ink);
+            color: var(--paper);
+            padding: 28px 36px;
+            margin-bottom: 28px;
         }
-
-        .contact-card {
-            padding: 24px;
-            background: var(--surface);
-            border: 1px solid var(--divider);
-            text-decoration: none;
-            color: var(--text);
-            text-align: center;
-            transition: box-shadow 0.25s;
-        }
-
-        .contact-card:hover {
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
-
-        .contact-label {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .contact-value {
-            font-size: 0.9rem;
-            font-weight: 500;
-            word-break: break-all;
-        }
-
-        /* ===== MODAL ===== */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.3);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .modal-overlay.active { display: flex; }
-
-        .modal {
-            background: var(--surface);
-            width: 90%;
-            max-width: 440px;
-            padding: 32px;
-        }
-
-        .modal h3 {
+        .tearoff-title {
             font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
             font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
-
-        .modal .field { margin-bottom: 18px; }
-
-        .modal label {
-            display: block;
-            font-size: 0.78rem;
-            color: var(--text-light);
-            margin-bottom: 6px;
-            letter-spacing: 0.03em;
-        }
-
-        .modal input,
-        .modal textarea {
-            width: 100%;
-            padding: 10px 12px;
-            background: var(--bg);
-            border: 1px solid var(--divider);
-            font-size: 0.88rem;
-            font-family: inherit;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .modal input:focus,
-        .modal textarea:focus {
-            border-color: var(--text-secondary);
-        }
-
-        .modal textarea {
-            resize: vertical;
-            min-height: 60px;
-        }
-
-        .modal-actions {
+        .tearoff-tabs {
             display: flex;
-            gap: 12px;
-            justify-content: flex-end;
-            margin-top: 24px;
+            flex-direction: column;
+            gap: 8px;
         }
-
-        .btn {
-            padding: 9px 22px;
-            font-size: 0.85rem;
-            font-family: inherit;
-            cursor: pointer;
-            border: 1px solid var(--divider);
-            background: var(--surface);
-            color: var(--text-secondary);
-            transition: all 0.2s;
+        .tearoff-tab {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
+            text-decoration: none;
+            color: var(--paper);
+            font-size: 0.88rem;
         }
+        .tearoff-tab:last-child { border-bottom: none; }
+        .tearoff-tab .tab-name { letter-spacing: 0.05em; }
+        .tearoff-tab .tab-value { color: rgba(255,255,255,0.7); font-size: 0.82rem; }
+        .tearoff-tab .tab-phone { font-family: 'Caveat', cursive; font-size: 1rem; color: rgba(255,255,255,0.85); }
 
-        .btn:hover {
-            border-color: var(--text-secondary);
-            color: var(--text);
-        }
-
-        .btn.primary {
-            background: var(--text);
-            color: var(--surface);
-            border-color: var(--text);
-        }
-
-        .btn.primary:hover {
-            background: var(--text-secondary);
+        .contact-handnote {
+            font-family: 'Caveat', cursive;
+            color: var(--ink-faint);
+            font-size: 1.1rem;
+            margin-top: 16px;
         }
 
         /* ===== FOOTER ===== */
         footer {
             text-align: center;
-            padding: 40px 24px;
+            padding: 36px 24px;
             border-top: 1px solid var(--divider);
         }
-
-        footer p {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            line-height: 1.8;
+        footer p { font-size: 0.8rem; color: var(--ink-faint); }
+        footer .footer-name { color: var(--ink-soft); }
+        footer .footer-sig {
+            font-family: 'Caveat', cursive;
+            font-size: 1.05rem;
+            color: var(--accent);
+            margin-top: 6px;
         }
 
-        footer .footer-name {
-            color: var(--text-secondary);
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.25);
+            display: none; align-items: center; justify-content: center;
+            z-index: 1000;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--paper);
+            width: 90%; max-width: 420px;
+            padding: 32px;
+        }
+        .modal h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            margin-bottom: 24px;
+        }
+        .field { margin-bottom: 16px; }
+        .field label {
+            display: block; font-size: 0.78rem;
+            color: var(--ink-faint); margin-bottom: 5px;
+        }
+        .field input, .field textarea {
+            width: 100%; padding: 9px 12px;
+            background: var(--bg);
+            border: 1px solid var(--divider);
+            font-size: 0.88rem; font-family: inherit;
+            outline: none; transition: border-color 0.2s;
+        }
+        .field input:focus, .field textarea:focus { border-color: var(--accent); }
+        .field textarea { resize: vertical; min-height: 56px; }
+        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 22px; }
+        .btn {
+            padding: 8px 20px; font-size: 0.85rem;
+            font-family: inherit; cursor: pointer;
+            border: 1px solid var(--divider);
+            background: var(--paper);
+            color: var(--ink-soft);
+            transition: all 0.2s;
+        }
+        .btn:hover { border-color: var(--ink-soft); color: var(--ink); }
+        .btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+        .btn.primary:hover { background: var(--ink-soft); }
+
+        /* Decorative star */
+        .deco-star {
+            display: inline-block;
+            color: var(--accent-soft);
+            font-size: 0.9rem;
+            vertical-align: middle;
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 640px) {
-            .about-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; justify-items: center; }
             .portfolio-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .hero { min-height: 60vh; }
-            section { padding: 56px 0; }
+            section { padding: 48px 0; }
+            .hero { padding: 60px 0 36px; }
         }
 
-        ::selection { background: #E8E6E1; color: var(--text); }
+        ::selection { background: var(--accent-soft); color: var(--ink); }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--divider); }
-        ::-webkit-scrollbar-thumb:hover { background: var(--text-light); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
     </style>
 </head>
 <body>
 
     <!-- ===== HERO ===== -->
-    <header class="hero container">
-        <p class="hero-greeting">Hello, I'm</p>
-        <h1 class="hero-name">Zhong Yuling</h1>
-        <p class="hero-name-cn">钟毓灵</p>
-        <p class="hero-tagline">数字媒体艺术与动画IT硕士 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业</p>
-        <div class="hero-tags">
-            <span class="hero-tag">视频设计师</span>
-            <span class="hero-tag">AE动效设计师</span>
-            <span class="hero-tag">AI视频设计师</span>
+    <header class="hero">
+        <div class="container">
+            <div class="hero-strips">
+                <div></div><div></div><div></div><div></div>
+            </div>
+            <p class="hero-label">live love design</p>
+            <h1 class="hero-name">Zhong Yuling</h1>
+            <p class="hero-name-cn">钟 毓 灵</p>
+            <p class="hero-tagline">数字媒体艺术与动画IT硕士 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业</p>
+            <div class="hero-tags">
+                <span class="hero-tag">视频设计师</span>
+                <span class="hero-tag">AE动效设计师</span>
+                <span class="hero-tag">AI视频设计师</span>
+            </div>
+            <p class="handnote">↓ scroll down to explore</p>
         </div>
-        <div class="hero-line"></div>
     </header>
 
     <div class="container">
 
         <!-- ===== ABOUT ===== -->
         <section id="about">
-            <p class="section-label">About</p>
-            <h2 class="section-title">关于我</h2>
+            <p class="section-num">01 — About</p>
+            <h2 class="section-title">关于我 <span class="deco-star">✦</span></h2>
             <div class="about-grid">
-                <div class="about-item">
-                    <span class="about-item-label">姓名</span>
-                    <span class="about-item-value">钟毓灵</span>
+                <div class="about-photo">
+                    <div class="photo-tape"></div>
+                    <div class="photo-frame">
+                        <div class="photo-placeholder">你的照片</div>
+                    </div>
+                    <p class="photo-caption">— me, 2026 —</p>
                 </div>
-                <div class="about-item">
-                    <span class="about-item-label">学历</span>
-                    <span class="about-item-value">数字媒体艺术与动画IT硕士</span>
-                </div>
-                <div class="about-item">
-                    <span class="about-item-label">所在地</span>
-                    <span class="about-item-value">上海</span>
-                </div>
-                <div class="about-item">
-                    <span class="about-item-label">工作经验</span>
-                    <span class="about-item-value">4年以上视频设计</span>
-                </div>
-                <div class="about-item">
-                    <span class="about-item-label">求职方向</span>
-                    <span class="about-item-value">视频设计 / AE动效 / AI视频</span>
-                </div>
-                <div class="about-item">
-                    <span class="about-item-label">联系方式</span>
-                    <span class="about-item-value">15202155210</span>
+                <div>
+                    <div class="about-info">
+                        <div class="about-row"><span class="label">姓名</span><span class="value">钟毓灵</span></div>
+                        <div class="about-row"><span class="label">学历</span><span class="value">数字媒体艺术与动画IT硕士</span></div>
+                        <div class="about-row"><span class="label">所在地</span><span class="value">上海</span></div>
+                        <div class="about-row"><span class="label">经验</span><span class="value">4年以上视频设计</span></div>
+                        <div class="about-row"><span class="label">方向</span><span class="value">视频设计 / AE动效 / AI视频</span></div>
+                    </div>
+                    <p class="about-summary">
+                        拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，熟练掌握即梦、Suno等主流AI生图、生视频、音乐等技术，能够将AIGC工具深度融入工作流以提升产出效率。
+                    </p>
+                    <div class="crossword">
+                        <span>创意策划</span>
+                        <span>视觉把控</span>
+                        <span>跨部门协作</span>
+                        <span>AIGC</span>
+                        <span>品牌传播</span>
+                        <span>独立交付</span>
+                    </div>
                 </div>
             </div>
-            <p class="about-summary">
-                拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，能精准把控作品风格与传播效果。熟练掌握即梦、Suno等主流AI生图、生视频、音乐等技术，能够将AIGC工具深度融入工作流以提升产出效率。具备优秀的跨部门协作与独立解决复杂项目的能力，致力于为品牌提供高质量、创新性的视觉传播解决方案。
-            </p>
         </section>
 
         <!-- ===== SKILLS ===== -->
         <section id="skills">
-            <p class="section-label">Skills</p>
+            <p class="section-num">02 — Skills</p>
             <h2 class="section-title">技能与工具</h2>
-            <div class="skills-grid">
-                <span class="skill-item">视频设计</span>
-                <span class="skill-item">AE动效</span>
-                <span class="skill-item">AI视频生成</span>
-                <span class="skill-item">AI生图</span>
-                <span class="skill-item">Suno音乐</span>
-                <span class="skill-item">即梦AI</span>
-                <span class="skill-item">创意策划</span>
-                <span class="skill-item">品牌广告</span>
-                <span class="skill-item">游戏行业</span>
-                <span class="skill-item">AIGC工作流</span>
-                <span class="skill-item">跨部门协作</span>
-                <span class="skill-item">项目管理</span>
+            <div class="skills-wrap">
+                <span class="skill">视频设计</span>
+                <span class="skill">AE动效</span>
+                <span class="skill">AI视频生成</span>
+                <span class="skill">AI生图</span>
+                <span class="skill">Suno音乐</span>
+                <span class="skill">即梦AI</span>
+                <span class="skill">创意策划</span>
+                <span class="skill">品牌广告</span>
+                <span class="skill">游戏行业</span>
+                <span class="skill">AIGC工作流</span>
+                <span class="skill">跨部门协作</span>
+                <span class="skill">项目管理</span>
             </div>
         </section>
 
         <!-- ===== PORTFOLIO ===== -->
         <section id="portfolio">
-            <p class="section-label">Portfolio</p>
+            <p class="section-num">03 — Portfolio</p>
             <h2 class="section-title">作品集</h2>
-            <p class="portfolio-hint">
-                点击作品卡片即可添加视频链接，支持 B站、YouTube、视频文件直链。<br>
-                添加后视频会直接嵌入展示，访客可在线播放。
-            </p>
+            <p class="portfolio-hint">点击卡片即可添加视频 — 支持 B站 / YouTube / 视频直链</p>
             <div class="portfolio-grid" id="portfolioGrid"></div>
         </section>
 
         <!-- ===== CONTACT ===== -->
-        <section id="contact">
-            <p class="section-label">Contact</p>
-            <h2 class="section-title">联系方式</h2>
-            <div class="contact-grid">
-                <a href="tel:15202155210" class="contact-card">
-                    <p class="contact-label">Phone</p>
-                    <p class="contact-value">15202155210</p>
-                </a>
-                <a href="mailto:15202155210@163.com" class="contact-card">
-                    <p class="contact-label">Email</p>
-                    <p class="contact-value">15202155210@163.com</p>
-                </a>
-                <div class="contact-card">
-                    <p class="contact-label">Location</p>
-                    <p class="contact-value">上海</p>
+        <section id="contact" class="contact-section">
+            <p class="section-num">04 — Contact</p>
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-tearoff">
+                <p class="tearoff-title">Take what you Need</p>
+                <div class="tearoff-tabs">
+                    <a href="tel:15202155210" class="tearoff-tab">
+                        <span class="tab-name">PHONE</span>
+                        <span class="tab-phone">15202155210</span>
+                    </a>
+                    <a href="mailto:15202155210@163.com" class="tearoff-tab">
+                        <span class="tab-name">E-MAIL</span>
+                        <span class="tab-value">15202155210@163.com</span>
+                    </a>
+                    <a href="https://maps.google.com/?q=上海" class="tearoff-tab">
+                        <span class="tab-name">LOCATION</span>
+                        <span class="tab-value">上海</span>
+                    </a>
                 </div>
             </div>
+            <p class="contact-handnote">click here if you want to discuss your project ✦</p>
         </section>
 
     </div>
@@ -560,6 +548,7 @@
     <!-- ===== FOOTER ===== -->
     <footer>
         <p>© 2026 <span class="footer-name">钟毓灵</span> · 视频设计师 · AE动效设计师 · AI视频设计师</p>
+        <p class="footer-sig">— by Zhong Yuling —</p>
     </footer>
 
     <!-- ===== MODAL ===== -->
@@ -572,7 +561,7 @@
             </div>
             <div class="field">
                 <label>视频链接</label>
-                <input type="text" id="videoUrl" placeholder="粘贴 B站 / YouTube / 视频文件链接">
+                <input type="text" id="videoUrl" placeholder="B站 / YouTube / 视频文件链接">
             </div>
             <div class="field">
                 <label>作品描述（选填）</label>
@@ -605,43 +594,34 @@
             portfolioItems.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'portfolio-card';
-
                 let videoHTML;
                 if (item.type === 'placeholder' || !item.url) {
                     videoHTML = `
                         <div class="video-area">
                             <div class="video-placeholder" onclick="openModal(${index})">
-                                <div class="play-icon">
-                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </div>
-                                <span class="video-placeholder-text">点击添加视频</span>
+                                <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                                <span class="placeholder-text">点击添加视频</span>
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                 } else if (item.type === 'iframe') {
                     videoHTML = `<div class="video-area">${item.url}</div>`;
                 } else if (item.type === 'video') {
                     videoHTML = `<div class="video-area"><video src="${item.url}" controls></video></div>`;
                 }
-
                 card.innerHTML = `
                     ${videoHTML}
                     <div class="portfolio-meta">
                         <h4>${item.title}</h4>
                         <p>${item.desc}</p>
                         ${item.tag ? `<span class="portfolio-tag">${item.tag}</span>` : ''}
-                    </div>
-                `;
+                    </div>`;
                 grid.appendChild(card);
             });
         }
 
         function openModal(index) {
             currentEditIndex = index;
-            document.getElementById('videoTitle').value = '';
-            document.getElementById('videoUrl').value = '';
-            document.getElementById('videoDesc').value = '';
-            document.getElementById('videoTag').value = '';
+            ['videoTitle','videoUrl','videoDesc','videoTag'].forEach(id => document.getElementById(id).value = '');
             document.getElementById('videoModal').classList.add('active');
         }
 
@@ -655,16 +635,9 @@
             const url = document.getElementById('videoUrl').value.trim();
             const desc = document.getElementById('videoDesc').value.trim() || '精彩视频作品';
             const tag = document.getElementById('videoTag').value.trim();
-
             if (!url) { alert('请输入视频链接'); return; }
-
             const embedInfo = parseVideoUrl(url);
-            portfolioItems[currentEditIndex] = {
-                title, desc, tag,
-                url: embedInfo.content,
-                type: embedInfo.type
-            };
-
+            portfolioItems[currentEditIndex] = { title, desc, tag, url: embedInfo.content, type: embedInfo.type };
             closeModal();
             renderPortfolio();
         }
@@ -672,31 +645,21 @@
         function parseVideoUrl(url) {
             if (url.includes('bilibili.com') || url.includes('b23.tv')) {
                 const bvidMatch = url.match(/BV[a-zA-Z0-9]+/);
-                if (bvidMatch) {
-                    return {
-                        type: 'iframe',
-                        content: `<iframe src="//player.bilibili.com/player.html?bvid=${bvidMatch[0]}&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>`
-                    };
-                }
+                if (bvidMatch) return { type: 'iframe', content: `<iframe src="//player.bilibili.com/player.html?bvid=${bvidMatch[0]}&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>` };
             }
             if (url.includes('youtube.com') || url.includes('youtu.be')) {
-                let videoId = '';
-                if (url.includes('youtu.be/')) videoId = url.split('youtu.be/')[1].split('?')[0];
-                else if (url.includes('watch?v=')) videoId = url.split('watch?v=')[1].split('&')[0];
-                else if (url.includes('embed/')) videoId = url.split('embed/')[1].split('?')[0];
-                if (videoId) {
-                    return { type: 'iframe', content: `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>` };
-                }
+                let vid = '';
+                if (url.includes('youtu.be/')) vid = url.split('youtu.be/')[1].split('?')[0];
+                else if (url.includes('watch?v=')) vid = url.split('watch?v=')[1].split('&')[0];
+                else if (url.includes('embed/')) vid = url.split('embed/')[1].split('?')[0];
+                if (vid) return { type: 'iframe', content: `<iframe src="https://www.youtube.com/embed/${vid}" allowfullscreen></iframe>` };
             }
             if (url.includes('<iframe')) return { type: 'iframe', content: url };
             if (url.match(/\.(mp4|webm|ogg)(\?|$)/i)) return { type: 'video', content: url };
             return { type: 'iframe', content: `<iframe src="${url}" allowfullscreen></iframe>` };
         }
 
-        document.getElementById('videoModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-
+        document.getElementById('videoModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
         renderPortfolio();
     </script>
 </body>
