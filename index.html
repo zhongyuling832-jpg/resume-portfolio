@@ -6,447 +6,464 @@
     <title>钟毓灵 | Portfolio 作品集</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0A0E1A;
-            --bg-soft: #111726;
-            --glass: rgba(255,255,255,0.04);
-            --glass-border: rgba(255,255,255,0.08);
-            --glass-hover: rgba(255,255,255,0.06);
-            --cyan: #00D4FF;
-            --cyan-soft: rgba(0,212,255,0.15);
-            --cyan-glow: rgba(0,212,255,0.4);
-            --green: #00FF94;
-            --green-soft: rgba(0,255,148,0.15);
-            --purple: #A855F7;
-            --text: #E8E8E8;
-            --text-soft: #8892A6;
-            --text-faint: #4A5568;
+            --bg: #08090F;
+            --bg-card: rgba(255,255,255,0.035);
+            --bg-card-hover: rgba(255,255,255,0.055);
+            --border: rgba(255,255,255,0.08);
+            --border-bright: rgba(255,255,255,0.14);
+            --accent: #6EE7D7;
+            --accent-soft: rgba(110,231,215,0.12);
+            --accent-glow: rgba(110,231,215,0.25);
+            --warm: #F5A78B;
+            --warm-soft: rgba(245,167,139,0.1);
+            --text: #F2F0EC;
+            --text-soft: #9A9B9F;
+            --text-faint: #5A5B5F;
             --divider: rgba(255,255,255,0.06);
+            --ease-out: cubic-bezier(0.25,1,0.5,1);
+            --ease-snap: cubic-bezier(0.22,1,0.36,1);
         }
 
         * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; }
+        html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
 
         body {
-            font-family:'Noto Sans SC','Space Grotesk',-apple-system,sans-serif;
+            font-family:'Noto Sans SC','Outfit',-apple-system,sans-serif;
             background:var(--bg);
             color:var(--text);
-            line-height:1.8;
+            line-height:1.85;
             -webkit-font-smoothing:antialiased;
             overflow-x:hidden;
             position:relative;
         }
 
-        /* Grid background */
+        /* --- Background layers --- */
         body::before {
-            content:''; position:fixed; inset:0; z-index:-2;
+            content:''; position:fixed; inset:0; z-index:-3;
             background:
-                radial-gradient(ellipse at 20% 0%, rgba(0,212,255,0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 100%, rgba(168,85,247,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 50% at 15% 5%, rgba(110,231,215,0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 85% 90%, rgba(245,167,139,0.04) 0%, transparent 70%),
                 var(--bg);
         }
         body::after {
-            content:''; position:fixed; inset:0; z-index:-1;
+            content:''; position:fixed; inset:0; z-index:-2;
             background-image:
-                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+                linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+            background-size:48px 48px;
+            mask-image:radial-gradient(ellipse at center, black 0%, transparent 85%);
+            -webkit-mask-image:radial-gradient(ellipse at center, black 0%, transparent 85%);
         }
 
-        .container { max-width:900px; margin:0 auto; padding:0 24px; }
+        /* --- Flowing light streaks --- */
+        .light-streaks { position:fixed; inset:0; z-index:-1; pointer-events:none; overflow:hidden; }
+        .streak {
+            position:absolute; width:200%; height:1px; opacity:0.35;
+            background:linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation:streak-flow var(--dur,18s) linear infinite var(--delay,0s);
+        }
+        .streak.s1 { top:18%; --dur:22s; --delay:0s; }
+        .streak.s2 { top:45%; --dur:28s; --delay:-6s; opacity:0.2; background:linear-gradient(90deg, transparent, var(--warm), transparent); }
+        .streak.s3 { top:72%; --dur:20s; --delay:-3s; opacity:0.15; }
+        .streak.s4 { top:88%; --dur:26s; --delay:-10s; opacity:0.25; background:linear-gradient(90deg, transparent, var(--accent), transparent); }
+        @keyframes streak-flow {
+            0% { transform:translateX(-60%) translateY(0); }
+            50% { transform:translateX(0%) translateY(-8px); }
+            100% { transform:translateX(60%) translateY(0); }
+        }
 
-        /* ===== TOP BAR ===== */
-        .top-bar {
-            position:fixed; top:16px; left:50%; transform:translateX(-50%); z-index:200;
-            display:flex; align-items:center; gap:0;
-            background:rgba(10,14,26,0.8);
-            backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-            border:1px solid var(--glass-border);
+        .container { max-width:860px; margin:0 auto; padding:0 28px; }
+
+        /* --- Nav (center) and Lang (right) are separate --- */
+        .nav-bar {
+            position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:200;
+            display:flex; gap:2px;
+            background:rgba(8,9,15,0.7);
+            backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+            border:1px solid var(--border);
             border-radius:100px; padding:4px;
         }
         .nav-link {
-            padding:7px 16px; font-size:0.76rem; font-family:'Space Grotesk',sans-serif;
-            font-weight:500; letter-spacing:0.03em; text-decoration:none;
-            color:var(--text-soft); transition:all 0.25s; border-radius:100px;
+            padding:7px 18px; font-size:0.78rem; font-family:'Outfit',sans-serif;
+            font-weight:400; letter-spacing:0.02em; text-decoration:none;
+            color:var(--text-soft); transition:all 0.3s var(--ease-out); border-radius:100px;
         }
         .nav-link:hover { color:var(--text); }
-        .nav-link.active { color:var(--bg); background:var(--cyan); }
+        .nav-link.active { color:var(--bg); background:var(--accent); font-weight:500; }
 
-        .lang-divider { width:1px; height:16px; background:var(--glass-border); margin:0 2px; }
-
-        .lang-btn {
-            padding:7px 12px; font-size:0.72rem; font-family:'Space Grotesk',sans-serif;
-            border:none; background:transparent; cursor:pointer; color:var(--text-soft);
-            transition:all 0.25s; border-radius:100px; font-weight:500;
+        .lang-switch {
+            position:fixed; top:18px; right:24px; z-index:200;
+            display:flex; gap:2px;
+            background:rgba(8,9,15,0.7);
+            backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+            border:1px solid var(--border);
+            border-radius:100px; padding:3px;
         }
-        .lang-btn.active { color:var(--cyan); }
+        .lang-btn {
+            padding:6px 12px; font-size:0.72rem; font-family:'JetBrains Mono',monospace;
+            border:none; background:transparent; cursor:pointer; color:var(--text-faint);
+            transition:all 0.3s var(--ease-out); border-radius:100px; font-weight:500;
+            letter-spacing:0.05em;
+        }
+        .lang-btn.active { color:var(--accent); }
         .lang-btn:not(.active):hover { color:var(--text); }
 
         /* ===== HERO ===== */
-        .hero { padding:120px 0 80px; text-align:center; position:relative; }
+        .hero { padding:140px 0 90px; position:relative; }
 
-        .hero-badge {
-            display:inline-flex; align-items:center; gap:8px;
-            padding:5px 14px; border-radius:100px;
-            background:var(--cyan-soft); border:1px solid rgba(0,212,255,0.2);
-            font-family:'Space Grotesk',sans-serif; font-size:0.75rem;
-            color:var(--cyan); letter-spacing:0.05em; margin-bottom:24px;
+        .hero-greeting {
+            font-family:'JetBrains Mono',monospace; font-size:0.78rem;
+            color:var(--accent); letter-spacing:0.1em; margin-bottom:20px;
+            opacity:0; animation:fadeUp 0.8s var(--ease-out) 0.1s forwards;
         }
-        .hero-badge::before {
-            content:''; width:6px; height:6px; border-radius:50%; background:var(--cyan);
-            box-shadow:0 0 8px var(--cyan-glow); animation:pulse 2s ease-in-out infinite;
+        .hero-greeting::before {
+            content:'// '; color:var(--text-faint);
         }
-        @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
 
         .hero-name {
-            font-family:'Space Grotesk',sans-serif;
-            font-size:clamp(3rem,10vw,5.5rem);
-            font-weight:700; line-height:0.95; letter-spacing:-0.04em;
-            margin-bottom:8px;
-            background:linear-gradient(135deg, #FFFFFF 0%, #00D4FF 100%);
-            -webkit-background-clip:text; background-clip:text;
-            -webkit-text-fill-color:transparent;
+            font-family:'Outfit',sans-serif;
+            font-size:clamp(2.8rem,9vw,5rem);
+            font-weight:700; line-height:1.02; letter-spacing:-0.04em;
+            margin-bottom:6px; color:var(--text);
+            opacity:0; animation:fadeUp 0.8s var(--ease-out) 0.2s forwards;
         }
 
         .hero-name-cn {
-            font-size:1rem; font-weight:400;
-            color:var(--text-soft); letter-spacing:0.3em;
-            margin-bottom:24px;
+            font-size:1.05rem; font-weight:300;
+            color:var(--text-soft); letter-spacing:0.25em;
+            margin-bottom:32px;
+            opacity:0; animation:fadeUp 0.8s var(--ease-out) 0.3s forwards;
         }
 
         .hero-tagline {
-            font-size:0.92rem; color:var(--text-soft);
-            max-width:480px; margin:0 auto 28px; line-height:1.9;
+            font-size:1rem; color:var(--text-soft); line-height:1.9;
+            max-width:520px; margin-bottom:32px;
+            opacity:0; animation:fadeUp 0.8s var(--ease-out) 0.4s forwards;
         }
 
-        .hero-tags { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+        .hero-tags { display:flex; gap:10px; flex-wrap:wrap;
+            opacity:0; animation:fadeUp 0.8s var(--ease-out) 0.5s forwards;
+        }
         .hero-tag {
-            font-size:0.76rem; font-family:'Space Grotesk',sans-serif;
-            color:var(--text-soft); padding:6px 16px;
-            border:1px solid var(--glass-border); border-radius:100px;
-            background:var(--glass); transition:all 0.25s;
+            font-size:0.8rem; font-family:'Outfit',sans-serif; font-weight:400;
+            color:var(--text-soft); padding:7px 18px;
+            border:1px solid var(--border); border-radius:8px;
+            background:var(--bg-card); transition:all 0.3s var(--ease-out);
         }
-        .hero-tag:hover { border-color:var(--cyan); color:var(--cyan); }
+        .hero-tag:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
 
-        .hero-arrow {
-            margin-top:40px; font-family:'Space Grotesk',sans-serif;
-            font-size:0.8rem; color:var(--text-faint);
-            animation:bounceY 2s ease-in-out infinite;
+        .hero-scroll {
+            margin-top:48px; font-family:'JetBrains Mono',monospace;
+            font-size:0.72rem; color:var(--text-faint); letter-spacing:0.08em;
+            opacity:0; animation:fadeUp 0.8s var(--ease-out) 0.6s forwards;
         }
-        @keyframes bounceY { 0%,100%{transform:translateY(0);} 50%{transform:translateY(6px);} }
-
-        /* Floating orbs */
-        .orb {
-            position:absolute; border-radius:50%;
-            filter:blur(40px); pointer-events:none; opacity:0.5;
+        .hero-scroll .line {
+            display:inline-block; width:24px; height:1px; background:var(--text-faint);
+            vertical-align:middle; margin-right:8px;
         }
-        .orb.o1 { width:200px; height:200px; background:var(--cyan); top:10%; left:5%; animation:float 8s ease-in-out infinite; }
-        .orb.o2 { width:160px; height:160px; background:var(--purple); top:20%; right:5%; animation:float 10s ease-in-out infinite -3s; }
-        @keyframes float { 0%,100%{transform:translateY(0) translateX(0);} 50%{transform:translateY(-30px) translateX(20px);} }
 
-        /* ===== SECTION COMMON ===== */
-        section { padding:60px 0; position:relative; }
-
-        .section-label {
-            display:flex; align-items:center; gap:10px; margin-bottom:8px;
+        @keyframes fadeUp {
+            from { opacity:0; transform:translateY(20px); }
+            to { opacity:1; transform:translateY(0); }
         }
+
+        /* Floating glow orbs */
+        .orb { position:absolute; border-radius:50%; filter:blur(50px); pointer-events:none; }
+        .orb.o1 { width:180px; height:180px; background:var(--accent); top:8%; left:-5%; opacity:0.04; animation:drift 12s ease-in-out infinite; }
+        .orb.o2 { width:140px; height:140px; background:var(--warm); top:30%; right:-3%; opacity:0.03; animation:drift 16s ease-in-out infinite -4s; }
+        @keyframes drift {
+            0%,100% { transform:translate(0,0); }
+            50% { transform:translate(20px,-25px); }
+        }
+
+        /* ===== SECTION ===== */
+        section { padding:64px 0; position:relative; }
+
+        .section-head { margin-bottom:40px; }
         .section-num {
-            font-family:'Space Grotesk',sans-serif; font-size:0.75rem;
-            color:var(--cyan); font-weight:600; letter-spacing:0.1em;
+            font-family:'JetBrains Mono',monospace; font-size:0.75rem;
+            color:var(--accent); font-weight:500; letter-spacing:0.1em;
+            display:block; margin-bottom:8px;
         }
-        .section-line {
-            flex:1; height:1px; background:linear-gradient(90deg, var(--cyan) 0%, transparent 100%);
-            max-width:60px;
-        }
-
         .section-title {
-            font-family:'Space Grotesk',sans-serif;
-            font-size:clamp(1.8rem,5vw,2.8rem);
-            font-weight:700; letter-spacing:-0.03em; line-height:1.1;
-            margin-bottom:36px;
+            font-family:'Outfit',sans-serif;
+            font-size:clamp(1.6rem,4.5vw,2.4rem);
+            font-weight:600; letter-spacing:-0.03em; line-height:1.15;
+            color:var(--text);
         }
-        .section-title span { color:var(--cyan); }
+        .section-subtitle {
+            font-size:0.88rem; color:var(--text-soft); margin-top:8px;
+            max-width:500px;
+        }
 
-        /* ===== ABOUT — glass card ===== */
+        /* ===== ABOUT ===== */
         .about-card {
-            background:var(--glass);
-            border:1px solid var(--glass-border);
-            border-radius:20px; padding:32px;
-            backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-            display:grid; grid-template-columns:160px 1fr; gap:32px; align-items:start;
+            background:var(--bg-card);
+            border:1px solid var(--border);
+            border-radius:16px; padding:32px;
+            display:grid; grid-template-columns:140px 1fr; gap:28px; align-items:start;
         }
-
         .about-photo {
-            width:160px; height:200px; border-radius:16px;
-            background:linear-gradient(135deg, var(--cyan-soft) 0%, rgba(168,85,247,0.1) 100%);
-            border:1px solid var(--glass-border);
+            width:140px; height:180px; border-radius:12px;
+            background:linear-gradient(135deg, var(--accent-soft), var(--warm-soft));
+            border:1px solid var(--border);
             display:flex; align-items:center; justify-content:center;
-            font-family:'Space Grotesk',sans-serif; font-size:0.8rem;
-            color:var(--text-faint); position:relative; overflow:hidden;
+            font-family:'JetBrains Mono',monospace; font-size:0.72rem;
+            color:var(--text-faint); position:relative;
         }
-        .about-photo::after {
-            content:''; position:absolute; inset:0;
-            background:linear-gradient(135deg, transparent 30%, rgba(0,212,255,0.05) 50%, transparent 70%);
-        }
-
-        .about-info { display:grid; gap:12px; }
-        .about-row { display:flex; gap:12px; align-items:baseline; }
+        .about-info { display:grid; gap:10px; }
+        .about-row { display:flex; gap:16px; align-items:baseline; }
         .about-row .label {
-            font-size:0.7rem; font-family:'Space Grotesk',sans-serif;
-            color:var(--text-faint); min-width:72px; letter-spacing:0.08em;
-            text-transform:uppercase;
+            font-size:0.7rem; font-family:'JetBrains Mono',monospace;
+            color:var(--text-faint); min-width:80px; letter-spacing:0.06em;
+            text-transform:uppercase; flex-shrink:0;
         }
-        .about-row .value { font-size:0.9rem; color:var(--text); font-weight:500; }
-
+        .about-row .value { font-size:0.92rem; color:var(--text); font-weight:400; }
         .about-summary {
-            font-size:0.88rem; color:var(--text-soft); line-height:2;
-            margin-top:12px; padding:16px 0; border-top:1px solid var(--divider);
+            font-size:0.9rem; color:var(--text-soft); line-height:2;
+            margin-top:16px; padding-top:16px; border-top:1px solid var(--divider);
         }
-
-        .about-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+        .about-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
         .about-tags span {
-            font-size:0.76rem; font-family:'Space Grotesk',sans-serif;
-            color:var(--cyan); padding:3px 12px;
-            border:1px solid rgba(0,212,255,0.2); border-radius:100px;
-            background:var(--cyan-soft);
+            font-size:0.76rem; font-family:'Outfit',sans-serif;
+            color:var(--accent); padding:4px 14px;
+            border:1px solid var(--accent-soft); border-radius:6px;
+            background:rgba(110,231,215,0.04);
         }
 
-        /* ===== SKILLS — glass grid ===== */
-        .skills-grid {
-            display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+        /* ===== SKILLS — clean categorized list, no icon grid ===== */
+        .skills-wrap { display:grid; gap:32px; }
+        .skill-group h3 {
+            font-family:'JetBrains Mono',monospace; font-size:0.72rem;
+            color:var(--text-faint); letter-spacing:0.1em; text-transform:uppercase;
+            margin-bottom:14px; display:flex; align-items:center; gap:8px;
         }
-        .skill-cell {
-            background:var(--glass);
-            border:1px solid var(--glass-border);
-            border-radius:16px; padding:20px 12px; text-align:center;
-            backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-            transition:all 0.3s;
+        .skill-group h3::before {
+            content:''; width:5px; height:5px; border-radius:50%; background:var(--accent);
         }
-        .skill-cell:hover {
-            border-color:rgba(0,212,255,0.3);
-            background:var(--glass-hover);
-            transform:translateY(-4px);
-            box-shadow:0 8px 30px rgba(0,212,255,0.1);
+        .skill-list { display:flex; flex-wrap:wrap; gap:8px; }
+        .skill-pill {
+            font-size:0.84rem; font-family:'Outfit',sans-serif; font-weight:400;
+            color:var(--text-soft); padding:8px 18px;
+            background:var(--bg-card); border:1px solid var(--border);
+            border-radius:8px; transition:all 0.3s var(--ease-out);
         }
-        .skill-icon-box {
-            width:44px; height:44px; border-radius:12px; margin:0 auto 10px;
-            display:flex; align-items:center; justify-content:center;
+        .skill-pill:hover {
+            border-color:var(--border-bright); color:var(--text);
+            background:var(--bg-card-hover); transform:translateY(-2px);
+        }
+        .skill-pill .level {
+            font-family:'JetBrains Mono',monospace; font-size:0.68rem;
+            color:var(--text-faint); margin-left:8px;
+        }
+        .skill-pill:hover .level { color:var(--accent); }
+
+        /* ===== PORTFOLIO ===== */
+        .portfolio-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+        .portfolio-card {
+            background:var(--bg-card); border:1px solid var(--border);
+            border-radius:14px; overflow:hidden; transition:all 0.3s var(--ease-out);
             position:relative;
         }
-        .skill-icon-box svg { width:24px; height:24px; }
-        .skill-icon-box::after {
-            content:''; position:absolute; inset:0; border-radius:12px;
-            background:inherit; filter:blur(10px); opacity:0.5; z-index:-1;
-        }
-        .skill-name {
-            font-size:0.76rem; color:var(--text-soft); font-weight:500;
-            margin-bottom:8px; font-family:'Space Grotesk',sans-serif;
-        }
-        .skill-bar-track {
-            width:100%; height:4px; background:var(--divider); border-radius:2px; overflow:hidden;
-        }
-        .skill-bar-fill {
-            height:100%; border-radius:2px; transition:width 0.6s ease;
-        }
-        .skill-pct {
-            font-size:0.66rem; color:var(--text-faint); margin-top:4px;
-            font-family:'Space Grotesk',sans-serif;
-        }
-
-        /* ===== PORTFOLIO — glass cards ===== */
-        .portfolio-hint {
-            font-size:0.85rem; color:var(--text-faint); margin-bottom:24px;
-            font-family:'Space Grotesk',sans-serif;
-        }
-        .portfolio-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-
-        .portfolio-card {
-            background:var(--glass);
-            border:1px solid var(--glass-border);
-            border-radius:16px; overflow:hidden;
-            backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-            transition:all 0.3s; position:relative;
-        }
         .portfolio-card:hover {
-            border-color:rgba(0,212,255,0.3);
-            box-shadow:0 8px 30px rgba(0,212,255,0.08);
+            border-color:var(--border-bright);
+            background:var(--bg-card-hover);
+            transform:translateY(-3px);
         }
-
         .video-area {
             position:relative; width:100%; padding-top:56.25%;
-            background:var(--bg-soft); overflow:hidden;
+            background:rgba(255,255,255,0.02); overflow:hidden;
         }
-        .video-area iframe,.video-area video {
+        .video-area iframe, .video-area video {
             position:absolute; top:0; left:0; width:100%; height:100%; border:none;
         }
         .video-placeholder {
             position:absolute; inset:0; display:flex; flex-direction:column;
-            align-items:center; justify-content:center; cursor:pointer; gap:10px;
-            transition:background 0.2s;
+            align-items:center; justify-content:center; cursor:pointer; gap:12px;
         }
-        .video-placeholder:hover { background:rgba(0,212,255,0.04); }
-        .play-circle {
-            width:48px; height:48px; border-radius:50%;
-            border:1.5px solid var(--text-soft);
+        .video-placeholder:hover { background:rgba(110,231,215,0.03); }
+        .play-icon {
+            width:44px; height:44px; border-radius:12px;
+            border:1px solid var(--border-bright);
             display:flex; align-items:center; justify-content:center;
-            transition:all 0.25s; background:var(--glass);
-            backdrop-filter:blur(10px);
+            background:var(--bg-card); transition:all 0.3s var(--ease-out);
         }
-        .video-placeholder:hover .play-circle {
-            border-color:var(--cyan); transform:scale(1.08);
-            box-shadow:0 0 20px var(--cyan-glow);
+        .video-placeholder:hover .play-icon {
+            border-color:var(--accent); background:var(--accent-soft);
+            box-shadow:0 0 20px var(--accent-glow);
         }
-        .play-circle svg { width:18px; height:18px; fill:var(--text-soft); margin-left:2px; transition:fill 0.25s; }
-        .video-placeholder:hover .play-circle svg { fill:var(--cyan); }
+        .play-icon svg { width:16px; height:16px; fill:var(--text-soft); margin-left:2px; transition:fill 0.3s; }
+        .video-placeholder:hover .play-icon svg { fill:var(--accent); }
         .placeholder-text {
-            font-family:'Space Grotesk',sans-serif; font-size:0.8rem; color:var(--text-faint);
+            font-family:'JetBrains Mono',monospace; font-size:0.74rem;
+            color:var(--text-faint); letter-spacing:0.03em;
         }
-
-        .portfolio-meta { padding:14px 16px; }
-        .portfolio-meta h4 { font-size:0.9rem; font-weight:600; margin-bottom:3px; font-family:'Space Grotesk',sans-serif; }
-        .portfolio-meta p { font-size:0.78rem; color:var(--text-faint); }
+        .portfolio-meta { padding:16px 18px; }
+        .portfolio-meta h4 {
+            font-family:'Outfit',sans-serif; font-size:0.95rem; font-weight:500;
+            margin-bottom:4px; color:var(--text);
+        }
+        .portfolio-meta p { font-size:0.8rem; color:var(--text-faint); }
         .portfolio-tag {
-            display:inline-block; font-family:'Space Grotesk',sans-serif;
-            font-size:0.72rem; color:var(--cyan); margin-top:6px;
-            padding:2px 10px; border:1px solid rgba(0,212,255,0.2); border-radius:100px;
+            display:inline-block; font-family:'JetBrains Mono',monospace;
+            font-size:0.68rem; color:var(--accent); margin-top:8px;
+            padding:2px 10px; border:1px solid var(--accent-soft); border-radius:4px;
         }
-        .card-badge {
-            position:absolute; top:10px; right:10px; z-index:5;
-            font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:0.68rem;
-            background:rgba(0,212,255,0.15); color:var(--cyan);
-            border:1px solid rgba(0,212,255,0.2);
-            padding:3px 8px; border-radius:100px;
+        .card-num {
+            position:absolute; top:12px; right:12px; z-index:5;
+            font-family:'JetBrains Mono',monospace; font-weight:500; font-size:0.68rem;
+            color:var(--text-faint);
         }
 
-        /* ===== CONTACT — glass ===== */
+        /* ===== CONTACT ===== */
         .contact-section { text-align:center; }
         .contact-card {
-            display:inline-block;
-            background:var(--glass);
-            border:1px solid var(--glass-border);
-            border-radius:20px; padding:32px 40px; margin-bottom:20px;
-            backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+            display:inline-block; text-align:left;
+            background:var(--bg-card); border:1px solid var(--border);
+            border-radius:16px; padding:28px 36px; margin-bottom:20px;
+            min-width:320px;
         }
-        .contact-title {
-            font-family:'Space Grotesk',sans-serif; font-size:1rem;
-            color:var(--cyan); margin-bottom:20px;
-        }
-        .contact-items { display:flex; flex-direction:column; gap:10px; }
-        .contact-item {
+        .contact-row {
             display:flex; justify-content:space-between; align-items:center;
-            padding:8px 0; border-bottom:1px solid var(--divider);
-            text-decoration:none; color:var(--text); font-size:0.85rem;
-            transition:color 0.2s;
+            gap:24px; padding:10px 0; border-bottom:1px solid var(--divider);
+            text-decoration:none; color:var(--text); font-size:0.86rem;
+            transition:color 0.25s;
         }
-        .contact-item:last-child { border-bottom:none; }
-        .contact-item:hover { color:var(--cyan); }
-        .contact-item .ci-label {
-            font-family:'Space Grotesk',sans-serif; font-size:0.7rem;
-            letter-spacing:0.08em; color:var(--text-faint);
+        .contact-row:last-child { border-bottom:none; }
+        .contact-row:hover { color:var(--accent); }
+        .contact-row .cr-label {
+            font-family:'JetBrains Mono',monospace; font-size:0.7rem;
+            letter-spacing:0.06em; color:var(--text-faint); flex-shrink:0;
         }
-        .contact-item .ci-value { color:var(--text-soft); font-size:0.82rem; }
-        .contact-item .ci-phone { font-family:'Space Grotesk',sans-serif; font-size:0.88rem; color:var(--text); }
-
-        .contact-cta {
-            font-family:'Space Grotesk',sans-serif; font-size:0.85rem;
-            color:var(--text-faint); margin-top:12px;
+        .contact-row .cr-value {
+            color:var(--text-soft); font-size:0.84rem;
+            font-family:'Outfit',sans-serif; text-align:right;
+            overflow-wrap:break-word; word-break:break-all;
         }
-        .contact-cta a { color:var(--cyan); text-decoration:none; }
+        .contact-row .cr-phone {
+            font-family:'JetBrains Mono',monospace; font-size:0.86rem; color:var(--text);
+        }
+        .contact-note {
+            font-family:'JetBrains Mono',monospace; font-size:0.78rem;
+            color:var(--text-faint); margin-top:16px;
+        }
+        .contact-note a { color:var(--accent); text-decoration:none; }
 
         /* ===== OUTRO ===== */
-        .outro {
-            padding:80px 0 40px; text-align:center; position:relative;
-        }
+        .outro { padding:80px 0 48px; text-align:center; position:relative; }
         .outro-text {
-            font-family:'Space Grotesk',sans-serif;
-            font-size:clamp(2.5rem,10vw,5rem);
-            font-weight:700; line-height:0.95; letter-spacing:-0.04em;
-            background:linear-gradient(135deg, #FFFFFF 0%, #00D4FF 100%);
-            -webkit-background-clip:text; background-clip:text;
-            -webkit-text-fill-color:transparent;
-            margin-bottom:12px;
+            font-family:'Outfit',sans-serif;
+            font-size:clamp(2rem,8vw,3.8rem);
+            font-weight:700; line-height:1.05; letter-spacing:-0.04em;
+            color:var(--text); margin-bottom:12px;
         }
+        .outro-text .accent { color:var(--accent); }
         .outro-sub {
-            font-family:'Space Grotesk',sans-serif; font-size:1rem;
+            font-family:'JetBrains Mono',monospace; font-size:0.85rem;
             color:var(--text-soft);
         }
 
         /* ===== FOOTER ===== */
-        footer { text-align:center; padding:28px 24px; border-top:1px solid var(--divider); }
-        footer p { font-size:0.75rem; color:var(--text-faint); font-family:'Space Grotesk',sans-serif; }
-        footer .footer-sig { color:var(--cyan); margin-top:6px; }
+        footer {
+            text-align:center; padding:28px 24px; border-top:1px solid var(--divider);
+        }
+        footer p {
+            font-size:0.75rem; color:var(--text-faint);
+            font-family:'JetBrains Mono',monospace; letter-spacing:0.02em;
+        }
+        footer .footer-sig { color:var(--accent); margin-top:6px; }
 
         /* ===== MODAL ===== */
         .modal-overlay {
-            position:fixed; inset:0; background:rgba(0,0,0,0.6);
+            position:fixed; inset:0; background:rgba(0,0,0,0.65);
             display:none; align-items:center; justify-content:center; z-index:1000;
-            backdrop-filter:blur(4px);
+            backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
         }
         .modal-overlay.active { display:flex; }
         .modal {
-            background:var(--bg-soft);
-            border:1px solid var(--glass-border);
-            border-radius:20px; width:90%; max-width:420px; padding:32px;
+            background:#0E0F16; border:1px solid var(--border-bright);
+            border-radius:16px; width:90%; max-width:420px; padding:32px;
         }
         .modal h3 {
-            font-family:'Space Grotesk',sans-serif; font-size:1.1rem;
+            font-family:'Outfit',sans-serif; font-size:1.1rem; font-weight:600;
             margin-bottom:24px; color:var(--text);
         }
         .field { margin-bottom:16px; }
-        .field label { display:block; font-size:0.72rem; color:var(--text-faint); margin-bottom:5px; font-family:'Space Grotesk',sans-serif; }
-        .field input,.field textarea {
-            width:100%; padding:10px 14px; background:var(--glass);
-            border:1px solid var(--glass-border); border-radius:10px;
-            font-size:0.85rem; font-family:inherit; color:var(--text);
-            outline:none; transition:border-color 0.2s;
+        .field label {
+            display:block; font-size:0.72rem; color:var(--text-faint);
+            margin-bottom:6px; font-family:'JetBrains Mono',monospace; letter-spacing:0.03em;
         }
-        .field input:focus,.field textarea:focus { border-color:var(--cyan); }
-        .field textarea { resize:vertical; min-height:56px; }
+        .field input, .field textarea {
+            width:100%; padding:10px 14px; background:var(--bg-card);
+            border:1px solid var(--border); border-radius:8px;
+            font-size:0.86rem; font-family:inherit; color:var(--text);
+            outline:none; transition:border-color 0.25s var(--ease-out);
+        }
+        .field input:focus, .field textarea:focus { border-color:var(--accent); }
+        .field textarea { resize:vertical; min-height:60px; }
         .modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:22px; }
         .btn {
-            padding:9px 20px; font-size:0.82rem; font-family:'Space Grotesk',sans-serif;
-            cursor:pointer; border:1px solid var(--glass-border); border-radius:100px;
-            background:var(--glass); color:var(--text-soft); transition:all 0.2s;
+            padding:9px 22px; font-size:0.82rem; font-family:'Outfit',sans-serif;
+            cursor:pointer; border:1px solid var(--border); border-radius:8px;
+            background:var(--bg-card); color:var(--text-soft); transition:all 0.25s var(--ease-out);
         }
-        .btn:hover { border-color:var(--text-soft); color:var(--text); }
+        .btn:hover { border-color:var(--border-bright); color:var(--text); }
         .btn.primary {
-            background:var(--cyan); color:var(--bg); border-color:var(--cyan); font-weight:600;
+            background:var(--accent); color:var(--bg); border-color:var(--accent); font-weight:600;
         }
-        .btn.primary:hover { box-shadow:0 0 20px var(--cyan-glow); }
+        .btn.primary:hover { box-shadow:0 0 20px var(--accent-glow); }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width:768px) {
-            .skills-grid { grid-template-columns:repeat(3,1fr); }
-        }
         @media (max-width:640px) {
             .about-card { grid-template-columns:1fr; justify-items:center; text-align:center; }
+            .about-row { justify-content:center; }
             .portfolio-grid { grid-template-columns:1fr; }
-            .skills-grid { grid-template-columns:repeat(2,1fr); }
             section { padding:48px 0; }
-            .hero { padding:100px 0 60px; }
-            .top-bar { display:none; }
+            .hero { padding:110px 0 60px; }
+            .nav-bar { display:none; }
+            .lang-switch { top:14px; right:14px; }
+            .container { padding:0 20px; }
+            .contact-card { min-width:auto; width:100%; padding:24px 20px; }
         }
 
-        ::selection { background:var(--cyan-soft); color:var(--cyan); }
+        ::selection { background:var(--accent-soft); color:var(--accent); }
         ::-webkit-scrollbar { width:6px; }
         ::-webkit-scrollbar-track { background:var(--bg); }
         ::-webkit-scrollbar-thumb { background:var(--divider); border-radius:3px; }
         ::-webkit-scrollbar-thumb:hover { background:var(--text-faint); }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration:0.01ms !important;
+                animation-iteration-count:1 !important;
+                transition-duration:0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Top Bar (nav + lang) -->
-    <div class="top-bar">
+    <!-- Flowing light streaks -->
+    <div class="light-streaks">
+        <div class="streak s1"></div>
+        <div class="streak s2"></div>
+        <div class="streak s3"></div>
+        <div class="streak s4"></div>
+    </div>
+
+    <!-- Nav (center) -->
+    <nav class="nav-bar">
         <a href="#about" class="nav-link" data-zh="关于" data-en="About">关于</a>
         <a href="#skills" class="nav-link" data-zh="技能" data-en="Skills">技能</a>
         <a href="#portfolio" class="nav-link" data-zh="作品" data-en="Work">作品</a>
         <a href="#contact" class="nav-link" data-zh="联系" data-en="Contact">联系</a>
-        <span class="lang-divider"></span>
+    </nav>
+
+    <!-- Lang switch (right) -->
+    <div class="lang-switch">
         <button class="lang-btn active" onclick="setLang('zh',event)">中</button>
         <button class="lang-btn" onclick="setLang('en',event)">EN</button>
     </div>
@@ -456,16 +473,18 @@
         <div class="orb o1"></div>
         <div class="orb o2"></div>
         <div class="container">
-            <div class="hero-badge" data-zh="PORTFOLIO" data-en="PORTFOLIO">PORTFOLIO</div>
-            <h1 class="hero-name" data-zh="Zhong Yuling" data-en="Zhong Yuling">Zhong Yuling</h1>
-            <p class="hero-name-cn" data-zh="钟 毓 灵" data-en="钟 毓 灵">钟 毓 灵</p>
-            <p class="hero-tagline" data-zh="数字媒体艺术与动画IT硕士 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业" data-en="MA in Digital Media Art & Animation IT · 4+ years video design · Brand advertising & gaming industry">数字媒体艺术与动画IT硕士 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业</p>
+            <p class="hero-greeting" data-zh="你好，我是" data-en="Hello, I'm">你好，我是</p>
+            <h1 class="hero-name" data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</h1>
+            <p class="hero-name-cn" data-zh="Zhong Yuling" data-en="钟 毓 灵">Zhong Yuling</p>
+            <p class="hero-tagline" data-zh="数字媒体艺术与动画IT硕士，4年以上视频设计经验。深耕品牌广告与游戏行业，擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。" data-en="MA in Digital Media Art & Animation IT, 4+ years of video design experience. Specializing in brand advertising and gaming, from creative planning to final delivery, with AIGC integrated throughout.">数字媒体艺术与动画IT硕士，4年以上视频设计经验。深耕品牌广告与游戏行业，擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。</p>
             <div class="hero-tags">
-                <span class="hero-tag" data-zh="视频设计师" data-en="Video Designer">视频设计师</span>
-                <span class="hero-tag" data-zh="AE动效设计师" data-en="AE Motion Designer">AE动效设计师</span>
-                <span class="hero-tag" data-zh="AI视频设计师" data-en="AI Video Designer">AI视频设计师</span>
+                <span class="hero-tag" data-zh="视频设计" data-en="Video Design">视频设计</span>
+                <span class="hero-tag" data-zh="AE动效" data-en="AE Motion">AE动效</span>
+                <span class="hero-tag" data-zh="AI视频" data-en="AI Video">AI视频</span>
             </div>
-            <p class="hero-arrow" data-zh="↓ scroll to explore" data-en="↓ scroll to explore">↓ scroll to explore</p>
+            <p class="hero-scroll" data-zh="向下滚动探索" data-en="scroll to explore">
+                <span class="line"></span><span data-zh="向下滚动探索" data-en="scroll to explore">向下滚动探索</span>
+            </p>
         </div>
     </header>
 
@@ -473,22 +492,20 @@
 
         <!-- ===== ABOUT ===== -->
         <section id="about">
-            <div class="section-label">
-                <span class="section-num" data-zh="01" data-en="01">01</span>
-                <span class="section-line"></span>
+            <div class="section-head">
+                <span class="section-num" data-zh="01 — 关于" data-en="01 — About">01 — 关于</span>
+                <h2 class="section-title" data-zh="个人简介" data-en="Profile">个人简介</h2>
             </div>
-            <h2 class="section-title" data-zh="关于<span>我</span>" data-en="About <span>Me</span>">关于<span>我</span></h2>
             <div class="about-card">
-                <div class="about-photo" data-zh="你的照片" data-en="your photo">你的照片</div>
+                <div class="about-photo" data-zh="照片" data-en="photo">照片</div>
                 <div>
                     <div class="about-info">
                         <div class="about-row"><span class="label" data-zh="姓名" data-en="Name">姓名</span><span class="value" data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span></div>
-                        <div class="about-row"><span class="label" data-zh="学历" data-en="Education">学历</span><span class="value" data-zh="数字媒体艺术与动画IT硕士" data-en="MA in Digital Media Art & Animation IT">数字媒体艺术与动画IT硕士</span></div>
-                        <div class="about-row"><span class="label" data-zh="所在地" data-en="Location">所在地</span><span class="value" data-zh="上海" data-en="Shanghai">上海</span></div>
-                        <div class="about-row"><span class="label" data-zh="经验" data-en="Experience">经验</span><span class="value" data-zh="4年以上视频设计" data-en="4+ years video design">4年以上视频设计</span></div>
-                        <div class="about-row"><span class="label" data-zh="方向" data-en="Focus">方向</span><span class="value" data-zh="视频设计 / AE动效 / AI视频" data-en="Video / AE Motion / AI Video">视频设计 / AE动效 / AI视频</span></div>
+                        <div class="about-row"><span class="label" data-zh="学历" data-en="Education">学历</span><span class="value" data-zh="数字媒体艺术与动画IT硕士" data-en="MA, Digital Media Art & Animation IT">数字媒体艺术与动画IT硕士</span></div>
+                        <div class="about-row"><span class="label" data-zh="城市" data-en="City">城市</span><span class="value" data-zh="上海" data-en="Shanghai">上海</span></div>
+                        <div class="about-row"><span class="label" data-zh="经验" data-en="Experience">经验</span><span class="value" data-zh="4年以上" data-en="4+ years">4年以上</span></div>
                     </div>
-                    <p class="about-summary" data-zh="拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，熟练掌握即梦、Suno等主流AI生图、生视频、音乐等技术，能够将AIGC工具深度融入工作流以提升产出效率。" data-en="With an MA in Digital Media Art & Animation IT and 4+ years of video design experience, I specialize in brand advertising and gaming industry projects. Skilled in end-to-end production from creative planning to final delivery. Proficient in AI tools including Jimeng, Suno for AI image/video/music generation, integrating AIGC workflows to boost production efficiency.">拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，熟练掌握即梦、Suno等主流AI生图、生视频、音乐等技术，能够将AIGC工具深度融入工作流以提升产出效率。</p>
+                    <p class="about-summary" data-zh="拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，熟练掌握即梦、Suno等主流AI生图、生视频、音乐技术，能够将AIGC工具深度融入工作流以提升产出效率。" data-en="With an MA in Digital Media Art & Animation IT and 4+ years of video design experience, I specialize in brand advertising and gaming industry projects. Skilled in end-to-end production from creative planning to final delivery, proficient in AI tools including Jimeng and Suno for image, video, and music generation, integrating AIGC workflows to boost production efficiency.">拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，熟练掌握即梦、Suno等主流AI生图、生视频、音乐技术，能够将AIGC工具深度融入工作流以提升产出效率。</p>
                     <div class="about-tags">
                         <span data-zh="创意策划" data-en="Creative Planning">创意策划</span>
                         <span data-zh="视觉把控" data-en="Visual Direction">视觉把控</span>
@@ -501,161 +518,88 @@
             </div>
         </section>
 
-        <!-- ===== SKILLS ===== -->
+        <!-- ===== SKILLS — clean categorized, no icon grid ===== -->
         <section id="skills">
-            <div class="section-label">
-                <span class="section-num" data-zh="02" data-en="02">02</span>
-                <span class="section-line"></span>
+            <div class="section-head">
+                <span class="section-num" data-zh="02 — 技能" data-en="02 — Skills">02 — 技能</span>
+                <h2 class="section-title" data-zh="专业能力" data-en="Capabilities">专业能力</h2>
             </div>
-            <h2 class="section-title" data-zh="技能与<span>工具</span>" data-en="Skills & <span>Tools</span>">技能与<span>工具</span></h2>
-            <div class="skills-grid">
-                <div class="skill-cell">
-                    <div class="skill-icon-box" style="background:rgba(42,32,128,0.3);">
-                        <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="12" height="12" rx="2" stroke="#7B7BFF" stroke-width="2"/><path d="M14 10l6-3v10l-6-3" stroke="#7B7BFF" stroke-width="2" stroke-linejoin="round"/></svg>
+            <div class="skills-wrap">
+                <div class="skill-group">
+                    <h3 data-zh="核心技能" data-en="Core">核心技能</h3>
+                    <div class="skill-list">
+                        <span class="skill-pill" data-zh="视频设计 <span class='level'>精通</span>" data-en="Video Design <span class='level'>Expert</span>">视频设计 <span class="level">精通</span></span>
+                        <span class="skill-pill" data-zh="AE动效设计 <span class='level'>熟练</span>" data-en="AE Motion <span class='level'>Advanced</span>">AE动效设计 <span class="level">熟练</span></span>
+                        <span class="skill-pill" data-zh="创意策划 <span class='level'>精通</span>" data-en="Creative Planning <span class='level'>Expert</span>">创意策划 <span class="level">精通</span></span>
+                        <span class="skill-pill" data-zh="品牌广告 <span class='level'>熟练</span>" data-en="Brand Advertising <span class='level'>Advanced</span>">品牌广告 <span class="level">熟练</span></span>
+                        <span class="skill-pill" data-zh="游戏行业 <span class='level'>熟悉</span>" data-en="Gaming Industry <span class='level'>Familiar</span>">游戏行业 <span class="level">熟悉</span></span>
                     </div>
-                    <p class="skill-name" data-zh="视频设计" data-en="Video Design">视频设计</p>
-                    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%;background:#7B7BFF;"></div></div>
-                    <p class="skill-pct">92%</p>
                 </div>
-                <div class="skill-cell">
-                    <div class="skill-icon-box" style="background:rgba(49,27,94,0.3);">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M4 8h16M6 8v8M18 8v8M9 8v8M15 8v8" stroke="#C9A8E8" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="4" r="2" stroke="#C9A8E8" stroke-width="2"/><circle cx="18" cy="4" r="2" stroke="#C9A8E8" stroke-width="2"/></svg>
+                <div class="skill-group">
+                    <h3 data-zh="AI 工具" data-en="AI Tools">AI 工具</h3>
+                    <div class="skill-list">
+                        <span class="skill-pill" data-zh="AI视频生成 <span class='level'>熟练</span>" data-en="AI Video Gen <span class='level'>Advanced</span>">AI视频生成 <span class="level">熟练</span></span>
+                        <span class="skill-pill" data-zh="AI生图 <span class='level'>熟练</span>" data-en="AI Image Gen <span class='level'>Advanced</span>">AI生图 <span class="level">熟练</span></span>
+                        <span class="skill-pill" data-zh="即梦 AI <span class='level'>熟练</span>" data-en="Jimeng AI <span class='level'>Advanced</span>">即梦 AI <span class="level">熟练</span></span>
+                        <span class="skill-pill" data-zh="Suno 音乐 <span class='level'>熟练</span>" data-en="Suno Music <span class='level'>Advanced</span>">Suno 音乐 <span class="level">熟练</span></span>
+                        <span class="skill-pill" data-zh="AIGC工作流 <span class='level'>熟练</span>" data-en="AIGC Workflow <span class='level'>Advanced</span>">AIGC工作流 <span class="level">熟练</span></span>
                     </div>
-                    <p class="skill-name" data-zh="AE动效" data-en="AE Motion">AE动效</p>
-                    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%;background:#C9A8E8;"></div></div>
-                    <p class="skill-pct">88%</p>
                 </div>
-                <div class="skill-cell">
-                    <div class="skill-icon-box" style="background:rgba(0,212,255,0.12);">
-                        <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="14" rx="2" stroke="#00D4FF" stroke-width="2"/><circle cx="9" cy="12" r="1.5" fill="#00D4FF"/><circle cx="15" cy="12" r="1.5" fill="#00D4FF"/><path d="M9 16h6" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="3" r="1.5" stroke="#00D4FF" stroke-width="2"/></svg>
+                <div class="skill-group">
+                    <h3 data-zh="综合能力" data-en="Soft Skills">综合能力</h3>
+                    <div class="skill-list">
+                        <span class="skill-pill" data-zh="跨部门协作 <span class='level'>熟练</span>" data-en="Cross-team Collab <span class='level'>Advanced</span>">跨部门协作 <span class="level">熟练</span></span>
+                        <span class="skill-pill" data-zh="项目管理 <span class='level'>熟练</span>" data-en="Project Management <span class='level'>Advanced</span>">项目管理 <span class="level">熟练</span></span>
+                        <span class="skill-pill" data-zh="独立交付 <span class='level'>精通</span>" data-en="Solo Delivery <span class='level'>Expert</span>">独立交付 <span class="level">精通</span></span>
                     </div>
-                    <p class="skill-name" data-zh="AI视频生成" data-en="AI Video">AI视频生成</p>
-                    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;background:#00D4FF;"></div></div>
-                    <p class="skill-pct">85%</p>
-                </div>
-                <div class="skill-cell">
-                    <div class="skill-icon-box" style="background:rgba(0,255,148,0.12);">
-                        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#00FF94" stroke-width="2"/><circle cx="8.5" cy="11" r="1.5" stroke="#00FF94" stroke-width="2"/><path d="M3 17l5-4 3 2 4-3 6 5" stroke="#00FF94" stroke-width="2" stroke-linejoin="round"/></svg>
-                    </div>
-                    <p class="skill-name" data-zh="AI生图" data-en="AI Image">AI生图</p>
-                    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;background:#00FF94;"></div></div>
-                    <p class="skill-pct">85%</p>
-                </div>
-                <div class="skill-cell">
-                    <div class="skill-icon-box" style="background:rgba(27,74,140,0.3);">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M9 18V6l10-2v12" stroke="#7BB0E8" stroke-width="2" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" stroke="#7BB0E8" stroke-width="2"/><circle cx="17" cy="16" r="2" stroke="#7BB0E8" stroke-width="2"/></svg>
-                    </div>
-                    <p class="skill-name" data-zh="Suno音乐" data-en="Suno Music">Suno音乐</p>
-                    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%;background:#7BB0E8;"></div></div>
-                    <p class="skill-pct">82%</p>
-                </div>
-                <div class="skill-cell">
-                    <div class="skill-icon-box" style="background:rgba(201,104,10,0.15);">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z" stroke="#FFD680" stroke-width="1.5" fill="none"/></svg>
-                    </div>
-                    <p class="skill-name" data-zh="即梦AI" data-en="Jimeng AI">即梦AI</p>
-                    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%;background:#FFD680;"></div></div>
-                    <p class="skill-pct">80%</p>
-                </div>
-                <div class="skill-cell">
-                    <div class="skill-icon-box" style="background:rgba(184,134,11,0.15);">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 18v3h4v-3M12 2v3M5 8a7 7 0 0014 0" stroke="#FFE0A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 8v4" stroke="#FFE0A8" stroke-width="2" stroke-linecap="round"/></svg>
-                    </div>
-                    <p class="skill-name" data-zh="创意策划" data-en="Creative">创意策划</p>
-                    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%;background:#FFE0A8;"></div></div>
-                    <p class="skill-pct">90%</p>
-                </div>
-                <div class="skill-cell">
-                    <div class="skill-icon-box" style="background:rgba(184,56,42,0.15);">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M3 10l11-4v12L3 14v-4z" stroke="#F0B0A0" stroke-width="2" stroke-linejoin="round"/><path d="M14 8h4a2 2 0 012 2v2a2 2 0 01-2 2h-4" stroke="#F0B0A0" stroke-width="2"/><path d="M6 14v4" stroke="#F0B0A0" stroke-width="2" stroke-linecap="round"/></svg>
-                    </div>
-                    <p class="skill-name" data-zh="品牌广告" data-en="Brand Ads">品牌广告</p>
-                    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:87%;background:#F0B0A0;"></div></div>
-                    <p class="skill-pct">87%</p>
-                </div>
-                <div class="skill-cell">
-                    <div class="skill-icon-box" style="background:rgba(46,107,62,0.2);">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M6 8h4l2 2h6a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2 2 2 2 0 01-2-2H8a2 2 0 01-2-2 2 2 0 01-2-2 2 2 0 012-2" stroke="#7DD49B" stroke-width="2" stroke-linejoin="round"/></svg>
-                    </div>
-                    <p class="skill-name" data-zh="游戏行业" data-en="Gaming">游戏行业</p>
-                    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%;background:#7DD49B;"></div></div>
-                    <p class="skill-pct">78%</p>
-                </div>
-                <div class="skill-cell">
-                    <div class="skill-icon-box" style="background:rgba(61,58,140,0.2);">
-                        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="#9894E8" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="#9894E8" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="#9894E8" stroke-width="2"/><path d="M14 17.5h7M17.5 14v7" stroke="#9894E8" stroke-width="2" stroke-linecap="round"/></svg>
-                    </div>
-                    <p class="skill-name" data-zh="AIGC工作流" data-en="AIGC Flow">AIGC工作流</p>
-                    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:83%;background:#9894E8;"></div></div>
-                    <p class="skill-pct">83%</p>
-                </div>
-                <div class="skill-cell">
-                    <div class="skill-icon-box" style="background:rgba(140,58,110,0.2);">
-                        <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="#E8A8D0" stroke-width="2"/><circle cx="17" cy="9" r="2.5" stroke="#E8A8D0" stroke-width="2"/><path d="M3 19a6 6 0 0112 0M14 19a4 4 0 017 0" stroke="#E8A8D0" stroke-width="2" stroke-linecap="round"/></svg>
-                    </div>
-                    <p class="skill-name" data-zh="跨部门协作" data-en="Collab">跨部门协作</p>
-                    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%;background:#E8A8D0;"></div></div>
-                    <p class="skill-pct">88%</p>
-                </div>
-                <div class="skill-cell">
-                    <div class="skill-icon-box" style="background:rgba(92,74,58,0.2);">
-                        <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" stroke="#D4B898" stroke-width="2"/><path d="M9 8h6M9 12h6M9 16h4" stroke="#D4B898" stroke-width="2" stroke-linecap="round"/></svg>
-                    </div>
-                    <p class="skill-name" data-zh="项目管理" data-en="Project Mgmt">项目管理</p>
-                    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%;background:#D4B898;"></div></div>
-                    <p class="skill-pct">80%</p>
                 </div>
             </div>
         </section>
 
         <!-- ===== PORTFOLIO ===== -->
         <section id="portfolio">
-            <div class="section-label">
-                <span class="section-num" data-zh="03" data-en="03">03</span>
-                <span class="section-line"></span>
+            <div class="section-head">
+                <span class="section-num" data-zh="03 — 作品" data-en="03 — Work">03 — 作品</span>
+                <h2 class="section-title" data-zh="作品集" data-en="Portfolio">作品集</h2>
+                <p class="section-subtitle" data-zh="点击卡片添加视频 — 支持 B站 / YouTube / 视频直链" data-en="Click a card to add a video — Bilibili / YouTube / direct links supported">点击卡片添加视频 — 支持 B站 / YouTube / 视频直链</p>
             </div>
-            <h2 class="section-title" data-zh="作品<span>集</span>" data-en="Portfo<span>lio</span>">作品<span>集</span></h2>
-            <p class="portfolio-hint" data-zh="点击卡片即可添加视频 — 支持 B站 / YouTube / 视频直链" data-en="Click any card to add a video — supports Bilibili / YouTube / direct links">点击卡片即可添加视频 — 支持 B站 / YouTube / 视频直链</p>
             <div class="portfolio-grid" id="portfolioGrid"></div>
         </section>
 
         <!-- ===== CONTACT ===== -->
         <section id="contact" class="contact-section">
-            <div class="section-label" style="justify-content:center;">
-                <span class="section-num" data-zh="04" data-en="04">04</span>
+            <div class="section-head" style="text-align:center;">
+                <span class="section-num" data-zh="04 — 联系" data-en="04 — Contact">04 — 联系</span>
+                <h2 class="section-title" data-zh="联系方式" data-en="Get in Touch">联系方式</h2>
             </div>
-            <h2 class="section-title" data-zh="联系<span>我</span>" data-en="Contact <span>Me</span>">联系<span>我</span></h2>
             <div class="contact-card">
-                <p class="contact-title" data-zh="Get in Touch" data-en="Get in Touch">Get in Touch</p>
-                <div class="contact-items">
-                    <a href="tel:15202155210" class="contact-item">
-                        <span class="ci-label" data-zh="电话" data-en="PHONE">电话</span>
-                        <span class="ci-phone">15202155210</span>
-                    </a>
-                    <a href="mailto:15202155210@163.com" class="contact-item">
-                        <span class="ci-label" data-zh="邮箱" data-en="E-MAIL">邮箱</span>
-                        <span class="ci-value">15202155210@163.com</span>
-                    </a>
-                    <a href="https://maps.google.com/?q=Shanghai" class="contact-item">
-                        <span class="ci-label" data-zh="所在地" data-en="LOCATION">所在地</span>
-                        <span class="ci-value" data-zh="上海" data-en="Shanghai">上海</span>
-                    </a>
-                </div>
+                <a href="tel:15202155210" class="contact-row">
+                    <span class="cr-label" data-zh="电话" data-en="PHONE">电话</span>
+                    <span class="cr-phone">15202155210</span>
+                </a>
+                <a href="mailto:15202155210@163.com" class="contact-row">
+                    <span class="cr-label" data-zh="邮箱" data-en="EMAIL">邮箱</span>
+                    <span class="cr-value">15202155210@163.com</span>
+                </a>
+                <a href="https://maps.google.com/?q=Shanghai" class="contact-row">
+                    <span class="cr-label" data-zh="城市" data-en="CITY">城市</span>
+                    <span class="cr-value" data-zh="上海" data-en="Shanghai">上海</span>
+                </a>
             </div>
-            <p class="contact-cta" data-zh="期待与你合作 ✦" data-en="Let's create something together ✦">期待与你合作 ✦</p>
+            <p class="contact-note" data-zh="// 期待与你合作" data-en="// Let's create something together">// 期待与你合作</p>
         </section>
 
     </div>
 
     <!-- ===== OUTRO ===== -->
     <div class="outro">
-        <p class="outro-text" data-zh="Let's Talk" data-en="Let's Talk">Let's Talk</p>
-        <p class="outro-sub" data-zh="期待与你合作" data-en="Let's create something together">期待与你合作</p>
+        <p class="outro-text" data-zh="Let's <span class='accent'>Talk</span>" data-en="Let's <span class='accent'>Talk</span>">Let's <span class="accent">Talk</span></p>
+        <p class="outro-sub" data-zh="// zhongyuling@portfolio — 2026" data-en="// zhongyuling@portfolio — 2026">// zhongyuling@portfolio — 2026</p>
     </div>
 
     <!-- ===== FOOTER ===== -->
     <footer>
-        <p>© 2026 <span data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span> · <span data-zh="视频设计师 · AE动效设计师 · AI视频设计师" data-en="Video Designer · AE Motion Designer · AI Video Designer">视频设计师 · AE动效设计师 · AI视频设计师</span></p>
+        <p>© 2026 <span data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span> · <span data-zh="视频设计师 · AE动效 · AI视频" data-en="Video · AE Motion · AI Video">视频设计师 · AE动效 · AI视频</span></p>
         <p class="footer-sig">— by Zhong Yuling —</p>
     </footer>
 
@@ -689,9 +633,9 @@
     <script>
         const ph = {
             zh: { title:'例：品牌广告宣传片', url:'B站 / YouTube / 视频文件链接', desc:'简要描述作品...', tag:'例：品牌广告 / AI视频 / 动效设计',
-                  add:'确认添加', cancel:'取消', title_h:'添加视频作品', err:'请输入视频链接', work:'精彩视频作品', workN:'作品' },
+                  add:'确认添加', cancel:'取消', err:'请输入视频链接', work:'精彩视频作品', workN:'作品', addVideo:'点击添加视频' },
             en: { title:'e.g. Brand Promo Video', url:'Bilibili / YouTube / video file link', desc:'Briefly describe the work...', tag:'e.g. Brand Ad / AI Video / Motion Design',
-                  add:'Add', cancel:'Cancel', title_h:'Add Video Work', err:'Please enter a video URL', work:'Featured video work', workN:'Work' }
+                  add:'Add', cancel:'Cancel', err:'Please enter a video URL', work:'Featured video work', workN:'Work', addVideo:'Click to add video' }
         };
 
         const portfolioItems = [
@@ -708,13 +652,13 @@
             currentLang = lang || 'zh';
             const grid = document.getElementById('portfolioGrid');
             grid.innerHTML = '';
-            const pText = currentLang === 'zh' ? '点击添加视频' : 'Click to add video';
+            const pText = ph[currentLang].addVideo;
             portfolioItems.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'portfolio-card';
                 let videoHTML;
                 if (item.type === 'placeholder' || !item.url) {
-                    videoHTML = `<div class="video-area"><div class="video-placeholder" onclick="openModal(${index})"><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="placeholder-text">${pText}</span></div></div>`;
+                    videoHTML = `<div class="video-area"><div class="video-placeholder" onclick="openModal(${index})"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="placeholder-text">${pText}</span></div></div>`;
                 } else if (item.type === 'iframe') {
                     videoHTML = `<div class="video-area">${item.url}</div>`;
                 } else if (item.type === 'video') {
@@ -722,7 +666,8 @@
                 }
                 const title = currentLang === 'zh' ? item.t_zh : item.t_en;
                 const desc = currentLang === 'zh' ? item.d_zh : item.d_en;
-                card.innerHTML = `${videoHTML}<span class="card-badge">0${index+1}</span><div class="portfolio-meta"><h4>${title}</h4><p>${desc}</p>${item.tag ? `<span class="portfolio-tag">${item.tag}</span>` : ''}</div>`;
+                const num = String(index + 1).padStart(2, '0');
+                card.innerHTML = `${videoHTML}<span class="card-num">${num}</span><div class="portfolio-meta"><h4>${title}</h4><p>${desc}</p>${item.tag ? `<span class="portfolio-tag">${item.tag}</span>` : ''}</div>`;
                 grid.appendChild(card);
             });
         }
@@ -779,7 +724,7 @@
             document.querySelectorAll('[data-zh]').forEach(el => {
                 const val = lang === 'zh' ? el.dataset.zh : el.dataset.en;
                 if (val !== undefined) {
-                    if (val.includes('<span>')) {
+                    if (val.includes('<span')) {
                         el.innerHTML = val;
                     } else {
                         el.textContent = val;
@@ -791,13 +736,12 @@
 
         document.getElementById('videoModal').addEventListener('click', function(e) { if(e.target===this) closeModal(); });
 
-        // Scroll-spy
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section[id]');
         window.addEventListener('scroll', function() {
             let current = '';
             sections.forEach(s => {
-                if (window.scrollY >= s.offsetTop - 120) current = s.id;
+                if (window.scrollY >= s.offsetTop - 140) current = s.id;
             });
             navLinks.forEach(l => {
                 l.classList.toggle('active', l.getAttribute('href') === '#' + current);
