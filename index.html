@@ -6,163 +6,153 @@
     <title>钟毓灵 | Portfolio 作品集</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Bebas+Neue&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #08090F;
-            --bg-card: rgba(255,255,255,0.035);
-            --bg-card-hover: rgba(255,255,255,0.055);
+            --bg: #0D0B1F;
+            --bg-grad-start: #1A1340;
+            --bg-grad-mid: #0F0A2A;
+            --bg-grad-end: #0D0B1F;
+            --card: rgba(255,255,255,0.04);
+            --card-hover: rgba(255,255,255,0.06);
             --border: rgba(255,255,255,0.08);
-            --border-bright: rgba(255,255,255,0.14);
-            --accent: #6EE7D7;
-            --accent-soft: rgba(110,231,215,0.12);
-            --accent-glow: rgba(110,231,215,0.25);
-            --warm: #F5A78B;
-            --warm-soft: rgba(245,167,139,0.1);
-            --text: #F2F0EC;
-            --text-soft: #9A9B9F;
-            --text-faint: #5A5B5F;
+            --border-lt: rgba(255,255,255,0.14);
+            --text: #F4F2EE;
+            --text-soft: #A2A0AB;
+            --text-faint: #5A5862;
             --divider: rgba(255,255,255,0.06);
-            --ease-out: cubic-bezier(0.25,1,0.5,1);
-            --ease-snap: cubic-bezier(0.22,1,0.36,1);
+            --yellow: #FACC15;
+            --yellow-soft: rgba(250,204,21,0.12);
+            --coral: #FF6B6B;
+            --coral-soft: rgba(255,107,107,0.1);
+            --mint: #4FD1C5;
+            --mint-soft: rgba(79,209,197,0.1);
+            --purple: #A78BFA;
+            --ease: cubic-bezier(0.25,1,0.5,1);
         }
 
         * { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
 
         body {
-            font-family:'Noto Sans SC','Outfit',-apple-system,sans-serif;
-            background:var(--bg);
+            font-family:'Plus Jakarta Sans','Noto Sans SC',-apple-system,sans-serif;
             color:var(--text);
             line-height:1.85;
             -webkit-font-smoothing:antialiased;
             overflow-x:hidden;
             position:relative;
+            background:var(--bg);
         }
 
-        /* --- Background layers --- */
+        /* Gradient background — deep blue to purple, like reference image 2 */
         body::before {
-            content:''; position:fixed; inset:0; z-index:-3;
+            content:''; position:fixed; inset:0; z-index:-2;
             background:
-                radial-gradient(ellipse 60% 50% at 15% 5%, rgba(110,231,215,0.06) 0%, transparent 70%),
-                radial-gradient(ellipse 50% 40% at 85% 90%, rgba(245,167,139,0.04) 0%, transparent 70%),
-                var(--bg);
+                radial-gradient(ellipse 70% 55% at 25% 10%, var(--bg-grad-start) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 45% at 75% 85%, rgba(26,19,64,0.7) 0%, transparent 60%),
+                var(--bg-grad-end);
         }
         body::after {
-            content:''; position:fixed; inset:0; z-index:-2;
+            content:''; position:fixed; inset:0; z-index:-1;
             background-image:
-                linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-            background-size:48px 48px;
-            mask-image:radial-gradient(ellipse at center, black 0%, transparent 85%);
-            -webkit-mask-image:radial-gradient(ellipse at center, black 0%, transparent 85%);
-        }
-
-        /* --- Flowing light streaks --- */
-        .light-streaks { position:fixed; inset:0; z-index:-1; pointer-events:none; overflow:hidden; }
-        .streak {
-            position:absolute; width:200%; height:1px; opacity:0.35;
-            background:linear-gradient(90deg, transparent, var(--accent), transparent);
-            animation:streak-flow var(--dur,18s) linear infinite var(--delay,0s);
-        }
-        .streak.s1 { top:18%; --dur:22s; --delay:0s; }
-        .streak.s2 { top:45%; --dur:28s; --delay:-6s; opacity:0.2; background:linear-gradient(90deg, transparent, var(--warm), transparent); }
-        .streak.s3 { top:72%; --dur:20s; --delay:-3s; opacity:0.15; }
-        .streak.s4 { top:88%; --dur:26s; --delay:-10s; opacity:0.25; background:linear-gradient(90deg, transparent, var(--accent), transparent); }
-        @keyframes streak-flow {
-            0% { transform:translateX(-60%) translateY(0); }
-            50% { transform:translateX(0%) translateY(-8px); }
-            100% { transform:translateX(60%) translateY(0); }
+                linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
+            background-size:52px 52px;
+            mask-image:radial-gradient(ellipse at center, black 0%, transparent 90%);
+            -webkit-mask-image:radial-gradient(ellipse at center, black 0%, transparent 90%);
         }
 
         .container { max-width:860px; margin:0 auto; padding:0 28px; }
 
-        /* --- Nav (center) and Lang (right) are separate --- */
+        /* --- Nav (center) + Lang (right) --- */
         .nav-bar {
             position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:200;
             display:flex; gap:2px;
-            background:rgba(8,9,15,0.7);
+            background:rgba(13,11,31,0.6);
             backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
             border:1px solid var(--border);
             border-radius:100px; padding:4px;
         }
         .nav-link {
-            padding:7px 18px; font-size:0.78rem; font-family:'Outfit',sans-serif;
-            font-weight:400; letter-spacing:0.02em; text-decoration:none;
-            color:var(--text-soft); transition:all 0.3s var(--ease-out); border-radius:100px;
+            padding:7px 18px; font-size:0.78rem; font-family:'Plus Jakarta Sans',sans-serif;
+            font-weight:500; text-decoration:none;
+            color:var(--text-soft); transition:all 0.3s var(--ease); border-radius:100px;
         }
         .nav-link:hover { color:var(--text); }
-        .nav-link.active { color:var(--bg); background:var(--accent); font-weight:500; }
+        .nav-link.active { color:var(--bg); background:var(--yellow); }
 
         .lang-switch {
             position:fixed; top:18px; right:24px; z-index:200;
             display:flex; gap:2px;
-            background:rgba(8,9,15,0.7);
+            background:rgba(13,11,31,0.6);
             backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
             border:1px solid var(--border);
             border-radius:100px; padding:3px;
         }
         .lang-btn {
-            padding:6px 12px; font-size:0.72rem; font-family:'JetBrains Mono',monospace;
+            padding:6px 12px; font-size:0.72rem; font-family:'Bebas Neue',sans-serif;
             border:none; background:transparent; cursor:pointer; color:var(--text-faint);
-            transition:all 0.3s var(--ease-out); border-radius:100px; font-weight:500;
-            letter-spacing:0.05em;
+            transition:all 0.3s var(--ease); border-radius:100px; letter-spacing:0.08em;
         }
-        .lang-btn.active { color:var(--accent); }
+        .lang-btn.active { color:var(--yellow); }
         .lang-btn:not(.active):hover { color:var(--text); }
 
         /* ===== HERO ===== */
-        .hero { padding:140px 0 90px; position:relative; }
+        .hero { padding:130px 0 90px; position:relative; }
 
-        .hero-greeting {
-            font-family:'JetBrains Mono',monospace; font-size:0.78rem;
-            color:var(--accent); letter-spacing:0.1em; margin-bottom:20px;
-            opacity:0; animation:fadeUp 0.8s var(--ease-out) 0.1s forwards;
+        .hero-label {
+            display:inline-flex; align-items:center; gap:8px;
+            padding:5px 14px; border-radius:100px;
+            background:var(--yellow-soft); border:1px solid rgba(250,204,21,0.25);
+            font-family:'Bebas Neue',sans-serif; font-size:0.82rem;
+            color:var(--yellow); letter-spacing:0.12em; margin-bottom:28px;
+            opacity:0; animation:fadeUp 0.7s var(--ease) 0.1s forwards;
         }
-        .hero-greeting::before {
-            content:'// '; color:var(--text-faint);
+        .hero-label::before {
+            content:''; width:6px; height:6px; border-radius:50%; background:var(--yellow);
         }
 
         .hero-name {
-            font-family:'Outfit',sans-serif;
+            font-family:'Syne',sans-serif;
             font-size:clamp(2.8rem,9vw,5rem);
-            font-weight:700; line-height:1.02; letter-spacing:-0.04em;
-            margin-bottom:6px; color:var(--text);
-            opacity:0; animation:fadeUp 0.8s var(--ease-out) 0.2s forwards;
+            font-weight:800; line-height:1; letter-spacing:-0.04em;
+            margin-bottom:8px; color:var(--text);
+            opacity:0; animation:fadeUp 0.7s var(--ease) 0.2s forwards;
         }
+        .hero-name .accent { color:var(--coral); }
 
         .hero-name-cn {
-            font-size:1.05rem; font-weight:300;
-            color:var(--text-soft); letter-spacing:0.25em;
+            font-family:'Bebas Neue',sans-serif;
+            font-size:1.2rem; font-weight:400;
+            color:var(--text-soft); letter-spacing:0.35em;
             margin-bottom:32px;
-            opacity:0; animation:fadeUp 0.8s var(--ease-out) 0.3s forwards;
+            opacity:0; animation:fadeUp 0.7s var(--ease) 0.3s forwards;
         }
 
         .hero-tagline {
             font-size:1rem; color:var(--text-soft); line-height:1.9;
-            max-width:520px; margin-bottom:32px;
-            opacity:0; animation:fadeUp 0.8s var(--ease-out) 0.4s forwards;
+            max-width:480px; margin-bottom:32px;
+            opacity:0; animation:fadeUp 0.7s var(--ease) 0.4s forwards;
         }
 
         .hero-tags { display:flex; gap:10px; flex-wrap:wrap;
-            opacity:0; animation:fadeUp 0.8s var(--ease-out) 0.5s forwards;
+            opacity:0; animation:fadeUp 0.7s var(--ease) 0.5s forwards;
         }
         .hero-tag {
-            font-size:0.8rem; font-family:'Outfit',sans-serif; font-weight:400;
+            font-size:0.8rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:500;
             color:var(--text-soft); padding:7px 18px;
-            border:1px solid var(--border); border-radius:8px;
-            background:var(--bg-card); transition:all 0.3s var(--ease-out);
+            border:1px solid var(--border); border-radius:100px;
+            background:var(--card); transition:all 0.3s var(--ease);
         }
-        .hero-tag:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
+        .hero-tag:nth-child(1) { border-color:rgba(250,204,21,0.2); color:var(--yellow); }
+        .hero-tag:nth-child(2) { border-color:rgba(79,209,197,0.2); color:var(--mint); }
+        .hero-tag:nth-child(3) { border-color:rgba(255,107,107,0.2); color:var(--coral); }
+        .hero-tag:hover { transform:translateY(-2px); }
 
         .hero-scroll {
-            margin-top:48px; font-family:'JetBrains Mono',monospace;
-            font-size:0.72rem; color:var(--text-faint); letter-spacing:0.08em;
-            opacity:0; animation:fadeUp 0.8s var(--ease-out) 0.6s forwards;
-        }
-        .hero-scroll .line {
-            display:inline-block; width:24px; height:1px; background:var(--text-faint);
-            vertical-align:middle; margin-right:8px;
+            margin-top:48px; font-family:'Bebas Neue',sans-serif;
+            font-size:0.78rem; color:var(--text-faint); letter-spacing:0.12em;
+            opacity:0; animation:fadeUp 0.7s var(--ease) 0.6s forwards;
         }
 
         @keyframes fadeUp {
@@ -170,10 +160,10 @@
             to { opacity:1; transform:translateY(0); }
         }
 
-        /* Floating glow orbs */
-        .orb { position:absolute; border-radius:50%; filter:blur(50px); pointer-events:none; }
-        .orb.o1 { width:180px; height:180px; background:var(--accent); top:8%; left:-5%; opacity:0.04; animation:drift 12s ease-in-out infinite; }
-        .orb.o2 { width:140px; height:140px; background:var(--warm); top:30%; right:-3%; opacity:0.03; animation:drift 16s ease-in-out infinite -4s; }
+        /* Subtle floating orbs */
+        .orb { position:absolute; border-radius:50%; filter:blur(60px); pointer-events:none; }
+        .orb.o1 { width:200px; height:200px; background:var(--purple); top:5%; left:-5%; opacity:0.04; animation:drift 14s ease-in-out infinite; }
+        .orb.o2 { width:160px; height:160px; background:var(--coral); top:35%; right:-3%; opacity:0.03; animation:drift 18s ease-in-out infinite -5s; }
         @keyframes drift {
             0%,100% { transform:translate(0,0); }
             50% { transform:translate(20px,-25px); }
@@ -184,14 +174,18 @@
 
         .section-head { margin-bottom:40px; }
         .section-num {
-            font-family:'JetBrains Mono',monospace; font-size:0.75rem;
-            color:var(--accent); font-weight:500; letter-spacing:0.1em;
-            display:block; margin-bottom:8px;
+            font-family:'Bebas Neue',sans-serif; font-size:0.95rem;
+            font-weight:400; letter-spacing:0.15em; display:block; margin-bottom:6px;
         }
+        .section-num.c1 { color:var(--yellow); }
+        .section-num.c2 { color:var(--mint); }
+        .section-num.c3 { color:var(--coral); }
+        .section-num.c4 { color:var(--purple); }
+
         .section-title {
-            font-family:'Outfit',sans-serif;
+            font-family:'Syne',sans-serif;
             font-size:clamp(1.6rem,4.5vw,2.4rem);
-            font-weight:600; letter-spacing:-0.03em; line-height:1.15;
+            font-weight:700; letter-spacing:-0.03em; line-height:1.15;
             color:var(--text);
         }
         .section-subtitle {
@@ -201,76 +195,79 @@
 
         /* ===== ABOUT ===== */
         .about-card {
-            background:var(--bg-card);
+            background:var(--card);
             border:1px solid var(--border);
             border-radius:16px; padding:32px;
             display:grid; grid-template-columns:140px 1fr; gap:28px; align-items:start;
         }
         .about-photo {
             width:140px; height:180px; border-radius:12px;
-            background:linear-gradient(135deg, var(--accent-soft), var(--warm-soft));
+            background:linear-gradient(135deg, var(--yellow-soft), var(--coral-soft));
             border:1px solid var(--border);
             display:flex; align-items:center; justify-content:center;
-            font-family:'JetBrains Mono',monospace; font-size:0.72rem;
-            color:var(--text-faint); position:relative;
+            font-family:'Bebas Neue',sans-serif; font-size:0.85rem;
+            color:var(--text-faint); letter-spacing:0.1em;
         }
         .about-info { display:grid; gap:10px; }
         .about-row { display:flex; gap:16px; align-items:baseline; }
         .about-row .label {
-            font-size:0.7rem; font-family:'JetBrains Mono',monospace;
-            color:var(--text-faint); min-width:80px; letter-spacing:0.06em;
-            text-transform:uppercase; flex-shrink:0;
+            font-size:0.7rem; font-family:'Bebas Neue',sans-serif;
+            color:var(--text-faint); min-width:80px; letter-spacing:0.1em;
+            flex-shrink:0;
         }
-        .about-row .value { font-size:0.92rem; color:var(--text); font-weight:400; }
+        .about-row .value { font-size:0.92rem; color:var(--text); font-weight:500; }
         .about-summary {
             font-size:0.9rem; color:var(--text-soft); line-height:2;
             margin-top:16px; padding-top:16px; border-top:1px solid var(--divider);
         }
         .about-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
         .about-tags span {
-            font-size:0.76rem; font-family:'Outfit',sans-serif;
-            color:var(--accent); padding:4px 14px;
-            border:1px solid var(--accent-soft); border-radius:6px;
-            background:rgba(110,231,215,0.04);
+            font-size:0.76rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:500;
+            padding:4px 14px; border:1px solid var(--border); border-radius:100px;
         }
+        .about-tags span:nth-child(6n+1) { color:var(--yellow); border-color:rgba(250,204,21,0.2); background:var(--yellow-soft); }
+        .about-tags span:nth-child(6n+2) { color:var(--mint); border-color:rgba(79,209,197,0.2); background:var(--mint-soft); }
+        .about-tags span:nth-child(6n+3) { color:var(--coral); border-color:rgba(255,107,107,0.15); background:var(--coral-soft); }
+        .about-tags span:nth-child(6n+4) { color:var(--purple); border-color:rgba(167,139,250,0.2); background:rgba(167,139,250,0.08); }
+        .about-tags span:nth-child(6n+5) { color:var(--yellow); border-color:rgba(250,204,21,0.2); background:var(--yellow-soft); }
+        .about-tags span:nth-child(6n+6) { color:var(--mint); border-color:rgba(79,209,197,0.2); background:var(--mint-soft); }
 
-        /* ===== SKILLS — clean categorized list, no icon grid ===== */
-        .skills-wrap { display:grid; gap:32px; }
+        /* ===== SKILLS — categorized pills, no icons ===== */
+        .skills-wrap { display:grid; gap:28px; }
         .skill-group h3 {
-            font-family:'JetBrains Mono',monospace; font-size:0.72rem;
-            color:var(--text-faint); letter-spacing:0.1em; text-transform:uppercase;
-            margin-bottom:14px; display:flex; align-items:center; gap:8px;
+            font-family:'Bebas Neue',sans-serif; font-size:0.85rem;
+            color:var(--text-faint); letter-spacing:0.12em; margin-bottom:12px;
+            display:flex; align-items:center; gap:8px;
         }
-        .skill-group h3::before {
-            content:''; width:5px; height:5px; border-radius:50%; background:var(--accent);
-        }
+        .skill-group:nth-child(1) h3::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--yellow); }
+        .skill-group:nth-child(2) h3::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--mint); }
+        .skill-group:nth-child(3) h3::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--coral); }
         .skill-list { display:flex; flex-wrap:wrap; gap:8px; }
         .skill-pill {
-            font-size:0.84rem; font-family:'Outfit',sans-serif; font-weight:400;
+            font-size:0.84rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:500;
             color:var(--text-soft); padding:8px 18px;
-            background:var(--bg-card); border:1px solid var(--border);
-            border-radius:8px; transition:all 0.3s var(--ease-out);
+            background:var(--card); border:1px solid var(--border);
+            border-radius:8px; transition:all 0.3s var(--ease);
         }
         .skill-pill:hover {
-            border-color:var(--border-bright); color:var(--text);
-            background:var(--bg-card-hover); transform:translateY(-2px);
+            border-color:var(--border-lt); color:var(--text);
+            background:var(--card-hover); transform:translateY(-2px);
         }
         .skill-pill .level {
-            font-family:'JetBrains Mono',monospace; font-size:0.68rem;
-            color:var(--text-faint); margin-left:8px;
+            font-family:'Bebas Neue',sans-serif; font-size:0.7rem;
+            color:var(--text-faint); margin-left:8px; letter-spacing:0.08em;
         }
-        .skill-pill:hover .level { color:var(--accent); }
+        .skill-pill:hover .level { color:var(--yellow); }
 
         /* ===== PORTFOLIO ===== */
         .portfolio-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
         .portfolio-card {
-            background:var(--bg-card); border:1px solid var(--border);
-            border-radius:14px; overflow:hidden; transition:all 0.3s var(--ease-out);
+            background:var(--card); border:1px solid var(--border);
+            border-radius:14px; overflow:hidden; transition:all 0.3s var(--ease);
             position:relative;
         }
         .portfolio-card:hover {
-            border-color:var(--border-bright);
-            background:var(--bg-card-hover);
+            border-color:var(--border-lt); background:var(--card-hover);
             transform:translateY(-3px);
         }
         .video-area {
@@ -284,47 +281,47 @@
             position:absolute; inset:0; display:flex; flex-direction:column;
             align-items:center; justify-content:center; cursor:pointer; gap:12px;
         }
-        .video-placeholder:hover { background:rgba(110,231,215,0.03); }
+        .video-placeholder:hover { background:rgba(250,204,21,0.03); }
         .play-icon {
             width:44px; height:44px; border-radius:12px;
-            border:1px solid var(--border-bright);
+            border:1px solid var(--border-lt);
             display:flex; align-items:center; justify-content:center;
-            background:var(--bg-card); transition:all 0.3s var(--ease-out);
+            background:var(--card); transition:all 0.3s var(--ease);
         }
         .video-placeholder:hover .play-icon {
-            border-color:var(--accent); background:var(--accent-soft);
-            box-shadow:0 0 20px var(--accent-glow);
+            border-color:var(--yellow); background:var(--yellow-soft);
         }
         .play-icon svg { width:16px; height:16px; fill:var(--text-soft); margin-left:2px; transition:fill 0.3s; }
-        .video-placeholder:hover .play-icon svg { fill:var(--accent); }
+        .video-placeholder:hover .play-icon svg { fill:var(--yellow); }
         .placeholder-text {
-            font-family:'JetBrains Mono',monospace; font-size:0.74rem;
-            color:var(--text-faint); letter-spacing:0.03em;
+            font-family:'Bebas Neue',sans-serif; font-size:0.78rem;
+            color:var(--text-faint); letter-spacing:0.08em;
         }
         .portfolio-meta { padding:16px 18px; }
         .portfolio-meta h4 {
-            font-family:'Outfit',sans-serif; font-size:0.95rem; font-weight:500;
+            font-family:'Syne',sans-serif; font-size:0.95rem; font-weight:600;
             margin-bottom:4px; color:var(--text);
         }
         .portfolio-meta p { font-size:0.8rem; color:var(--text-faint); }
         .portfolio-tag {
-            display:inline-block; font-family:'JetBrains Mono',monospace;
-            font-size:0.68rem; color:var(--accent); margin-top:8px;
-            padding:2px 10px; border:1px solid var(--accent-soft); border-radius:4px;
+            display:inline-block; font-family:'Bebas Neue',sans-serif;
+            font-size:0.72rem; color:var(--coral); margin-top:8px;
+            padding:2px 10px; border:1px solid rgba(255,107,107,0.2); border-radius:4px;
+            letter-spacing:0.08em;
         }
         .card-num {
             position:absolute; top:12px; right:12px; z-index:5;
-            font-family:'JetBrains Mono',monospace; font-weight:500; font-size:0.68rem;
-            color:var(--text-faint);
+            font-family:'Bebas Neue',sans-serif; font-size:0.8rem;
+            color:var(--text-faint); letter-spacing:0.08em;
         }
 
         /* ===== CONTACT ===== */
         .contact-section { text-align:center; }
         .contact-card {
             display:inline-block; text-align:left;
-            background:var(--bg-card); border:1px solid var(--border);
+            background:var(--card); border:1px solid var(--border);
             border-radius:16px; padding:28px 36px; margin-bottom:20px;
-            min-width:320px;
+            min-width:340px;
         }
         .contact-row {
             display:flex; justify-content:space-between; align-items:center;
@@ -333,37 +330,36 @@
             transition:color 0.25s;
         }
         .contact-row:last-child { border-bottom:none; }
-        .contact-row:hover { color:var(--accent); }
+        .contact-row:hover { color:var(--yellow); }
         .contact-row .cr-label {
-            font-family:'JetBrains Mono',monospace; font-size:0.7rem;
-            letter-spacing:0.06em; color:var(--text-faint); flex-shrink:0;
+            font-family:'Bebas Neue',sans-serif; font-size:0.78rem;
+            letter-spacing:0.12em; color:var(--text-faint); flex-shrink:0;
         }
         .contact-row .cr-value {
-            color:var(--text-soft); font-size:0.84rem;
-            font-family:'Outfit',sans-serif; text-align:right;
+            color:var(--text-soft); font-size:0.84rem; text-align:right;
             overflow-wrap:break-word; word-break:break-all;
         }
         .contact-row .cr-phone {
-            font-family:'JetBrains Mono',monospace; font-size:0.86rem; color:var(--text);
+            font-family:'Plus Jakarta Sans',sans-serif; font-size:0.86rem; color:var(--text); font-weight:500;
         }
         .contact-note {
-            font-family:'JetBrains Mono',monospace; font-size:0.78rem;
-            color:var(--text-faint); margin-top:16px;
+            font-family:'Bebas Neue',sans-serif; font-size:0.82rem;
+            color:var(--text-faint); margin-top:16px; letter-spacing:0.1em;
         }
-        .contact-note a { color:var(--accent); text-decoration:none; }
+        .contact-note a { color:var(--yellow); text-decoration:none; }
 
         /* ===== OUTRO ===== */
         .outro { padding:80px 0 48px; text-align:center; position:relative; }
         .outro-text {
-            font-family:'Outfit',sans-serif;
+            font-family:'Syne',sans-serif;
             font-size:clamp(2rem,8vw,3.8rem);
-            font-weight:700; line-height:1.05; letter-spacing:-0.04em;
+            font-weight:800; line-height:1.05; letter-spacing:-0.04em;
             color:var(--text); margin-bottom:12px;
         }
-        .outro-text .accent { color:var(--accent); }
+        .outro-text .accent { color:var(--yellow); }
         .outro-sub {
-            font-family:'JetBrains Mono',monospace; font-size:0.85rem;
-            color:var(--text-soft);
+            font-family:'Bebas Neue',sans-serif; font-size:0.9rem;
+            color:var(--text-soft); letter-spacing:0.12em;
         }
 
         /* ===== FOOTER ===== */
@@ -372,9 +368,9 @@
         }
         footer p {
             font-size:0.75rem; color:var(--text-faint);
-            font-family:'JetBrains Mono',monospace; letter-spacing:0.02em;
+            font-family:'Bebas Neue',sans-serif; letter-spacing:0.1em;
         }
-        footer .footer-sig { color:var(--accent); margin-top:6px; }
+        footer .footer-sig { color:var(--yellow); margin-top:6px; }
 
         /* ===== MODAL ===== */
         .modal-overlay {
@@ -384,37 +380,37 @@
         }
         .modal-overlay.active { display:flex; }
         .modal {
-            background:#0E0F16; border:1px solid var(--border-bright);
+            background:#0E0C20; border:1px solid var(--border-lt);
             border-radius:16px; width:90%; max-width:420px; padding:32px;
         }
         .modal h3 {
-            font-family:'Outfit',sans-serif; font-size:1.1rem; font-weight:600;
+            font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:600;
             margin-bottom:24px; color:var(--text);
         }
         .field { margin-bottom:16px; }
         .field label {
             display:block; font-size:0.72rem; color:var(--text-faint);
-            margin-bottom:6px; font-family:'JetBrains Mono',monospace; letter-spacing:0.03em;
+            margin-bottom:6px; font-family:'Bebas Neue',sans-serif; letter-spacing:0.1em;
         }
         .field input, .field textarea {
-            width:100%; padding:10px 14px; background:var(--bg-card);
+            width:100%; padding:10px 14px; background:var(--card);
             border:1px solid var(--border); border-radius:8px;
             font-size:0.86rem; font-family:inherit; color:var(--text);
-            outline:none; transition:border-color 0.25s var(--ease-out);
+            outline:none; transition:border-color 0.25s var(--ease);
         }
-        .field input:focus, .field textarea:focus { border-color:var(--accent); }
+        .field input:focus, .field textarea:focus { border-color:var(--yellow); }
         .field textarea { resize:vertical; min-height:60px; }
         .modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:22px; }
         .btn {
-            padding:9px 22px; font-size:0.82rem; font-family:'Outfit',sans-serif;
+            padding:9px 22px; font-size:0.82rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:500;
             cursor:pointer; border:1px solid var(--border); border-radius:8px;
-            background:var(--bg-card); color:var(--text-soft); transition:all 0.25s var(--ease-out);
+            background:var(--card); color:var(--text-soft); transition:all 0.25s var(--ease);
         }
-        .btn:hover { border-color:var(--border-bright); color:var(--text); }
+        .btn:hover { border-color:var(--border-lt); color:var(--text); }
         .btn.primary {
-            background:var(--accent); color:var(--bg); border-color:var(--accent); font-weight:600;
+            background:var(--yellow); color:var(--bg); border-color:var(--yellow); font-weight:600;
         }
-        .btn.primary:hover { box-shadow:0 0 20px var(--accent-glow); }
+        .btn.primary:hover { box-shadow:0 0 20px rgba(250,204,21,0.3); }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width:640px) {
@@ -429,7 +425,7 @@
             .contact-card { min-width:auto; width:100%; padding:24px 20px; }
         }
 
-        ::selection { background:var(--accent-soft); color:var(--accent); }
+        ::selection { background:var(--yellow-soft); color:var(--yellow); }
         ::-webkit-scrollbar { width:6px; }
         ::-webkit-scrollbar-track { background:var(--bg); }
         ::-webkit-scrollbar-thumb { background:var(--divider); border-radius:3px; }
@@ -445,14 +441,6 @@
     </style>
 </head>
 <body>
-
-    <!-- Flowing light streaks -->
-    <div class="light-streaks">
-        <div class="streak s1"></div>
-        <div class="streak s2"></div>
-        <div class="streak s3"></div>
-        <div class="streak s4"></div>
-    </div>
 
     <!-- Nav (center) -->
     <nav class="nav-bar">
@@ -473,18 +461,16 @@
         <div class="orb o1"></div>
         <div class="orb o2"></div>
         <div class="container">
-            <p class="hero-greeting" data-zh="你好，我是" data-en="Hello, I'm">你好，我是</p>
-            <h1 class="hero-name" data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</h1>
-            <p class="hero-name-cn" data-zh="Zhong Yuling" data-en="钟 毓 灵">Zhong Yuling</p>
+            <span class="hero-label" data-zh="PORTFOLIO" data-en="PORTFOLIO">PORTFOLIO</span>
+            <h1 class="hero-name" data-zh="钟毓<span class='accent'>灵</span>" data-en="Zhong <span class='accent'>Yuling</span>">钟毓<span class="accent">灵</span></h1>
+            <p class="hero-name-cn" data-zh="ZHONG YULING" data-en="钟 毓 灵">ZHONG YULING</p>
             <p class="hero-tagline" data-zh="数字媒体艺术与动画IT硕士，4年以上视频设计经验。深耕品牌广告与游戏行业，擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。" data-en="MA in Digital Media Art & Animation IT, 4+ years of video design experience. Specializing in brand advertising and gaming, from creative planning to final delivery, with AIGC integrated throughout.">数字媒体艺术与动画IT硕士，4年以上视频设计经验。深耕品牌广告与游戏行业，擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。</p>
             <div class="hero-tags">
                 <span class="hero-tag" data-zh="视频设计" data-en="Video Design">视频设计</span>
                 <span class="hero-tag" data-zh="AE动效" data-en="AE Motion">AE动效</span>
                 <span class="hero-tag" data-zh="AI视频" data-en="AI Video">AI视频</span>
             </div>
-            <p class="hero-scroll" data-zh="向下滚动探索" data-en="scroll to explore">
-                <span class="line"></span><span data-zh="向下滚动探索" data-en="scroll to explore">向下滚动探索</span>
-            </p>
+            <p class="hero-scroll" data-zh="↓ SCROLL TO EXPLORE" data-en="↓ SCROLL TO EXPLORE">↓ SCROLL TO EXPLORE</p>
         </div>
     </header>
 
@@ -493,17 +479,17 @@
         <!-- ===== ABOUT ===== -->
         <section id="about">
             <div class="section-head">
-                <span class="section-num" data-zh="01 — 关于" data-en="01 — About">01 — 关于</span>
+                <span class="section-num c1" data-zh="01 — ABOUT" data-en="01 — ABOUT">01 — ABOUT</span>
                 <h2 class="section-title" data-zh="个人简介" data-en="Profile">个人简介</h2>
             </div>
             <div class="about-card">
-                <div class="about-photo" data-zh="照片" data-en="photo">照片</div>
+                <div class="about-photo" data-zh="照片" data-en="PHOTO">照片</div>
                 <div>
                     <div class="about-info">
-                        <div class="about-row"><span class="label" data-zh="姓名" data-en="Name">姓名</span><span class="value" data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span></div>
-                        <div class="about-row"><span class="label" data-zh="学历" data-en="Education">学历</span><span class="value" data-zh="数字媒体艺术与动画IT硕士" data-en="MA, Digital Media Art & Animation IT">数字媒体艺术与动画IT硕士</span></div>
-                        <div class="about-row"><span class="label" data-zh="城市" data-en="City">城市</span><span class="value" data-zh="上海" data-en="Shanghai">上海</span></div>
-                        <div class="about-row"><span class="label" data-zh="经验" data-en="Experience">经验</span><span class="value" data-zh="4年以上" data-en="4+ years">4年以上</span></div>
+                        <div class="about-row"><span class="label" data-zh="姓名" data-en="NAME">姓名</span><span class="value" data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span></div>
+                        <div class="about-row"><span class="label" data-zh="学历" data-en="EDU">学历</span><span class="value" data-zh="数字媒体艺术与动画IT硕士" data-en="MA, Digital Media Art & Animation IT">数字媒体艺术与动画IT硕士</span></div>
+                        <div class="about-row"><span class="label" data-zh="城市" data-en="CITY">城市</span><span class="value" data-zh="上海" data-en="Shanghai">上海</span></div>
+                        <div class="about-row"><span class="label" data-zh="经验" data-en="EXP">经验</span><span class="value" data-zh="4年以上" data-en="4+ Years">4年以上</span></div>
                     </div>
                     <p class="about-summary" data-zh="拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，熟练掌握即梦、Suno等主流AI生图、生视频、音乐技术，能够将AIGC工具深度融入工作流以提升产出效率。" data-en="With an MA in Digital Media Art & Animation IT and 4+ years of video design experience, I specialize in brand advertising and gaming industry projects. Skilled in end-to-end production from creative planning to final delivery, proficient in AI tools including Jimeng and Suno for image, video, and music generation, integrating AIGC workflows to boost production efficiency.">拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，熟练掌握即梦、Suno等主流AI生图、生视频、音乐技术，能够将AIGC工具深度融入工作流以提升产出效率。</p>
                     <div class="about-tags">
@@ -518,15 +504,15 @@
             </div>
         </section>
 
-        <!-- ===== SKILLS — clean categorized, no icon grid ===== -->
+        <!-- ===== SKILLS ===== -->
         <section id="skills">
             <div class="section-head">
-                <span class="section-num" data-zh="02 — 技能" data-en="02 — Skills">02 — 技能</span>
+                <span class="section-num c2" data-zh="02 — SKILLS" data-en="02 — SKILLS">02 — SKILLS</span>
                 <h2 class="section-title" data-zh="专业能力" data-en="Capabilities">专业能力</h2>
             </div>
             <div class="skills-wrap">
                 <div class="skill-group">
-                    <h3 data-zh="核心技能" data-en="Core">核心技能</h3>
+                    <h3 data-zh="核心技能" data-en="Core Skills">核心技能</h3>
                     <div class="skill-list">
                         <span class="skill-pill" data-zh="视频设计 <span class='level'>精通</span>" data-en="Video Design <span class='level'>Expert</span>">视频设计 <span class="level">精通</span></span>
                         <span class="skill-pill" data-zh="AE动效设计 <span class='level'>熟练</span>" data-en="AE Motion <span class='level'>Advanced</span>">AE动效设计 <span class="level">熟练</span></span>
@@ -559,7 +545,7 @@
         <!-- ===== PORTFOLIO ===== -->
         <section id="portfolio">
             <div class="section-head">
-                <span class="section-num" data-zh="03 — 作品" data-en="03 — Work">03 — 作品</span>
+                <span class="section-num c3" data-zh="03 — WORK" data-en="03 — WORK">03 — WORK</span>
                 <h2 class="section-title" data-zh="作品集" data-en="Portfolio">作品集</h2>
                 <p class="section-subtitle" data-zh="点击卡片添加视频 — 支持 B站 / YouTube / 视频直链" data-en="Click a card to add a video — Bilibili / YouTube / direct links supported">点击卡片添加视频 — 支持 B站 / YouTube / 视频直链</p>
             </div>
@@ -569,7 +555,7 @@
         <!-- ===== CONTACT ===== -->
         <section id="contact" class="contact-section">
             <div class="section-head" style="text-align:center;">
-                <span class="section-num" data-zh="04 — 联系" data-en="04 — Contact">04 — 联系</span>
+                <span class="section-num c4" data-zh="04 — CONTACT" data-en="04 — CONTACT">04 — CONTACT</span>
                 <h2 class="section-title" data-zh="联系方式" data-en="Get in Touch">联系方式</h2>
             </div>
             <div class="contact-card">
@@ -594,13 +580,13 @@
     <!-- ===== OUTRO ===== -->
     <div class="outro">
         <p class="outro-text" data-zh="Let's <span class='accent'>Talk</span>" data-en="Let's <span class='accent'>Talk</span>">Let's <span class="accent">Talk</span></p>
-        <p class="outro-sub" data-zh="// zhongyuling@portfolio — 2026" data-en="// zhongyuling@portfolio — 2026">// zhongyuling@portfolio — 2026</p>
+        <p class="outro-sub" data-zh="ZHONG YULING — 2026" data-en="ZHONG YULING — 2026">ZHONG YULING — 2026</p>
     </div>
 
     <!-- ===== FOOTER ===== -->
     <footer>
-        <p>© 2026 <span data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span> · <span data-zh="视频设计师 · AE动效 · AI视频" data-en="Video · AE Motion · AI Video">视频设计师 · AE动效 · AI视频</span></p>
-        <p class="footer-sig">— by Zhong Yuling —</p>
+        <p>© 2026 <span data-zh="钟毓灵" data-en="ZHONG YULING">钟毓灵</span> · <span data-zh="视频设计师 · AE动效 · AI视频" data-en="VIDEO · AE MOTION · AI VIDEO">视频设计师 · AE动效 · AI视频</span></p>
+        <p class="footer-sig">— BY ZHONG YULING —</p>
     </footer>
 
     <!-- ===== MODAL ===== -->
@@ -608,19 +594,19 @@
         <div class="modal">
             <h3 data-zh="添加视频作品" data-en="Add Video Work">添加视频作品</h3>
             <div class="field">
-                <label data-zh="作品标题" data-en="Title">作品标题</label>
+                <label data-zh="作品标题" data-en="TITLE">作品标题</label>
                 <input type="text" id="videoTitle">
             </div>
             <div class="field">
-                <label data-zh="视频链接" data-en="Video URL">视频链接</label>
+                <label data-zh="视频链接" data-en="VIDEO URL">视频链接</label>
                 <input type="text" id="videoUrl">
             </div>
             <div class="field">
-                <label data-zh="作品描述（选填）" data-en="Description (optional)">作品描述（选填）</label>
+                <label data-zh="作品描述（选填）" data-en="DESCRIPTION (OPTIONAL)">作品描述（选填）</label>
                 <textarea id="videoDesc"></textarea>
             </div>
             <div class="field">
-                <label data-zh="分类标签（选填）" data-en="Tag (optional)">分类标签（选填）</label>
+                <label data-zh="分类标签（选填）" data-en="TAG (OPTIONAL)">分类标签（选填）</label>
                 <input type="text" id="videoTag">
             </div>
             <div class="modal-actions">
