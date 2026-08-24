@@ -6,7 +6,7 @@
     <title>钟毓灵 | Portfolio 作品集</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Archivo+Black&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #F5F2EC;
@@ -14,15 +14,16 @@
             --ink: #2D2A26;
             --ink-soft: #6B655C;
             --ink-faint: #A8A097;
+            --coral: #D4756A;
+            --coral-deep: #B85A4F;
+            --coral-soft: #F0D5CE;
             --accent: #C97B5A;
-            --accent-deep: #A8623F;
             --accent-soft: #E8D5C9;
             --mint: #B8D4C8;
             --lilac: #C9BCD9;
             --peach: #F0C9B8;
             --sky: #A8C5DE;
             --butter: #F0E0A8;
-            --rose: #D9A8A8;
             --divider: rgba(45,42,38,0.12);
         }
 
@@ -38,7 +39,7 @@
             overflow-x:hidden;
         }
 
-        .container { max-width:900px; margin:0 auto; padding:0 24px; }
+        .container { max-width:880px; margin:0 auto; padding:0 24px; }
 
         /* Lang toggle */
         .lang-toggle {
@@ -50,18 +51,33 @@
             overflow:hidden;
         }
         .lang-btn {
-            padding:6px 14px; font-size:0.78rem; font-family:'Archivo Black',sans-serif;
-            border:none; background:transparent; cursor:pointer; color:var(--ink-faint);
-            transition:all 0.2s; letter-spacing:0.05em;
+            padding:6px 14px; font-size:0.76rem;
+            border:none; background:transparent; cursor:pointer;
+            color:var(--ink-faint); transition:all 0.2s;
+            font-family:'Cormorant Garamond',serif; font-weight:600; letter-spacing:0.05em;
         }
         .lang-btn.active { background:var(--ink); color:var(--paper); }
         .lang-btn:not(.active):hover { color:var(--ink); }
 
+        /* Sparkle decoration */
+        .sparkle {
+            display:inline-block; color:var(--coral); font-size:0.8em;
+            vertical-align:super; margin:0 2px;
+        }
+        .dash {
+            display:inline-block; width:24px; height:5px;
+            background:var(--ink); vertical-align:middle; margin:0 6px;
+        }
+        .dash-outline {
+            display:inline-block; width:24px; height:5px;
+            border:1.5px solid var(--ink); vertical-align:middle; margin:0 6px;
+        }
+
         /* ===== HERO ===== */
-        .hero { padding:90px 0 60px; text-align:center; position:relative; }
+        .hero { padding:80px 0 48px; text-align:center; position:relative; }
 
         .hero-strips {
-            display:flex; height:8px; margin-bottom:48px; border-radius:1px; overflow:hidden;
+            display:flex; height:6px; margin-bottom:44px; border-radius:1px; overflow:hidden;
         }
         .hero-strips div { flex:1; }
         .hero-strips div:nth-child(1){background:var(--peach);}
@@ -70,104 +86,101 @@
         .hero-strips div:nth-child(4){background:var(--lilac);}
         .hero-strips div:nth-child(5){background:var(--butter);}
 
-        /* Big poster outline text */
-        .hero-poster {
-            font-family:'Archivo Black',sans-serif;
-            font-size:clamp(3.5rem,16vw,9rem);
-            line-height:0.85;
-            letter-spacing:-0.04em;
-            -webkit-text-stroke:2.5px var(--ink);
-            color:transparent;
-            margin-bottom:8px;
-            position:relative;
-        }
-        .hero-poster::after {
-            content:attr(data-text);
-            position:absolute; top:4px; left:4px;
-            -webkit-text-stroke:2.5px var(--accent);
-            color:transparent;
-            z-index:-1; opacity:0.35;
+        .hero-label {
+            font-family:'Cormorant Garamond',serif; font-style:italic;
+            font-size:0.95rem; color:var(--coral); letter-spacing:0.1em;
+            margin-bottom:16px;
         }
 
-        .hero-script {
-            font-family:'Cormorant Garamond',serif;
-            font-style:italic;
-            font-size:clamp(1.6rem,5vw,2.4rem);
-            font-weight:500;
-            margin-bottom:4px;
+        /* NAME = hero element, elegant script */
+        .hero-name {
+            font-family:'Cormorant Garamond',serif; font-style:italic;
+            font-size:clamp(3rem,9vw,5.5rem);
+            font-weight:600; line-height:1; letter-spacing:-0.02em;
+            margin-bottom:6px; position:relative;
         }
 
         .hero-name-cn {
-            font-size:1rem; font-weight:400;
-            color:var(--ink-soft); letter-spacing:0.25em;
+            font-size:1.05rem; font-weight:400;
+            color:var(--ink-soft); letter-spacing:0.3em;
             margin-bottom:28px;
         }
 
         .hero-tagline {
             font-size:0.92rem; color:var(--ink-soft);
-            max-width:460px; margin:0 auto 28px; line-height:1.9;
+            max-width:460px; margin:0 auto 24px; line-height:1.9;
         }
 
         .hero-tags { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
         .hero-tag {
             font-size:0.78rem; color:var(--ink-soft);
             padding:5px 14px; border:1px solid var(--divider);
-            border-radius:2px; position:relative;
+            border-radius:2px; position:relative; padding-left:18px;
         }
         .hero-tag::before {
-            content:''; position:absolute; left:-1px; top:-1px; bottom:-1px;
-            width:3px; border-radius:2px 0 0 2px;
+            content:''; position:absolute; left:6px; top:50%; transform:translateY(-50%);
+            width:6px; height:6px; border-radius:50%;
         }
         .hero-tag:nth-child(1)::before { background:var(--peach); }
         .hero-tag:nth-child(2)::before { background:var(--mint); }
         .hero-tag:nth-child(3)::before { background:var(--lilac); }
 
         .hero-arrow {
-            margin-top:36px; font-family:'Caveat',cursive;
-            font-size:1.2rem; color:var(--accent);
+            margin-top:32px; font-family:'Cormorant Garamond',serif; font-style:italic;
+            font-size:1rem; color:var(--ink-faint);
             animation:bounceY 2s ease-in-out infinite;
         }
         @keyframes bounceY { 0%,100%{transform:translateY(0);} 50%{transform:translateY(6px);} }
 
-        /* Floating deco icons */
-        .float-deco { position:absolute; opacity:0.6; pointer-events:none; }
-        .float-deco.f1 { top:8%; left:4%; animation:spin 12s linear infinite; }
-        .float-deco.f2 { top:18%; right:6%; animation:floatY 5s ease-in-out infinite; }
-        .float-deco.f3 { bottom:10%; left:8%; animation:floatY 6s ease-in-out infinite -2s; }
-        .float-deco.f4 { bottom:5%; right:4%; animation:spin 15s linear infinite reverse; }
+        /* Floating deco */
+        .float-deco { position:absolute; opacity:0.5; pointer-events:none; }
+        .float-deco.f1 { top:6%; left:4%; animation:spin 14s linear infinite; }
+        .float-deco.f2 { top:14%; right:5%; animation:floatY 5s ease-in-out infinite; }
+        .float-deco.f3 { bottom:8%; left:7%; animation:floatY 6s ease-in-out infinite -2s; }
+        .float-deco.f4 { bottom:4%; right:4%; animation:spin 18s linear infinite reverse; }
         @keyframes spin { from{transform:rotate(0);} to{transform:rotate(360deg);} }
-        @keyframes floatY { 0%,100%{transform:translateY(0) rotate(0);} 50%{transform:translateY(-16px) rotate(5deg);} }
+        @keyframes floatY { 0%,100%{transform:translateY(0) rotate(0);} 50%{transform:translateY(-14px) rotate(5deg);} }
 
         /* ===== SECTION COMMON ===== */
-        section { padding:64px 0; border-top:1px solid var(--divider); position:relative; }
+        section { padding:60px 0; border-top:1px solid var(--divider); position:relative; }
 
-        .section-header { margin-bottom:36px; position:relative; }
         .section-num {
             font-family:'Cormorant Garamond',serif; font-style:italic;
-            font-size:0.85rem; color:var(--ink-faint); margin-bottom:2px;
+            font-size:0.85rem; color:var(--ink-faint); margin-bottom:4px;
         }
 
-        /* Outline poster title */
-        .section-title {
-            font-family:'Archivo Black',sans-serif;
-            font-size:clamp(2.2rem,6vw,3.5rem);
-            letter-spacing:-0.03em;
-            line-height:1;
-            -webkit-text-stroke:2px var(--ink);
-            color:transparent;
-            display:inline-block;
+        /* Section title: script solid + serif hollow — like reference images */
+        .section-title-wrap {
+            display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+            margin-bottom:32px; position:relative;
         }
-        .section-title-cn {
+        .title-script {
             font-family:'Cormorant Garamond',serif; font-style:italic;
-            font-size:1.3rem; color:var(--accent);
-            margin-left:12px; vertical-align:middle;
+            font-weight:600; font-size:clamp(2rem,6vw,3rem);
+            line-height:1; color:var(--ink);
+            position:relative; z-index:1;
+        }
+        .title-hollow {
+            font-family:'Cormorant Garamond',serif;
+            font-weight:500; font-size:clamp(2rem,6vw,3rem);
+            line-height:1;
+            -webkit-text-stroke:1.5px var(--ink);
+            color:transparent;
+            letter-spacing:0.01em;
+        }
+        .title-hollow.coral {
+            -webkit-text-stroke:1.5px var(--coral);
         }
 
-        /* Icon next to section */
-        .section-icon {
-            display:inline-block; vertical-align:middle;
-            margin-right:10px; width:36px; height:36px;
+        /* Hand-drawn circle number */
+        .circle-num {
+            display:inline-flex; align-items:center; justify-content:center;
+            width:36px; height:36px; border:2px solid var(--ink);
+            border-radius:50%; font-family:'Cormorant Garamond',serif;
+            font-weight:600; font-size:0.9rem; color:var(--ink);
+            transform:rotate(-5deg); vertical-align:middle; margin-left:8px;
         }
+        .circle-num.coral { border-color:var(--coral); color:var(--coral); }
 
         /* ===== ABOUT ===== */
         .about-grid {
@@ -184,28 +197,23 @@
         .photo-frame {
             background:var(--paper); padding:8px 8px 32px;
             box-shadow:0 3px 14px rgba(0,0,0,0.1);
-            transform:rotate(-2deg);
-            position:relative;
+            transform:rotate(-2deg); position:relative;
         }
         .photo-placeholder {
             width:100%; aspect-ratio:3/4;
             background:linear-gradient(135deg,var(--accent-soft) 0%,var(--peach) 100%);
             display:flex; align-items:center; justify-content:center;
-            color:var(--accent-deep); font-family:'Caveat',cursive; font-size:1rem;
+            color:var(--coral-deep); font-family:'Caveat',cursive; font-size:1rem;
         }
         .photo-caption {
             font-family:'Caveat',cursive; text-align:center;
             margin-top:8px; color:var(--ink-soft); font-size:0.95rem;
         }
-
-        /* Photo sticker dots */
         .photo-dots {
             position:absolute; bottom:36px; right:8px;
             display:flex; gap:3px; z-index:3;
         }
-        .photo-dots span {
-            width:6px; height:6px; border-radius:50%;
-        }
+        .photo-dots span { width:6px; height:6px; border-radius:50%; }
         .photo-dots span:nth-child(1){background:var(--peach);}
         .photo-dots span:nth-child(2){background:var(--mint);}
         .photo-dots span:nth-child(3){background:var(--sky);}
@@ -213,9 +221,8 @@
         .about-info { display:grid; gap:14px; }
         .about-row { display:flex; gap:12px; align-items:baseline; }
         .about-row .label {
-            font-size:0.75rem; color:var(--ink-faint);
-            min-width:72px; letter-spacing:0.06em;
-            text-transform:uppercase;
+            font-size:0.72rem; color:var(--ink-faint);
+            min-width:72px; letter-spacing:0.08em; text-transform:uppercase;
         }
         .about-row .value { font-size:0.92rem; color:var(--ink); font-weight:500; }
 
@@ -225,13 +232,11 @@
             border-top:1px dashed var(--divider);
         }
 
-        /* Crossword tags */
         .crossword { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
         .crossword span {
             font-family:'Caveat',cursive; font-size:1rem;
-            color:var(--accent); padding:2px 10px;
-            border:1.5px dashed var(--accent-soft);
-            background:var(--paper);
+            color:var(--coral); padding:2px 10px;
+            border:1.5px dashed var(--coral-soft); background:var(--paper);
         }
 
         /* ===== SKILLS ===== */
@@ -242,10 +247,8 @@
             border:1px solid var(--divider); transition:all 0.2s;
             display:inline-flex; align-items:center; gap:6px;
         }
-        .skill:hover { border-color:var(--accent); color:var(--ink); transform:translateY(-2px); }
-        .skill-dot {
-            width:7px; height:7px; border-radius:50%; flex-shrink:0;
-        }
+        .skill:hover { border-color:var(--coral); color:var(--ink); transform:translateY(-2px); }
+        .skill-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
         .skill:nth-child(3n+1) .skill-dot { background:var(--peach); }
         .skill:nth-child(3n+2) .skill-dot { background:var(--mint); }
         .skill:nth-child(3n+3) .skill-dot { background:var(--sky); }
@@ -259,8 +262,7 @@
 
         .portfolio-card {
             background:var(--paper); border:1px solid var(--divider);
-            overflow:hidden; transition:box-shadow 0.25s;
-            position:relative;
+            overflow:hidden; transition:box-shadow 0.25s; position:relative;
         }
         .portfolio-card:hover { box-shadow:0 6px 24px rgba(0,0,0,0.1); }
 
@@ -283,11 +285,9 @@
             display:flex; align-items:center; justify-content:center;
             transition:all 0.2s;
         }
-        .video-placeholder:hover .play-circle {
-            border-color:var(--accent); transform:scale(1.08);
-        }
+        .video-placeholder:hover .play-circle { border-color:var(--coral); transform:scale(1.08); }
         .play-circle svg { width:18px; height:18px; fill:var(--ink-soft); margin-left:2px; transition:fill 0.2s; }
-        .video-placeholder:hover .play-circle svg { fill:var(--accent); }
+        .video-placeholder:hover .play-circle svg { fill:var(--coral); }
         .placeholder-text { font-family:'Caveat',cursive; font-size:1rem; color:var(--ink-faint); }
 
         .portfolio-meta { padding:14px 16px; }
@@ -295,23 +295,21 @@
         .portfolio-meta p { font-size:0.8rem; color:var(--ink-faint); }
         .portfolio-tag {
             display:inline-block; font-family:'Caveat',cursive;
-            font-size:0.95rem; color:var(--accent); margin-top:6px;
+            font-size:0.95rem; color:var(--coral); margin-top:6px;
         }
 
-        /* Portfolio card number badge */
         .card-badge {
             position:absolute; top:8px; right:8px; z-index:5;
-            font-family:'Archivo Black',sans-serif; font-size:0.7rem;
+            font-family:'Cormorant Garamond',serif; font-weight:600; font-size:0.75rem;
             background:var(--ink); color:var(--paper);
-            padding:3px 8px; letter-spacing:0.05em;
+            padding:2px 8px; letter-spacing:0.05em;
         }
 
         /* ===== CONTACT ===== */
         .contact-section { text-align:center; }
         .contact-tearoff {
             display:inline-block; background:var(--ink); color:var(--paper);
-            padding:28px 36px; margin-bottom:24px;
-            position:relative;
+            padding:28px 36px; margin-bottom:24px; position:relative;
         }
         .tearoff-title {
             font-family:'Cormorant Garamond',serif; font-style:italic;
@@ -324,7 +322,7 @@
             text-decoration:none; color:var(--paper); font-size:0.86rem;
         }
         .tearoff-tab:last-child { border-bottom:none; }
-        .tearoff-tab .tab-name { letter-spacing:0.06em; font-family:'Archivo Black',sans-serif; font-size:0.72rem; }
+        .tearoff-tab .tab-name { letter-spacing:0.06em; font-size:0.72rem; font-weight:700; }
         .tearoff-tab .tab-value { color:rgba(255,255,255,0.7); font-size:0.82rem; }
         .tearoff-tab .tab-phone { font-family:'Caveat',cursive; font-size:1.05rem; color:rgba(255,255,255,0.85); }
 
@@ -333,31 +331,31 @@
             font-size:1.1rem; margin-top:12px;
         }
 
-        /* ===== BIG OUTRO TEXT ===== */
-        .outro {
-            padding:80px 0 40px; text-align:center; position:relative;
+        /* ===== OUTRO ===== */
+        .outro { padding:72px 0 40px; text-align:center; position:relative; }
+        .outro-script {
+            font-family:'Cormorant Garamond',serif; font-style:italic;
+            font-size:clamp(2.5rem,8vw,4.5rem); font-weight:600;
+            line-height:1; margin-bottom:8px;
         }
-        .outro-text {
-            font-family:'Archivo Black',sans-serif;
-            font-size:clamp(3rem,14vw,8rem);
-            line-height:0.85; letter-spacing:-0.05em;
-            -webkit-text-stroke:2.5px var(--ink); color:transparent;
+        .outro-hollow {
+            font-family:'Cormorant Garamond',serif; font-weight:500;
+            font-size:clamp(2.5rem,8vw,4.5rem); line-height:1;
+            -webkit-text-stroke:1.5px var(--coral); color:transparent;
+            margin-bottom:12px;
         }
         .outro-sub {
             font-family:'Cormorant Garamond',serif; font-style:italic;
-            font-size:1.4rem; color:var(--accent); margin-top:12px;
+            font-size:1.3rem; color:var(--coral);
         }
 
         /* ===== FOOTER ===== */
-        footer {
-            text-align:center; padding:28px 24px;
-            border-top:1px solid var(--divider);
-        }
+        footer { text-align:center; padding:28px 24px; border-top:1px solid var(--divider); }
         footer p { font-size:0.78rem; color:var(--ink-faint); }
         footer .footer-name { color:var(--ink-soft); }
         footer .footer-sig {
             font-family:'Caveat',cursive; font-size:1.05rem;
-            color:var(--accent); margin-top:6px;
+            color:var(--coral); margin-top:6px;
         }
 
         /* ===== MODAL ===== */
@@ -366,24 +364,19 @@
             display:none; align-items:center; justify-content:center; z-index:1000;
         }
         .modal-overlay.active { display:flex; }
-        .modal {
-            background:var(--paper); width:90%; max-width:420px; padding:32px;
-        }
+        .modal { background:var(--paper); width:90%; max-width:420px; padding:32px; }
         .modal h3 {
             font-family:'Cormorant Garamond',serif; font-style:italic;
             font-size:1.3rem; margin-bottom:24px;
         }
         .field { margin-bottom:16px; }
-        .field label {
-            display:block; font-size:0.78rem;
-            color:var(--ink-faint); margin-bottom:5px;
-        }
+        .field label { display:block; font-size:0.78rem; color:var(--ink-faint); margin-bottom:5px; }
         .field input,.field textarea {
             width:100%; padding:9px 12px; background:var(--bg);
             border:1px solid var(--divider); font-size:0.88rem;
             font-family:inherit; outline:none; transition:border-color 0.2s;
         }
-        .field input:focus,.field textarea:focus { border-color:var(--accent); }
+        .field input:focus,.field textarea:focus { border-color:var(--coral); }
         .field textarea { resize:vertical; min-height:56px; }
         .modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:22px; }
         .btn {
@@ -400,11 +393,11 @@
             .about-grid { grid-template-columns:1fr; justify-items:center; }
             .portfolio-grid { grid-template-columns:1fr; }
             section { padding:48px 0; }
-            .hero { padding:70px 0 40px; }
+            .hero { padding:70px 0 36px; }
             .float-deco { display:none; }
         }
 
-        ::selection { background:var(--accent-soft); color:var(--ink); }
+        ::selection { background:var(--coral-soft); color:var(--ink); }
         ::-webkit-scrollbar { width:8px; }
         ::-webkit-scrollbar-track { background:var(--bg); }
         ::-webkit-scrollbar-thumb { background:var(--divider); }
@@ -415,40 +408,41 @@
 
     <!-- Lang Toggle -->
     <div class="lang-toggle">
-        <button class="lang-btn active" onclick="setLang('zh')">中文</button>
-        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn active" onclick="setLang('zh',event)">中文</button>
+        <button class="lang-btn" onclick="setLang('en',event)">EN</button>
     </div>
 
     <!-- ===== HERO ===== -->
     <header class="hero">
-        <!-- Floating deco icons -->
-        <svg class="float-deco f1" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z" stroke="#C97B5A" stroke-width="1.5" fill="none"/></svg>
-        <svg class="float-deco f2" width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#B8D4C8" stroke-width="2" fill="none"/><path d="M8 12h8M12 8v8" stroke="#B8D4C8" stroke-width="2"/></svg>
-        <svg class="float-deco f3" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="#A8C5DE" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="#A8C5DE" opacity="0.5"/></svg>
-        <svg class="float-deco f4" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" stroke="#C9BCD9" stroke-width="1.5" fill="none"/></svg>
+        <svg class="float-deco f1" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z" stroke="#C97B5A" stroke-width="1.5" fill="none"/></svg>
+        <svg class="float-deco f2" width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#B8D4C8" stroke-width="2" fill="none"/><path d="M8 12h8M12 8v8" stroke="#B8D4C8" stroke-width="2"/></svg>
+        <svg class="float-deco f3" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="#A8C5DE" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="#A8C5DE" opacity="0.5"/></svg>
+        <svg class="float-deco f4" width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" stroke="#C9BCD9" stroke-width="1.5" fill="none"/></svg>
 
         <div class="container">
             <div class="hero-strips"><div></div><div></div><div></div><div></div><div></div></div>
-            <p class="hero-script" data-zh="live love design" data-en="live love design">live love design</p>
-            <h1 class="hero-poster" data-text="PORTFOLIO" data-zh-text="PORTFOLIO" data-en-text="PORTFOLIO">PORTFOLIO</h1>
-            <p class="hero-name-cn" data-zh="钟 毓 灵" data-en="Zhong Yuling">钟 毓 灵</p>
-            <p class="hero-tagline" data-zh="数字媒体艺术与动画IT硕士 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业" data-en="MA in Digital Media Art & Animation IT · 4+ years video design experience · Brand advertising & gaming industry">数字媒体艺术与动画IT硕士 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业</p>
+            <p class="hero-label" data-zh="✦ portfolio ✦" data-en="✦ portfolio ✦">✦ portfolio ✦</p>
+            <h1 class="hero-name" data-zh="Zhong Yuling" data-en="Zhong Yuling">Zhong Yuling</h1>
+            <p class="hero-name-cn" data-zh="钟 毓 灵" data-en="钟 毓 灵">钟 毓 灵</p>
+            <p class="hero-tagline" data-zh="数字媒体艺术与动画IT硕士 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业" data-en="MA in Digital Media Art & Animation IT · 4+ years video design · Brand advertising & gaming industry">数字媒体艺术与动画IT硕士 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业</p>
             <div class="hero-tags">
                 <span class="hero-tag" data-zh="视频设计师" data-en="Video Designer">视频设计师</span>
                 <span class="hero-tag" data-zh="AE动效设计师" data-en="AE Motion Designer">AE动效设计师</span>
                 <span class="hero-tag" data-zh="AI视频设计师" data-en="AI Video Designer">AI视频设计师</span>
             </div>
-            <p class="hero-arrow" data-zh="↓ scroll down to explore" data-en="↓ scroll down to explore">↓ scroll down to explore</p>
+            <p class="hero-arrow" data-zh="↓ scroll to explore" data-en="↓ scroll to explore">↓ scroll to explore</p>
         </div>
     </header>
 
     <div class="container">
 
-        <!-- ===== ABOUT ===== -->
+        <!-- ===== ABOUT — script solid + hollow serif, like reference ===== -->
         <section id="about">
-            <div class="section-header">
-                <p class="section-num" data-zh="01 — About" data-en="01 — About">01 — About</p>
-                <h2><span class="section-title" data-zh="关于我" data-en="ABOUT">关于我</span><span class="section-title-cn" data-zh="" data-en="Me"></span> <span style="font-size:1.5rem;">✦</span></h2>
+            <p class="section-num" data-zh="01" data-en="01">01</p>
+            <div class="section-title-wrap">
+                <span class="title-script" data-zh="关于" data-en="About">关于</span>
+                <span class="title-hollow" data-zh="Me" data-en="Me">Me</span>
+                <span class="sparkle">✦</span>
             </div>
             <div class="about-grid">
                 <div class="about-photo">
@@ -482,11 +476,13 @@
 
         <!-- ===== SKILLS ===== -->
         <section id="skills">
-            <div class="section-header">
-                <p class="section-num" data-zh="02 — Skills" data-en="02 — Skills">02 — Skills</p>
-                <h2><span class="section-title" data-zh="技能" data-en="SKILLS">技能</span><span class="section-title-cn" data-zh="工具" data-en="& Tools">工具</span></h2>
+            <p class="section-num" data-zh="02" data-en="02">02</p>
+            <div class="section-title-wrap">
+                <span class="title-script" data-zh="我的" data-en="My">我的</span>
+                <span class="title-hollow coral" data-zh="skills" data-en="skills">skills</span>
+                <span class="circle-num">2</span>
             </div>
-            <div class="skills-wrap" id="skillsWrap">
+            <div class="skills-wrap">
                 <span class="skill"><span class="skill-dot"></span><span data-zh="视频设计" data-en="Video Design">视频设计</span></span>
                 <span class="skill"><span class="skill-dot"></span><span data-zh="AE动效" data-en="AE Motion">AE动效</span></span>
                 <span class="skill"><span class="skill-dot"></span><span data-zh="AI视频生成" data-en="AI Video Gen">AI视频生成</span></span>
@@ -504,9 +500,11 @@
 
         <!-- ===== PORTFOLIO ===== -->
         <section id="portfolio">
-            <div class="section-header">
-                <p class="section-num" data-zh="03 — Portfolio" data-en="03 — Portfolio">03 — Portfolio</p>
-                <h2><span class="section-title" data-zh="作品" data-en="WORKS">作品</span><span class="section-title-cn" data-zh="集" data-en="">集</span></h2>
+            <p class="section-num" data-zh="03" data-en="03">03</p>
+            <div class="section-title-wrap">
+                <span class="title-script" data-zh="我的" data-en="My">我的</span>
+                <span class="title-hollow" data-zh="projects" data-en="projects">projects</span>
+                <span class="sparkle">✦</span>
             </div>
             <p class="portfolio-hint" data-zh="点击卡片即可添加视频 — 支持 B站 / YouTube / 视频直链" data-en="Click any card to add a video — supports Bilibili / YouTube / direct links">点击卡片即可添加视频 — 支持 B站 / YouTube / 视频直链</p>
             <div class="portfolio-grid" id="portfolioGrid"></div>
@@ -514,9 +512,10 @@
 
         <!-- ===== CONTACT ===== -->
         <section id="contact" class="contact-section">
-            <div class="section-header">
-                <p class="section-num" data-zh="04 — Contact" data-en="04 — Contact">04 — Contact</p>
-                <h2><span class="section-title" data-zh="联系" data-en="CONTACT">联系</span><span class="section-title-cn" data-zh="我" data-en="Me">我</span></h2>
+            <p class="section-num" data-zh="04" data-en="04">04</p>
+            <div class="section-title-wrap" style="justify-content:center;">
+                <span class="title-script" data-zh="联系" data-en="Contact">联系</span>
+                <span class="title-hollow coral" data-zh="Me" data-en="Me">Me</span>
             </div>
             <div class="contact-tearoff">
                 <p class="tearoff-title" data-zh="Take what you Need" data-en="Take what you Need">Take what you Need</p>
@@ -540,16 +539,16 @@
 
     </div>
 
-    <!-- ===== BIG OUTRO ===== -->
+    <!-- ===== OUTRO ===== -->
     <div class="outro">
-        <p class="outro-text" data-text="LET'S TALK" data-zh-text="LET'S TALK" data-en-text="LET'S TALK">LET'S TALK</p>
+        <p class="outro-script" data-zh="Let's" data-en="Let's">Let's</p>
+        <p class="outro-hollow" data-zh="talk" data-en="talk">talk</p>
         <p class="outro-sub" data-zh="期待与你合作" data-en="Let's create something together">期待与你合作</p>
     </div>
 
     <!-- ===== FOOTER ===== -->
     <footer>
-        <p data-zh="© 2026 " data-en="© 2026 ">© 2026 </p>
-        <p><span class="footer-name" data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span> · <span data-zh="视频设计师 · AE动效设计师 · AI视频设计师" data-en="Video Designer · AE Motion Designer · AI Video Designer">视频设计师 · AE动效设计师 · AI视频设计师</span></p>
+        <p>© 2026 <span class="footer-name" data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span> · <span data-zh="视频设计师 · AE动效设计师 · AI视频设计师" data-en="Video Designer · AE Motion Designer · AI Video Designer">视频设计师 · AE动效设计师 · AI视频设计师</span></p>
         <p class="footer-sig" data-zh="— by Zhong Yuling —" data-en="— by Zhong Yuling —">— by Zhong Yuling —</p>
     </footer>
 
@@ -559,19 +558,19 @@
             <h3 data-zh="添加视频作品" data-en="Add Video Work">添加视频作品</h3>
             <div class="field">
                 <label data-zh="作品标题" data-en="Title">作品标题</label>
-                <input type="text" id="videoTitle" data-zh-ph="例：品牌广告宣传片" data-en-ph="e.g. Brand Promo Video">
+                <input type="text" id="videoTitle">
             </div>
             <div class="field">
                 <label data-zh="视频链接" data-en="Video URL">视频链接</label>
-                <input type="text" id="videoUrl" data-zh-ph="B站 / YouTube / 视频文件链接" data-en-ph="Bilibili / YouTube / video file link">
+                <input type="text" id="videoUrl">
             </div>
             <div class="field">
                 <label data-zh="作品描述（选填）" data-en="Description (optional)">作品描述（选填）</label>
-                <textarea id="videoDesc" data-zh-ph="简要描述作品..." data-en-ph="Briefly describe the work..."></textarea>
+                <textarea id="videoDesc"></textarea>
             </div>
             <div class="field">
                 <label data-zh="分类标签（选填）" data-en="Tag (optional)">分类标签（选填）</label>
-                <input type="text" id="videoTag" data-zh-ph="例：品牌广告 / AI视频 / 动效设计" data-en-ph="e.g. Brand Ad / AI Video / Motion Design">
+                <input type="text" id="videoTag">
             </div>
             <div class="modal-actions">
                 <button class="btn" onclick="closeModal()" data-zh="取消" data-en="Cancel">取消</button>
@@ -581,37 +580,18 @@
     </div>
 
     <script>
-        // ===== Language Toggle =====
-        function setLang(lang) {
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+        const ph = {
+            zh: { title:'例：品牌广告宣传片', url:'B站 / YouTube / 视频文件链接', desc:'简要描述作品...', tag:'例：品牌广告 / AI视频 / 动效设计',
+                  add:'确认添加', cancel:'取消', title_h:'添加视频作品', err:'请输入视频链接', work:'精彩视频作品', workN:'作品' },
+            en: { title:'e.g. Brand Promo Video', url:'Bilibili / YouTube / video file link', desc:'Briefly describe the work...', tag:'e.g. Brand Ad / AI Video / Motion Design',
+                  add:'Add', cancel:'Cancel', title_h:'Add Video Work', err:'Please enter a video URL', work:'Featured video work', workN:'Work' }
+        };
 
-            document.querySelectorAll('[data-zh]').forEach(el => {
-                const val = lang === 'zh' ? el.dataset.zh : el.dataset.en;
-                if (val !== undefined) el.textContent = val;
-            });
-            document.querySelectorAll('[data-zh-ph]').forEach(el => {
-                el.placeholder = lang === 'zh' ? el.dataset.zhPh : el.dataset.enPh;
-            });
-            // Update poster data-text
-            document.querySelectorAll('[data-zh-text]').forEach(el => {
-                const t = lang === 'zh' ? el.dataset.zhText : el.dataset.enText;
-                el.setAttribute('data-text', t);
-                el.textContent = t;
-                if (el.classList.contains('hero-poster') || el.classList.contains('outro-text')) {
-                    const after = el.querySelector('::after');
-                }
-            });
-            // Re-render portfolio to update labels
-            renderPortfolio(lang);
-        }
-
-        // ===== Portfolio =====
         const portfolioItems = [
-            { title_zh:'作品一', title_en:'Work 01', desc_zh:'点击添加您的视频作品', desc_en:'Click to add your video', tag:'', url:'', type:'placeholder' },
-            { title_zh:'作品二', title_en:'Work 02', desc_zh:'点击添加您的视频作品', desc_en:'Click to add your video', tag:'', url:'', type:'placeholder' },
-            { title_zh:'作品三', title_en:'Work 03', desc_zh:'点击添加您的视频作品', desc_en:'Click to add your video', tag:'', url:'', type:'placeholder' },
-            { title_zh:'作品四', title_en:'Work 04', desc_zh:'点击添加您的视频作品', desc_en:'Click to add your video', tag:'', url:'', type:'placeholder' }
+            { t_zh:'作品一', t_en:'Work 01', d_zh:'点击添加您的视频作品', d_en:'Click to add your video', tag:'', url:'', type:'placeholder' },
+            { t_zh:'作品二', t_en:'Work 02', d_zh:'点击添加您的视频作品', d_en:'Click to add your video', tag:'', url:'', type:'placeholder' },
+            { t_zh:'作品三', t_en:'Work 03', d_zh:'点击添加您的视频作品', d_en:'Click to add your video', tag:'', url:'', type:'placeholder' },
+            { t_zh:'作品四', t_en:'Work 04', d_zh:'点击添加您的视频作品', d_en:'Click to add your video', tag:'', url:'', type:'placeholder' }
         ];
 
         let currentLang = 'zh';
@@ -621,20 +601,20 @@
             currentLang = lang || 'zh';
             const grid = document.getElementById('portfolioGrid');
             grid.innerHTML = '';
+            const pText = currentLang === 'zh' ? '点击添加视频' : 'Click to add video';
             portfolioItems.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'portfolio-card';
                 let videoHTML;
                 if (item.type === 'placeholder' || !item.url) {
-                    const phText = currentLang === 'zh' ? '点击添加视频' : 'Click to add video';
-                    videoHTML = `<div class="video-area"><div class="video-placeholder" onclick="openModal(${index})"><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="placeholder-text">${phText}</span></div></div>`;
+                    videoHTML = `<div class="video-area"><div class="video-placeholder" onclick="openModal(${index})"><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="placeholder-text">${pText}</span></div></div>`;
                 } else if (item.type === 'iframe') {
                     videoHTML = `<div class="video-area">${item.url}</div>`;
                 } else if (item.type === 'video') {
                     videoHTML = `<div class="video-area"><video src="${item.url}" controls></video></div>`;
                 }
-                const title = currentLang === 'zh' ? item.title_zh : item.title_en;
-                const desc = currentLang === 'zh' ? item.desc_zh : item.desc_en;
+                const title = currentLang === 'zh' ? item.t_zh : item.t_en;
+                const desc = currentLang === 'zh' ? item.d_zh : item.d_en;
                 card.innerHTML = `${videoHTML}<span class="card-badge">0${index+1}</span><div class="portfolio-meta"><h4>${title}</h4><p>${desc}</p>${item.tag ? `<span class="portfolio-tag">${item.tag}</span>` : ''}</div>`;
                 grid.appendChild(card);
             });
@@ -642,6 +622,11 @@
 
         function openModal(index) {
             currentEditIndex = index;
+            const p = ph[currentLang];
+            document.getElementById('videoTitle').placeholder = p.title;
+            document.getElementById('videoUrl').placeholder = p.url;
+            document.getElementById('videoDesc').placeholder = p.desc;
+            document.getElementById('videoTag').placeholder = p.tag;
             ['videoTitle','videoUrl','videoDesc','videoTag'].forEach(id => document.getElementById(id).value = '');
             document.getElementById('videoModal').classList.add('active');
         }
@@ -652,15 +637,14 @@
         }
 
         function saveVideo() {
-            const title = document.getElementById('videoTitle').value.trim() || (currentLang==='zh' ? `作品${currentEditIndex+1}` : `Work ${currentEditIndex+1}`);
+            const p = ph[currentLang];
+            const title = document.getElementById('videoTitle').value.trim() || `${p.workN} ${currentEditIndex+1}`;
             const url = document.getElementById('videoUrl').value.trim();
-            const desc = document.getElementById('videoDesc').value.trim() || (currentLang==='zh' ? '精彩视频作品' : 'Featured video work');
+            const desc = document.getElementById('videoDesc').value.trim() || p.work;
             const tag = document.getElementById('videoTag').value.trim();
-            if (!url) { alert(currentLang==='zh' ? '请输入视频链接' : 'Please enter a video URL'); return; }
+            if (!url) { alert(p.err); return; }
             const embedInfo = parseVideoUrl(url);
-            portfolioItems[currentEditIndex] = {
-                title_zh:title, title_en:title, desc_zh:desc, desc_en:desc, tag, url:embedInfo.content, type:embedInfo.type
-            };
+            portfolioItems[currentEditIndex] = { t_zh:title, t_en:title, d_zh:desc, d_en:desc, tag, url:embedInfo.content, type:embedInfo.type };
             closeModal();
             renderPortfolio(currentLang);
         }
@@ -680,6 +664,16 @@
             if (url.includes('<iframe')) return { type:'iframe', content:url };
             if (url.match(/\.(mp4|webm|ogg)(\?|$)/i)) return { type:'video', content:url };
             return { type:'iframe', content:`<iframe src="${url}" allowfullscreen></iframe>` };
+        }
+
+        function setLang(lang, e) {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            document.querySelectorAll('[data-zh]').forEach(el => {
+                const val = lang === 'zh' ? el.dataset.zh : el.dataset.en;
+                if (val !== undefined) el.textContent = val;
+            });
+            renderPortfolio(lang);
         }
 
         document.getElementById('videoModal').addEventListener('click', function(e) { if(e.target===this) closeModal(); });
