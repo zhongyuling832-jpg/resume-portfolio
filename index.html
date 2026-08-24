@@ -3,454 +3,442 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>钟毓灵 | 作品集 Portfolio</title>
+    <title>钟毓灵 | Portfolio 作品集</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Archivo+Black&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #F7F4EF;
+            --bg: #F5F2EC;
             --paper: #FDFAF4;
             --ink: #2D2A26;
             --ink-soft: #6B655C;
             --ink-faint: #A8A097;
-            --tape: rgba(230, 200, 160, 0.45);
             --accent: #C97B5A;
+            --accent-deep: #A8623F;
             --accent-soft: #E8D5C9;
-            --mint: #C9DDD3;
-            --lilac: #D4C9DD;
-            --peach: #F0D4C4;
-            --sky: #C9D7E8;
-            --divider: rgba(45, 42, 38, 0.12);
+            --mint: #B8D4C8;
+            --lilac: #C9BCD9;
+            --peach: #F0C9B8;
+            --sky: #A8C5DE;
+            --butter: #F0E0A8;
+            --rose: #D9A8A8;
+            --divider: rgba(45,42,38,0.12);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
 
         body {
-            font-family: 'Noto Sans SC', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--ink);
-            line-height: 1.8;
-            -webkit-font-smoothing: antialiased;
+            font-family:'Noto Sans SC',-apple-system,sans-serif;
+            background:var(--bg);
+            color:var(--ink);
+            line-height:1.8;
+            -webkit-font-smoothing:antialiased;
+            overflow-x:hidden;
         }
 
-        .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width:900px; margin:0 auto; padding:0 24px; }
 
-        /* Paper texture overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background-image:
-                radial-gradient(circle at 20% 30%, rgba(201,123,90,0.04) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(201,123,90,0.03) 0%, transparent 40%);
+        /* Lang toggle */
+        .lang-toggle {
+            position:fixed; top:20px; right:20px; z-index:200;
+            display:flex; gap:0;
+            background:var(--paper);
+            border:1px solid var(--divider);
+            border-radius:2px;
+            overflow:hidden;
         }
+        .lang-btn {
+            padding:6px 14px; font-size:0.78rem; font-family:'Archivo Black',sans-serif;
+            border:none; background:transparent; cursor:pointer; color:var(--ink-faint);
+            transition:all 0.2s; letter-spacing:0.05em;
+        }
+        .lang-btn.active { background:var(--ink); color:var(--paper); }
+        .lang-btn:not(.active):hover { color:var(--ink); }
 
         /* ===== HERO ===== */
-        .hero {
-            padding: 80px 0 48px;
-            text-align: center;
-            position: relative;
-        }
+        .hero { padding:90px 0 60px; text-align:center; position:relative; }
 
         .hero-strips {
-            display: flex;
-            height: 6px;
-            margin-bottom: 40px;
-            border-radius: 1px;
-            overflow: hidden;
+            display:flex; height:8px; margin-bottom:48px; border-radius:1px; overflow:hidden;
         }
-        .hero-strips div { flex: 1; }
-        .hero-strips div:nth-child(1) { background: var(--peach); }
-        .hero-strips div:nth-child(2) { background: var(--mint); }
-        .hero-strips div:nth-child(3) { background: var(--sky); }
-        .hero-strips div:nth-child(4) { background: var(--lilac); }
+        .hero-strips div { flex:1; }
+        .hero-strips div:nth-child(1){background:var(--peach);}
+        .hero-strips div:nth-child(2){background:var(--mint);}
+        .hero-strips div:nth-child(3){background:var(--sky);}
+        .hero-strips div:nth-child(4){background:var(--lilac);}
+        .hero-strips div:nth-child(5){background:var(--butter);}
 
-        .hero-label {
-            font-family: 'Caveat', cursive;
-            font-size: 1.4rem;
-            color: var(--accent);
-            margin-bottom: 4px;
+        /* Big poster outline text */
+        .hero-poster {
+            font-family:'Archivo Black',sans-serif;
+            font-size:clamp(3.5rem,16vw,9rem);
+            line-height:0.85;
+            letter-spacing:-0.04em;
+            -webkit-text-stroke:2.5px var(--ink);
+            color:transparent;
+            margin-bottom:8px;
+            position:relative;
+        }
+        .hero-poster::after {
+            content:attr(data-text);
+            position:absolute; top:4px; left:4px;
+            -webkit-text-stroke:2.5px var(--accent);
+            color:transparent;
+            z-index:-1; opacity:0.35;
         }
 
-        .hero-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: clamp(2.8rem, 8vw, 4.5rem);
-            font-weight: 500;
-            line-height: 1.05;
-            margin-bottom: 6px;
+        .hero-script {
+            font-family:'Cormorant Garamond',serif;
+            font-style:italic;
+            font-size:clamp(1.6rem,5vw,2.4rem);
+            font-weight:500;
+            margin-bottom:4px;
         }
 
         .hero-name-cn {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: var(--ink-soft);
-            letter-spacing: 0.2em;
-            margin-bottom: 24px;
+            font-size:1rem; font-weight:400;
+            color:var(--ink-soft); letter-spacing:0.25em;
+            margin-bottom:28px;
         }
 
         .hero-tagline {
-            font-size: 0.95rem;
-            color: var(--ink-soft);
-            max-width: 440px;
-            margin: 0 auto 28px;
-            line-height: 1.9;
+            font-size:0.92rem; color:var(--ink-soft);
+            max-width:460px; margin:0 auto 28px; line-height:1.9;
         }
 
-        .hero-tags { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .hero-tags { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
         .hero-tag {
-            font-size: 0.8rem;
-            color: var(--ink-soft);
-            padding: 4px 14px;
-            border: 1px solid var(--divider);
-            border-radius: 2px;
+            font-size:0.78rem; color:var(--ink-soft);
+            padding:5px 14px; border:1px solid var(--divider);
+            border-radius:2px; position:relative;
         }
+        .hero-tag::before {
+            content:''; position:absolute; left:-1px; top:-1px; bottom:-1px;
+            width:3px; border-radius:2px 0 0 2px;
+        }
+        .hero-tag:nth-child(1)::before { background:var(--peach); }
+        .hero-tag:nth-child(2)::before { background:var(--mint); }
+        .hero-tag:nth-child(3)::before { background:var(--lilac); }
 
-        /* Handwritten note */
-        .handnote {
-            font-family: 'Caveat', cursive;
-            color: var(--ink-faint);
-            font-size: 1.05rem;
-            transform: rotate(-2deg);
-            display: inline-block;
-            margin-top: 20px;
+        .hero-arrow {
+            margin-top:36px; font-family:'Caveat',cursive;
+            font-size:1.2rem; color:var(--accent);
+            animation:bounceY 2s ease-in-out infinite;
         }
+        @keyframes bounceY { 0%,100%{transform:translateY(0);} 50%{transform:translateY(6px);} }
+
+        /* Floating deco icons */
+        .float-deco { position:absolute; opacity:0.6; pointer-events:none; }
+        .float-deco.f1 { top:8%; left:4%; animation:spin 12s linear infinite; }
+        .float-deco.f2 { top:18%; right:6%; animation:floatY 5s ease-in-out infinite; }
+        .float-deco.f3 { bottom:10%; left:8%; animation:floatY 6s ease-in-out infinite -2s; }
+        .float-deco.f4 { bottom:5%; right:4%; animation:spin 15s linear infinite reverse; }
+        @keyframes spin { from{transform:rotate(0);} to{transform:rotate(360deg);} }
+        @keyframes floatY { 0%,100%{transform:translateY(0) rotate(0);} 50%{transform:translateY(-16px) rotate(5deg);} }
 
         /* ===== SECTION COMMON ===== */
-        section { padding: 60px 0; border-top: 1px solid var(--divider); }
+        section { padding:64px 0; border-top:1px solid var(--divider); position:relative; }
 
+        .section-header { margin-bottom:36px; position:relative; }
         .section-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 0.9rem;
-            color: var(--ink-faint);
-            margin-bottom: 2px;
+            font-family:'Cormorant Garamond',serif; font-style:italic;
+            font-size:0.85rem; color:var(--ink-faint); margin-bottom:2px;
         }
 
+        /* Outline poster title */
         .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.9rem;
-            font-weight: 500;
-            margin-bottom: 32px;
+            font-family:'Archivo Black',sans-serif;
+            font-size:clamp(2.2rem,6vw,3.5rem);
+            letter-spacing:-0.03em;
+            line-height:1;
+            -webkit-text-stroke:2px var(--ink);
+            color:transparent;
+            display:inline-block;
+        }
+        .section-title-cn {
+            font-family:'Cormorant Garamond',serif; font-style:italic;
+            font-size:1.3rem; color:var(--accent);
+            margin-left:12px; vertical-align:middle;
+        }
+
+        /* Icon next to section */
+        .section-icon {
+            display:inline-block; vertical-align:middle;
+            margin-right:10px; width:36px; height:36px;
         }
 
         /* ===== ABOUT ===== */
         .about-grid {
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 32px;
-            align-items: start;
+            display:grid; grid-template-columns:200px 1fr; gap:36px; align-items:start;
         }
 
-        .about-photo {
-            position: relative;
-        }
-
-        .photo-frame {
-            background: var(--paper);
-            padding: 8px 8px 32px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            transform: rotate(-2deg);
-        }
-
-        .photo-placeholder {
-            width: 100%;
-            aspect-ratio: 3/4;
-            background: linear-gradient(135deg, var(--accent-soft) 0%, var(--peach) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--ink-soft);
-            font-family: 'Caveat', cursive;
-            font-size: 1rem;
-        }
-
-        .photo-caption {
-            font-family: 'Caveat', cursive;
-            text-align: center;
-            margin-top: 8px;
-            color: var(--ink-soft);
-            font-size: 0.95rem;
-        }
-
+        .about-photo { position:relative; }
         .photo-tape {
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            transform: translateX(-50%) rotate(3deg);
-            width: 60px;
-            height: 20px;
-            background: var(--tape);
+            position:absolute; top:-10px; left:50%;
+            transform:translateX(-50%) rotate(4deg);
+            width:64px; height:22px; background:rgba(240,224,168,0.5);
+            z-index:2;
+        }
+        .photo-frame {
+            background:var(--paper); padding:8px 8px 32px;
+            box-shadow:0 3px 14px rgba(0,0,0,0.1);
+            transform:rotate(-2deg);
+            position:relative;
+        }
+        .photo-placeholder {
+            width:100%; aspect-ratio:3/4;
+            background:linear-gradient(135deg,var(--accent-soft) 0%,var(--peach) 100%);
+            display:flex; align-items:center; justify-content:center;
+            color:var(--accent-deep); font-family:'Caveat',cursive; font-size:1rem;
+        }
+        .photo-caption {
+            font-family:'Caveat',cursive; text-align:center;
+            margin-top:8px; color:var(--ink-soft); font-size:0.95rem;
         }
 
-        .about-info { display: grid; gap: 16px; }
-        .about-row { display: flex; gap: 12px; align-items: baseline; }
-        .about-row .label {
-            font-size: 0.78rem;
-            color: var(--ink-faint);
-            min-width: 72px;
-            letter-spacing: 0.05em;
+        /* Photo sticker dots */
+        .photo-dots {
+            position:absolute; bottom:36px; right:8px;
+            display:flex; gap:3px; z-index:3;
         }
-        .about-row .value { font-size: 0.92rem; color: var(--ink); font-weight: 500; }
+        .photo-dots span {
+            width:6px; height:6px; border-radius:50%;
+        }
+        .photo-dots span:nth-child(1){background:var(--peach);}
+        .photo-dots span:nth-child(2){background:var(--mint);}
+        .photo-dots span:nth-child(3){background:var(--sky);}
+
+        .about-info { display:grid; gap:14px; }
+        .about-row { display:flex; gap:12px; align-items:baseline; }
+        .about-row .label {
+            font-size:0.75rem; color:var(--ink-faint);
+            min-width:72px; letter-spacing:0.06em;
+            text-transform:uppercase;
+        }
+        .about-row .value { font-size:0.92rem; color:var(--ink); font-weight:500; }
 
         .about-summary {
-            font-size: 0.9rem;
-            color: var(--ink-soft);
-            line-height: 2;
-            margin-top: 16px;
-            padding: 16px 0;
-            border-top: 1px dashed var(--divider);
+            font-size:0.9rem; color:var(--ink-soft); line-height:2;
+            margin-top:14px; padding:16px 0;
+            border-top:1px dashed var(--divider);
         }
 
-        /* Crossword-style personality descriptors */
-        .crossword {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 16px;
-        }
+        /* Crossword tags */
+        .crossword { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
         .crossword span {
-            font-family: 'Caveat', cursive;
-            font-size: 1rem;
-            color: var(--accent);
-            padding: 2px 8px;
-            border: 1px dashed var(--accent-soft);
+            font-family:'Caveat',cursive; font-size:1rem;
+            color:var(--accent); padding:2px 10px;
+            border:1.5px dashed var(--accent-soft);
+            background:var(--paper);
         }
 
         /* ===== SKILLS ===== */
-        .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skills-wrap { display:flex; flex-wrap:wrap; gap:10px; }
         .skill {
-            font-size: 0.84rem;
-            color: var(--ink-soft);
-            padding: 6px 14px;
-            background: var(--paper);
-            border: 1px solid var(--divider);
-            transition: all 0.2s;
+            font-size:0.84rem; color:var(--ink-soft);
+            padding:8px 16px; background:var(--paper);
+            border:1px solid var(--divider); transition:all 0.2s;
+            display:inline-flex; align-items:center; gap:6px;
         }
-        .skill:hover { border-color: var(--accent); color: var(--ink); }
+        .skill:hover { border-color:var(--accent); color:var(--ink); transform:translateY(-2px); }
+        .skill-dot {
+            width:7px; height:7px; border-radius:50%; flex-shrink:0;
+        }
+        .skill:nth-child(3n+1) .skill-dot { background:var(--peach); }
+        .skill:nth-child(3n+2) .skill-dot { background:var(--mint); }
+        .skill:nth-child(3n+3) .skill-dot { background:var(--sky); }
 
         /* ===== PORTFOLIO ===== */
         .portfolio-hint {
-            font-family: 'Caveat', cursive;
-            font-size: 1.05rem;
-            color: var(--ink-faint);
-            margin-bottom: 28px;
+            font-family:'Caveat',cursive; font-size:1.05rem;
+            color:var(--ink-faint); margin-bottom:28px;
         }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
+        .portfolio-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
 
         .portfolio-card {
-            background: var(--paper);
-            border: 1px solid var(--divider);
-            overflow: hidden;
-            transition: box-shadow 0.25s;
+            background:var(--paper); border:1px solid var(--divider);
+            overflow:hidden; transition:box-shadow 0.25s;
+            position:relative;
         }
-        .portfolio-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .portfolio-card:hover { box-shadow:0 6px 24px rgba(0,0,0,0.1); }
 
         .video-area {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%;
-            background: #F0EDE7;
-            overflow: hidden;
+            position:relative; width:100%; padding-top:56.25%;
+            background:#F0EDE7; overflow:hidden;
         }
-        .video-area iframe, .video-area video {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; border: none;
+        .video-area iframe,.video-area video {
+            position:absolute; top:0; left:0; width:100%; height:100%; border:none;
         }
-
         .video-placeholder {
-            position: absolute; inset: 0;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            cursor: pointer; gap: 10px;
-            transition: background 0.2s;
+            position:absolute; inset:0; display:flex; flex-direction:column;
+            align-items:center; justify-content:center; cursor:pointer; gap:10px;
+            transition:background 0.2s;
         }
-        .video-placeholder:hover { background: #EAE6DD; }
-
+        .video-placeholder:hover { background:#EAE6DD; }
         .play-circle {
-            width: 44px; height: 44px;
-            border-radius: 50%;
-            border: 1.5px solid var(--ink-soft);
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.2s;
+            width:48px; height:48px; border-radius:50%;
+            border:1.5px solid var(--ink-soft);
+            display:flex; align-items:center; justify-content:center;
+            transition:all 0.2s;
         }
         .video-placeholder:hover .play-circle {
-            border-color: var(--accent);
-            transform: scale(1.05);
+            border-color:var(--accent); transform:scale(1.08);
         }
-        .play-circle svg { width: 16px; height: 16px; fill: var(--ink-soft); margin-left: 2px; transition: fill 0.2s; }
-        .video-placeholder:hover .play-circle svg { fill: var(--accent); }
+        .play-circle svg { width:18px; height:18px; fill:var(--ink-soft); margin-left:2px; transition:fill 0.2s; }
+        .video-placeholder:hover .play-circle svg { fill:var(--accent); }
+        .placeholder-text { font-family:'Caveat',cursive; font-size:1rem; color:var(--ink-faint); }
 
-        .placeholder-text {
-            font-family: 'Caveat', cursive;
-            font-size: 1rem;
-            color: var(--ink-faint);
-        }
-
-        .portfolio-meta { padding: 14px 16px; }
-        .portfolio-meta h4 { font-size: 0.93rem; font-weight: 500; margin-bottom: 3px; }
-        .portfolio-meta p { font-size: 0.8rem; color: var(--ink-faint); }
+        .portfolio-meta { padding:14px 16px; }
+        .portfolio-meta h4 { font-size:0.93rem; font-weight:500; margin-bottom:3px; }
+        .portfolio-meta p { font-size:0.8rem; color:var(--ink-faint); }
         .portfolio-tag {
-            display: inline-block;
-            font-family: 'Caveat', cursive;
-            font-size: 0.95rem;
-            color: var(--accent);
-            margin-top: 6px;
+            display:inline-block; font-family:'Caveat',cursive;
+            font-size:0.95rem; color:var(--accent); margin-top:6px;
         }
 
-        /* ===== CONTACT (Tear-off tabs) ===== */
-        .contact-section { text-align: center; }
+        /* Portfolio card number badge */
+        .card-badge {
+            position:absolute; top:8px; right:8px; z-index:5;
+            font-family:'Archivo Black',sans-serif; font-size:0.7rem;
+            background:var(--ink); color:var(--paper);
+            padding:3px 8px; letter-spacing:0.05em;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-section { text-align:center; }
         .contact-tearoff {
-            display: inline-block;
-            background: var(--ink);
-            color: var(--paper);
-            padding: 28px 36px;
-            margin-bottom: 28px;
+            display:inline-block; background:var(--ink); color:var(--paper);
+            padding:28px 36px; margin-bottom:24px;
+            position:relative;
         }
         .tearoff-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.3rem;
-            margin-bottom: 16px;
+            font-family:'Cormorant Garamond',serif; font-style:italic;
+            font-size:1.3rem; margin-bottom:16px;
         }
-        .tearoff-tabs {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .tearoff-tabs { display:flex; flex-direction:column; gap:8px; }
         .tearoff-tab {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px dashed rgba(255,255,255,0.2);
-            text-decoration: none;
-            color: var(--paper);
-            font-size: 0.88rem;
+            display:flex; justify-content:space-between; align-items:center;
+            padding:8px 0; border-bottom:1px dashed rgba(255,255,255,0.2);
+            text-decoration:none; color:var(--paper); font-size:0.86rem;
         }
-        .tearoff-tab:last-child { border-bottom: none; }
-        .tearoff-tab .tab-name { letter-spacing: 0.05em; }
-        .tearoff-tab .tab-value { color: rgba(255,255,255,0.7); font-size: 0.82rem; }
-        .tearoff-tab .tab-phone { font-family: 'Caveat', cursive; font-size: 1rem; color: rgba(255,255,255,0.85); }
+        .tearoff-tab:last-child { border-bottom:none; }
+        .tearoff-tab .tab-name { letter-spacing:0.06em; font-family:'Archivo Black',sans-serif; font-size:0.72rem; }
+        .tearoff-tab .tab-value { color:rgba(255,255,255,0.7); font-size:0.82rem; }
+        .tearoff-tab .tab-phone { font-family:'Caveat',cursive; font-size:1.05rem; color:rgba(255,255,255,0.85); }
 
         .contact-handnote {
-            font-family: 'Caveat', cursive;
-            color: var(--ink-faint);
-            font-size: 1.1rem;
-            margin-top: 16px;
+            font-family:'Caveat',cursive; color:var(--ink-faint);
+            font-size:1.1rem; margin-top:12px;
+        }
+
+        /* ===== BIG OUTRO TEXT ===== */
+        .outro {
+            padding:80px 0 40px; text-align:center; position:relative;
+        }
+        .outro-text {
+            font-family:'Archivo Black',sans-serif;
+            font-size:clamp(3rem,14vw,8rem);
+            line-height:0.85; letter-spacing:-0.05em;
+            -webkit-text-stroke:2.5px var(--ink); color:transparent;
+        }
+        .outro-sub {
+            font-family:'Cormorant Garamond',serif; font-style:italic;
+            font-size:1.4rem; color:var(--accent); margin-top:12px;
         }
 
         /* ===== FOOTER ===== */
         footer {
-            text-align: center;
-            padding: 36px 24px;
-            border-top: 1px solid var(--divider);
+            text-align:center; padding:28px 24px;
+            border-top:1px solid var(--divider);
         }
-        footer p { font-size: 0.8rem; color: var(--ink-faint); }
-        footer .footer-name { color: var(--ink-soft); }
+        footer p { font-size:0.78rem; color:var(--ink-faint); }
+        footer .footer-name { color:var(--ink-soft); }
         footer .footer-sig {
-            font-family: 'Caveat', cursive;
-            font-size: 1.05rem;
-            color: var(--accent);
-            margin-top: 6px;
+            font-family:'Caveat',cursive; font-size:1.05rem;
+            color:var(--accent); margin-top:6px;
         }
 
         /* ===== MODAL ===== */
         .modal-overlay {
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.25);
-            display: none; align-items: center; justify-content: center;
-            z-index: 1000;
+            position:fixed; inset:0; background:rgba(0,0,0,0.25);
+            display:none; align-items:center; justify-content:center; z-index:1000;
         }
-        .modal-overlay.active { display: flex; }
+        .modal-overlay.active { display:flex; }
         .modal {
-            background: var(--paper);
-            width: 90%; max-width: 420px;
-            padding: 32px;
+            background:var(--paper); width:90%; max-width:420px; padding:32px;
         }
         .modal h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.3rem;
-            margin-bottom: 24px;
+            font-family:'Cormorant Garamond',serif; font-style:italic;
+            font-size:1.3rem; margin-bottom:24px;
         }
-        .field { margin-bottom: 16px; }
+        .field { margin-bottom:16px; }
         .field label {
-            display: block; font-size: 0.78rem;
-            color: var(--ink-faint); margin-bottom: 5px;
+            display:block; font-size:0.78rem;
+            color:var(--ink-faint); margin-bottom:5px;
         }
-        .field input, .field textarea {
-            width: 100%; padding: 9px 12px;
-            background: var(--bg);
-            border: 1px solid var(--divider);
-            font-size: 0.88rem; font-family: inherit;
-            outline: none; transition: border-color 0.2s;
+        .field input,.field textarea {
+            width:100%; padding:9px 12px; background:var(--bg);
+            border:1px solid var(--divider); font-size:0.88rem;
+            font-family:inherit; outline:none; transition:border-color 0.2s;
         }
-        .field input:focus, .field textarea:focus { border-color: var(--accent); }
-        .field textarea { resize: vertical; min-height: 56px; }
-        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 22px; }
+        .field input:focus,.field textarea:focus { border-color:var(--accent); }
+        .field textarea { resize:vertical; min-height:56px; }
+        .modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:22px; }
         .btn {
-            padding: 8px 20px; font-size: 0.85rem;
-            font-family: inherit; cursor: pointer;
-            border: 1px solid var(--divider);
-            background: var(--paper);
-            color: var(--ink-soft);
-            transition: all 0.2s;
+            padding:8px 20px; font-size:0.85rem; font-family:inherit;
+            cursor:pointer; border:1px solid var(--divider);
+            background:var(--paper); color:var(--ink-soft); transition:all 0.2s;
         }
-        .btn:hover { border-color: var(--ink-soft); color: var(--ink); }
-        .btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-        .btn.primary:hover { background: var(--ink-soft); }
-
-        /* Decorative star */
-        .deco-star {
-            display: inline-block;
-            color: var(--accent-soft);
-            font-size: 0.9rem;
-            vertical-align: middle;
-        }
+        .btn:hover { border-color:var(--ink-soft); color:var(--ink); }
+        .btn.primary { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+        .btn.primary:hover { background:var(--ink-soft); }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 640px) {
-            .about-grid { grid-template-columns: 1fr; justify-items: center; }
-            .portfolio-grid { grid-template-columns: 1fr; }
-            section { padding: 48px 0; }
-            .hero { padding: 60px 0 36px; }
+        @media (max-width:640px) {
+            .about-grid { grid-template-columns:1fr; justify-items:center; }
+            .portfolio-grid { grid-template-columns:1fr; }
+            section { padding:48px 0; }
+            .hero { padding:70px 0 40px; }
+            .float-deco { display:none; }
         }
 
-        ::selection { background: var(--accent-soft); color: var(--ink); }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--divider); }
-        ::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
+        ::selection { background:var(--accent-soft); color:var(--ink); }
+        ::-webkit-scrollbar { width:8px; }
+        ::-webkit-scrollbar-track { background:var(--bg); }
+        ::-webkit-scrollbar-thumb { background:var(--divider); }
+        ::-webkit-scrollbar-thumb:hover { background:var(--ink-faint); }
     </style>
 </head>
 <body>
 
+    <!-- Lang Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('zh')">中文</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+
     <!-- ===== HERO ===== -->
     <header class="hero">
+        <!-- Floating deco icons -->
+        <svg class="float-deco f1" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z" stroke="#C97B5A" stroke-width="1.5" fill="none"/></svg>
+        <svg class="float-deco f2" width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#B8D4C8" stroke-width="2" fill="none"/><path d="M8 12h8M12 8v8" stroke="#B8D4C8" stroke-width="2"/></svg>
+        <svg class="float-deco f3" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="#A8C5DE" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="#A8C5DE" opacity="0.5"/></svg>
+        <svg class="float-deco f4" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" stroke="#C9BCD9" stroke-width="1.5" fill="none"/></svg>
+
         <div class="container">
-            <div class="hero-strips">
-                <div></div><div></div><div></div><div></div>
-            </div>
-            <p class="hero-label">live love design</p>
-            <h1 class="hero-name">Zhong Yuling</h1>
-            <p class="hero-name-cn">钟 毓 灵</p>
-            <p class="hero-tagline">数字媒体艺术与动画IT硕士 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业</p>
+            <div class="hero-strips"><div></div><div></div><div></div><div></div><div></div></div>
+            <p class="hero-script" data-zh="live love design" data-en="live love design">live love design</p>
+            <h1 class="hero-poster" data-text="PORTFOLIO" data-zh-text="PORTFOLIO" data-en-text="PORTFOLIO">PORTFOLIO</h1>
+            <p class="hero-name-cn" data-zh="钟 毓 灵" data-en="Zhong Yuling">钟 毓 灵</p>
+            <p class="hero-tagline" data-zh="数字媒体艺术与动画IT硕士 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业" data-en="MA in Digital Media Art & Animation IT · 4+ years video design experience · Brand advertising & gaming industry">数字媒体艺术与动画IT硕士 · 4年以上视频设计经验 · 深耕品牌广告与游戏行业</p>
             <div class="hero-tags">
-                <span class="hero-tag">视频设计师</span>
-                <span class="hero-tag">AE动效设计师</span>
-                <span class="hero-tag">AI视频设计师</span>
+                <span class="hero-tag" data-zh="视频设计师" data-en="Video Designer">视频设计师</span>
+                <span class="hero-tag" data-zh="AE动效设计师" data-en="AE Motion Designer">AE动效设计师</span>
+                <span class="hero-tag" data-zh="AI视频设计师" data-en="AI Video Designer">AI视频设计师</span>
             </div>
-            <p class="handnote">↓ scroll down to explore</p>
+            <p class="hero-arrow" data-zh="↓ scroll down to explore" data-en="↓ scroll down to explore">↓ scroll down to explore</p>
         </div>
     </header>
 
@@ -458,34 +446,35 @@
 
         <!-- ===== ABOUT ===== -->
         <section id="about">
-            <p class="section-num">01 — About</p>
-            <h2 class="section-title">关于我 <span class="deco-star">✦</span></h2>
+            <div class="section-header">
+                <p class="section-num" data-zh="01 — About" data-en="01 — About">01 — About</p>
+                <h2><span class="section-title" data-zh="关于我" data-en="ABOUT">关于我</span><span class="section-title-cn" data-zh="" data-en="Me"></span> <span style="font-size:1.5rem;">✦</span></h2>
+            </div>
             <div class="about-grid">
                 <div class="about-photo">
                     <div class="photo-tape"></div>
                     <div class="photo-frame">
-                        <div class="photo-placeholder">你的照片</div>
+                        <div class="photo-placeholder" data-zh="你的照片" data-en="your photo">你的照片</div>
+                        <div class="photo-dots"><span></span><span></span><span></span></div>
                     </div>
-                    <p class="photo-caption">— me, 2026 —</p>
+                    <p class="photo-caption" data-zh="— me, 2026 —" data-en="— me, 2026 —">— me, 2026 —</p>
                 </div>
                 <div>
                     <div class="about-info">
-                        <div class="about-row"><span class="label">姓名</span><span class="value">钟毓灵</span></div>
-                        <div class="about-row"><span class="label">学历</span><span class="value">数字媒体艺术与动画IT硕士</span></div>
-                        <div class="about-row"><span class="label">所在地</span><span class="value">上海</span></div>
-                        <div class="about-row"><span class="label">经验</span><span class="value">4年以上视频设计</span></div>
-                        <div class="about-row"><span class="label">方向</span><span class="value">视频设计 / AE动效 / AI视频</span></div>
+                        <div class="about-row"><span class="label" data-zh="姓名" data-en="Name">姓名</span><span class="value" data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span></div>
+                        <div class="about-row"><span class="label" data-zh="学历" data-en="Education">学历</span><span class="value" data-zh="数字媒体艺术与动画IT硕士" data-en="MA in Digital Media Art & Animation IT">数字媒体艺术与动画IT硕士</span></div>
+                        <div class="about-row"><span class="label" data-zh="所在地" data-en="Location">所在地</span><span class="value" data-zh="上海" data-en="Shanghai">上海</span></div>
+                        <div class="about-row"><span class="label" data-zh="经验" data-en="Experience">经验</span><span class="value" data-zh="4年以上视频设计" data-en="4+ years video design">4年以上视频设计</span></div>
+                        <div class="about-row"><span class="label" data-zh="方向" data-en="Focus">方向</span><span class="value" data-zh="视频设计 / AE动效 / AI视频" data-en="Video / AE Motion / AI Video">视频设计 / AE动效 / AI视频</span></div>
                     </div>
-                    <p class="about-summary">
-                        拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，熟练掌握即梦、Suno等主流AI生图、生视频、音乐等技术，能够将AIGC工具深度融入工作流以提升产出效率。
-                    </p>
+                    <p class="about-summary" data-zh="拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，熟练掌握即梦、Suno等主流AI生图、生视频、音乐等技术，能够将AIGC工具深度融入工作流以提升产出效率。" data-en="With an MA in Digital Media Art & Animation IT and 4+ years of video design experience, I specialize in brand advertising and gaming industry projects. Skilled in end-to-end production from creative planning to final delivery. Proficient in AI tools including Jimeng, Suno for AI image/video/music generation, integrating AIGC workflows to boost production efficiency.">拥有数字媒体艺术与动画IT硕士背景，具备4年以上视频设计经验，深耕品牌广告与游戏行业。擅长从创意策划到成片的全流程制作，熟练掌握即梦、Suno等主流AI生图、生视频、音乐等技术，能够将AIGC工具深度融入工作流以提升产出效率。</p>
                     <div class="crossword">
-                        <span>创意策划</span>
-                        <span>视觉把控</span>
-                        <span>跨部门协作</span>
-                        <span>AIGC</span>
-                        <span>品牌传播</span>
-                        <span>独立交付</span>
+                        <span data-zh="创意策划" data-en="Creative Planning">创意策划</span>
+                        <span data-zh="视觉把控" data-en="Visual Direction">视觉把控</span>
+                        <span data-zh="跨部门协作" data-en="Cross-team Collab">跨部门协作</span>
+                        <span data-zh="AIGC" data-en="AIGC">AIGC</span>
+                        <span data-zh="品牌传播" data-en="Brand Strategy">品牌传播</span>
+                        <span data-zh="独立交付" data-en="Solo Delivery">独立交付</span>
                     </div>
                 </div>
             </div>
@@ -493,102 +482,143 @@
 
         <!-- ===== SKILLS ===== -->
         <section id="skills">
-            <p class="section-num">02 — Skills</p>
-            <h2 class="section-title">技能与工具</h2>
-            <div class="skills-wrap">
-                <span class="skill">视频设计</span>
-                <span class="skill">AE动效</span>
-                <span class="skill">AI视频生成</span>
-                <span class="skill">AI生图</span>
-                <span class="skill">Suno音乐</span>
-                <span class="skill">即梦AI</span>
-                <span class="skill">创意策划</span>
-                <span class="skill">品牌广告</span>
-                <span class="skill">游戏行业</span>
-                <span class="skill">AIGC工作流</span>
-                <span class="skill">跨部门协作</span>
-                <span class="skill">项目管理</span>
+            <div class="section-header">
+                <p class="section-num" data-zh="02 — Skills" data-en="02 — Skills">02 — Skills</p>
+                <h2><span class="section-title" data-zh="技能" data-en="SKILLS">技能</span><span class="section-title-cn" data-zh="工具" data-en="& Tools">工具</span></h2>
+            </div>
+            <div class="skills-wrap" id="skillsWrap">
+                <span class="skill"><span class="skill-dot"></span><span data-zh="视频设计" data-en="Video Design">视频设计</span></span>
+                <span class="skill"><span class="skill-dot"></span><span data-zh="AE动效" data-en="AE Motion">AE动效</span></span>
+                <span class="skill"><span class="skill-dot"></span><span data-zh="AI视频生成" data-en="AI Video Gen">AI视频生成</span></span>
+                <span class="skill"><span class="skill-dot"></span><span data-zh="AI生图" data-en="AI Image Gen">AI生图</span></span>
+                <span class="skill"><span class="skill-dot"></span><span data-zh="Suno音乐" data-en="Suno Music">Suno音乐</span></span>
+                <span class="skill"><span class="skill-dot"></span><span data-zh="即梦AI" data-en="Jimeng AI">即梦AI</span></span>
+                <span class="skill"><span class="skill-dot"></span><span data-zh="创意策划" data-en="Creative Planning">创意策划</span></span>
+                <span class="skill"><span class="skill-dot"></span><span data-zh="品牌广告" data-en="Brand Ads">品牌广告</span></span>
+                <span class="skill"><span class="skill-dot"></span><span data-zh="游戏行业" data-en="Gaming Industry">游戏行业</span></span>
+                <span class="skill"><span class="skill-dot"></span><span data-zh="AIGC工作流" data-en="AIGC Workflow">AIGC工作流</span></span>
+                <span class="skill"><span class="skill-dot"></span><span data-zh="跨部门协作" data-en="Cross-team Collab">跨部门协作</span></span>
+                <span class="skill"><span class="skill-dot"></span><span data-zh="项目管理" data-en="Project Management">项目管理</span></span>
             </div>
         </section>
 
         <!-- ===== PORTFOLIO ===== -->
         <section id="portfolio">
-            <p class="section-num">03 — Portfolio</p>
-            <h2 class="section-title">作品集</h2>
-            <p class="portfolio-hint">点击卡片即可添加视频 — 支持 B站 / YouTube / 视频直链</p>
+            <div class="section-header">
+                <p class="section-num" data-zh="03 — Portfolio" data-en="03 — Portfolio">03 — Portfolio</p>
+                <h2><span class="section-title" data-zh="作品" data-en="WORKS">作品</span><span class="section-title-cn" data-zh="集" data-en="">集</span></h2>
+            </div>
+            <p class="portfolio-hint" data-zh="点击卡片即可添加视频 — 支持 B站 / YouTube / 视频直链" data-en="Click any card to add a video — supports Bilibili / YouTube / direct links">点击卡片即可添加视频 — 支持 B站 / YouTube / 视频直链</p>
             <div class="portfolio-grid" id="portfolioGrid"></div>
         </section>
 
         <!-- ===== CONTACT ===== -->
         <section id="contact" class="contact-section">
-            <p class="section-num">04 — Contact</p>
-            <h2 class="section-title">联系我</h2>
+            <div class="section-header">
+                <p class="section-num" data-zh="04 — Contact" data-en="04 — Contact">04 — Contact</p>
+                <h2><span class="section-title" data-zh="联系" data-en="CONTACT">联系</span><span class="section-title-cn" data-zh="我" data-en="Me">我</span></h2>
+            </div>
             <div class="contact-tearoff">
-                <p class="tearoff-title">Take what you Need</p>
+                <p class="tearoff-title" data-zh="Take what you Need" data-en="Take what you Need">Take what you Need</p>
                 <div class="tearoff-tabs">
                     <a href="tel:15202155210" class="tearoff-tab">
-                        <span class="tab-name">PHONE</span>
+                        <span class="tab-name" data-zh="PHONE" data-en="PHONE">PHONE</span>
                         <span class="tab-phone">15202155210</span>
                     </a>
                     <a href="mailto:15202155210@163.com" class="tearoff-tab">
-                        <span class="tab-name">E-MAIL</span>
+                        <span class="tab-name" data-zh="E-MAIL" data-en="E-MAIL">E-MAIL</span>
                         <span class="tab-value">15202155210@163.com</span>
                     </a>
-                    <a href="https://maps.google.com/?q=上海" class="tearoff-tab">
-                        <span class="tab-name">LOCATION</span>
-                        <span class="tab-value">上海</span>
+                    <a href="https://maps.google.com/?q=Shanghai" class="tearoff-tab">
+                        <span class="tab-name" data-zh="所在地" data-en="LOCATION">所在地</span>
+                        <span class="tab-value" data-zh="上海" data-en="Shanghai">上海</span>
                     </a>
                 </div>
             </div>
-            <p class="contact-handnote">click here if you want to discuss your project ✦</p>
+            <p class="contact-handnote" data-zh="click here if you want to discuss your project ✦" data-en="click here if you want to discuss your project ✦">click here if you want to discuss your project ✦</p>
         </section>
 
     </div>
 
+    <!-- ===== BIG OUTRO ===== -->
+    <div class="outro">
+        <p class="outro-text" data-text="LET'S TALK" data-zh-text="LET'S TALK" data-en-text="LET'S TALK">LET'S TALK</p>
+        <p class="outro-sub" data-zh="期待与你合作" data-en="Let's create something together">期待与你合作</p>
+    </div>
+
     <!-- ===== FOOTER ===== -->
     <footer>
-        <p>© 2026 <span class="footer-name">钟毓灵</span> · 视频设计师 · AE动效设计师 · AI视频设计师</p>
-        <p class="footer-sig">— by Zhong Yuling —</p>
+        <p data-zh="© 2026 " data-en="© 2026 ">© 2026 </p>
+        <p><span class="footer-name" data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span> · <span data-zh="视频设计师 · AE动效设计师 · AI视频设计师" data-en="Video Designer · AE Motion Designer · AI Video Designer">视频设计师 · AE动效设计师 · AI视频设计师</span></p>
+        <p class="footer-sig" data-zh="— by Zhong Yuling —" data-en="— by Zhong Yuling —">— by Zhong Yuling —</p>
     </footer>
 
     <!-- ===== MODAL ===== -->
     <div class="modal-overlay" id="videoModal">
         <div class="modal">
-            <h3>添加视频作品</h3>
+            <h3 data-zh="添加视频作品" data-en="Add Video Work">添加视频作品</h3>
             <div class="field">
-                <label>作品标题</label>
-                <input type="text" id="videoTitle" placeholder="例：品牌广告宣传片">
+                <label data-zh="作品标题" data-en="Title">作品标题</label>
+                <input type="text" id="videoTitle" data-zh-ph="例：品牌广告宣传片" data-en-ph="e.g. Brand Promo Video">
             </div>
             <div class="field">
-                <label>视频链接</label>
-                <input type="text" id="videoUrl" placeholder="B站 / YouTube / 视频文件链接">
+                <label data-zh="视频链接" data-en="Video URL">视频链接</label>
+                <input type="text" id="videoUrl" data-zh-ph="B站 / YouTube / 视频文件链接" data-en-ph="Bilibili / YouTube / video file link">
             </div>
             <div class="field">
-                <label>作品描述（选填）</label>
-                <textarea id="videoDesc" placeholder="简要描述作品..."></textarea>
+                <label data-zh="作品描述（选填）" data-en="Description (optional)">作品描述（选填）</label>
+                <textarea id="videoDesc" data-zh-ph="简要描述作品..." data-en-ph="Briefly describe the work..."></textarea>
             </div>
             <div class="field">
-                <label>分类标签（选填）</label>
-                <input type="text" id="videoTag" placeholder="例：品牌广告 / AI视频 / 动效设计">
+                <label data-zh="分类标签（选填）" data-en="Tag (optional)">分类标签（选填）</label>
+                <input type="text" id="videoTag" data-zh-ph="例：品牌广告 / AI视频 / 动效设计" data-en-ph="e.g. Brand Ad / AI Video / Motion Design">
             </div>
             <div class="modal-actions">
-                <button class="btn" onclick="closeModal()">取消</button>
-                <button class="btn primary" onclick="saveVideo()">确认添加</button>
+                <button class="btn" onclick="closeModal()" data-zh="取消" data-en="Cancel">取消</button>
+                <button class="btn primary" onclick="saveVideo()" data-zh="确认添加" data-en="Add">确认添加</button>
             </div>
         </div>
     </div>
 
     <script>
+        // ===== Language Toggle =====
+        function setLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.querySelectorAll('[data-zh]').forEach(el => {
+                const val = lang === 'zh' ? el.dataset.zh : el.dataset.en;
+                if (val !== undefined) el.textContent = val;
+            });
+            document.querySelectorAll('[data-zh-ph]').forEach(el => {
+                el.placeholder = lang === 'zh' ? el.dataset.zhPh : el.dataset.enPh;
+            });
+            // Update poster data-text
+            document.querySelectorAll('[data-zh-text]').forEach(el => {
+                const t = lang === 'zh' ? el.dataset.zhText : el.dataset.enText;
+                el.setAttribute('data-text', t);
+                el.textContent = t;
+                if (el.classList.contains('hero-poster') || el.classList.contains('outro-text')) {
+                    const after = el.querySelector('::after');
+                }
+            });
+            // Re-render portfolio to update labels
+            renderPortfolio(lang);
+        }
+
+        // ===== Portfolio =====
         const portfolioItems = [
-            { title: '作品一', desc: '点击添加您的视频作品', tag: '', url: '', type: 'placeholder' },
-            { title: '作品二', desc: '点击添加您的视频作品', tag: '', url: '', type: 'placeholder' },
-            { title: '作品三', desc: '点击添加您的视频作品', tag: '', url: '', type: 'placeholder' },
-            { title: '作品四', desc: '点击添加您的视频作品', tag: '', url: '', type: 'placeholder' }
+            { title_zh:'作品一', title_en:'Work 01', desc_zh:'点击添加您的视频作品', desc_en:'Click to add your video', tag:'', url:'', type:'placeholder' },
+            { title_zh:'作品二', title_en:'Work 02', desc_zh:'点击添加您的视频作品', desc_en:'Click to add your video', tag:'', url:'', type:'placeholder' },
+            { title_zh:'作品三', title_en:'Work 03', desc_zh:'点击添加您的视频作品', desc_en:'Click to add your video', tag:'', url:'', type:'placeholder' },
+            { title_zh:'作品四', title_en:'Work 04', desc_zh:'点击添加您的视频作品', desc_en:'Click to add your video', tag:'', url:'', type:'placeholder' }
         ];
 
+        let currentLang = 'zh';
         let currentEditIndex = -1;
 
-        function renderPortfolio() {
+        function renderPortfolio(lang) {
+            currentLang = lang || 'zh';
             const grid = document.getElementById('portfolioGrid');
             grid.innerHTML = '';
             portfolioItems.forEach((item, index) => {
@@ -596,25 +626,16 @@
                 card.className = 'portfolio-card';
                 let videoHTML;
                 if (item.type === 'placeholder' || !item.url) {
-                    videoHTML = `
-                        <div class="video-area">
-                            <div class="video-placeholder" onclick="openModal(${index})">
-                                <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                                <span class="placeholder-text">点击添加视频</span>
-                            </div>
-                        </div>`;
+                    const phText = currentLang === 'zh' ? '点击添加视频' : 'Click to add video';
+                    videoHTML = `<div class="video-area"><div class="video-placeholder" onclick="openModal(${index})"><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="placeholder-text">${phText}</span></div></div>`;
                 } else if (item.type === 'iframe') {
                     videoHTML = `<div class="video-area">${item.url}</div>`;
                 } else if (item.type === 'video') {
                     videoHTML = `<div class="video-area"><video src="${item.url}" controls></video></div>`;
                 }
-                card.innerHTML = `
-                    ${videoHTML}
-                    <div class="portfolio-meta">
-                        <h4>${item.title}</h4>
-                        <p>${item.desc}</p>
-                        ${item.tag ? `<span class="portfolio-tag">${item.tag}</span>` : ''}
-                    </div>`;
+                const title = currentLang === 'zh' ? item.title_zh : item.title_en;
+                const desc = currentLang === 'zh' ? item.desc_zh : item.desc_en;
+                card.innerHTML = `${videoHTML}<span class="card-badge">0${index+1}</span><div class="portfolio-meta"><h4>${title}</h4><p>${desc}</p>${item.tag ? `<span class="portfolio-tag">${item.tag}</span>` : ''}</div>`;
                 grid.appendChild(card);
             });
         }
@@ -631,36 +652,38 @@
         }
 
         function saveVideo() {
-            const title = document.getElementById('videoTitle').value.trim() || `作品${currentEditIndex + 1}`;
+            const title = document.getElementById('videoTitle').value.trim() || (currentLang==='zh' ? `作品${currentEditIndex+1}` : `Work ${currentEditIndex+1}`);
             const url = document.getElementById('videoUrl').value.trim();
-            const desc = document.getElementById('videoDesc').value.trim() || '精彩视频作品';
+            const desc = document.getElementById('videoDesc').value.trim() || (currentLang==='zh' ? '精彩视频作品' : 'Featured video work');
             const tag = document.getElementById('videoTag').value.trim();
-            if (!url) { alert('请输入视频链接'); return; }
+            if (!url) { alert(currentLang==='zh' ? '请输入视频链接' : 'Please enter a video URL'); return; }
             const embedInfo = parseVideoUrl(url);
-            portfolioItems[currentEditIndex] = { title, desc, tag, url: embedInfo.content, type: embedInfo.type };
+            portfolioItems[currentEditIndex] = {
+                title_zh:title, title_en:title, desc_zh:desc, desc_en:desc, tag, url:embedInfo.content, type:embedInfo.type
+            };
             closeModal();
-            renderPortfolio();
+            renderPortfolio(currentLang);
         }
 
         function parseVideoUrl(url) {
             if (url.includes('bilibili.com') || url.includes('b23.tv')) {
-                const bvidMatch = url.match(/BV[a-zA-Z0-9]+/);
-                if (bvidMatch) return { type: 'iframe', content: `<iframe src="//player.bilibili.com/player.html?bvid=${bvidMatch[0]}&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>` };
+                const m = url.match(/BV[a-zA-Z0-9]+/);
+                if (m) return { type:'iframe', content:`<iframe src="//player.bilibili.com/player.html?bvid=${m[0]}&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>` };
             }
             if (url.includes('youtube.com') || url.includes('youtu.be')) {
-                let vid = '';
-                if (url.includes('youtu.be/')) vid = url.split('youtu.be/')[1].split('?')[0];
-                else if (url.includes('watch?v=')) vid = url.split('watch?v=')[1].split('&')[0];
-                else if (url.includes('embed/')) vid = url.split('embed/')[1].split('?')[0];
-                if (vid) return { type: 'iframe', content: `<iframe src="https://www.youtube.com/embed/${vid}" allowfullscreen></iframe>` };
+                let vid='';
+                if (url.includes('youtu.be/')) vid=url.split('youtu.be/')[1].split('?')[0];
+                else if (url.includes('watch?v=')) vid=url.split('watch?v=')[1].split('&')[0];
+                else if (url.includes('embed/')) vid=url.split('embed/')[1].split('?')[0];
+                if (vid) return { type:'iframe', content:`<iframe src="https://www.youtube.com/embed/${vid}" allowfullscreen></iframe>` };
             }
-            if (url.includes('<iframe')) return { type: 'iframe', content: url };
-            if (url.match(/\.(mp4|webm|ogg)(\?|$)/i)) return { type: 'video', content: url };
-            return { type: 'iframe', content: `<iframe src="${url}" allowfullscreen></iframe>` };
+            if (url.includes('<iframe')) return { type:'iframe', content:url };
+            if (url.match(/\.(mp4|webm|ogg)(\?|$)/i)) return { type:'video', content:url };
+            return { type:'iframe', content:`<iframe src="${url}" allowfullscreen></iframe>` };
         }
 
-        document.getElementById('videoModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
-        renderPortfolio();
+        document.getElementById('videoModal').addEventListener('click', function(e) { if(e.target===this) closeModal(); });
+        renderPortfolio('zh');
     </script>
 </body>
 </html>
