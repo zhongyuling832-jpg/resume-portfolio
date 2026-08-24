@@ -409,6 +409,16 @@
             font-family:'Caveat',cursive; font-size:1rem; color:var(--ink-faint);
             margin-bottom:20px;
         }
+        .portfolio-category { margin-bottom:32px; }
+        .portfolio-cat-title {
+            font-family:'Caveat',cursive; font-size:1.3rem; font-weight:700;
+            color:var(--ink); margin-bottom:16px; display:flex; align-items:center; gap:8px;
+        }
+        .portfolio-cat-title::before { content:'▸'; font-size:0.9rem; color:var(--rose); }
+        .portfolio-cat-title.ad { color:var(--blue); }
+        .portfolio-cat-title.ad::before { color:var(--blue); }
+        .portfolio-cat-title.game { color:var(--green); }
+        .portfolio-cat-title.game::before { color:var(--green); }
         .portfolio-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
         .portfolio-card {
             border-radius:12px; overflow:hidden; transition:all 0.2s;
@@ -427,20 +437,41 @@
         .video-area iframe, .video-area video {
             position:absolute; top:0; left:0; width:100%; height:100%; border:none;
         }
-        .video-placeholder {
+        .video-cover {
             position:absolute; inset:0; display:flex; flex-direction:column;
-            align-items:center; justify-content:center; cursor:pointer; gap:12px;
+            align-items:center; justify-content:center; cursor:pointer; gap:14px;
+            transition:all 0.2s;
         }
-        .video-placeholder:hover { background:rgba(233,196,106,0.06); }
+        .video-cover:hover { background:rgba(233,196,106,0.08); }
+        .video-cover-title {
+            font-family:'Caveat',cursive; font-size:1.15rem; font-weight:700;
+            color:var(--ink); text-align:center; padding:0 16px; line-height:1.4;
+        }
         .play-icon {
-            width:44px; height:44px; border-radius:12px;
+            width:48px; height:48px; border-radius:50%;
             display:flex; align-items:center; justify-content:center;
             background:var(--yellow);
             box-shadow:0 2px 8px rgba(58,53,45,0.12);
             transition:all 0.2s;
         }
-        .video-placeholder:hover .play-icon { background:var(--orange); transform:scale(1.05); }
-        .play-icon svg { width:16px; height:16px; fill:var(--ink); margin-left:2px; }
+        .video-cover:hover .play-icon { background:var(--orange); transform:scale(1.08); }
+        .play-icon svg { width:18px; height:18px; fill:var(--ink); margin-left:3px; }
+        .cover-hint {
+            font-family:'Caveat',cursive; font-size:0.9rem; color:var(--ink-faint);
+        }
+        .bili-link {
+            position:absolute; top:10px; left:10px; z-index:5;
+            font-family:'Plus Jakarta Sans',sans-serif; font-size:0.7rem; font-weight:600;
+            color:var(--paper); background:rgba(58,53,45,0.7);
+            padding:3px 10px; border-radius:100px; text-decoration:none;
+            transition:all 0.2s; display:flex; align-items:center; gap:4px;
+        }
+        .bili-link:hover { background:var(--rose); }
+        .video-placeholder {
+            position:absolute; inset:0; display:flex; flex-direction:column;
+            align-items:center; justify-content:center; cursor:pointer; gap:12px;
+        }
+        .video-placeholder:hover { background:rgba(233,196,106,0.06); }
         .placeholder-text {
             font-family:'Caveat',cursive; font-size:1rem; color:var(--ink-faint);
         }
@@ -744,8 +775,15 @@
                 <span class="section-title" data-zh="作品集" data-en="Portfolio">作品集</span>
                 <span class="portfolio-zuo" data-zh="精选作品 ✱" data-en="Selected Works ✱">精选作品 ✱</span>
             </div>
-            <p class="portfolio-hint" data-zh="点击卡片添加视频 — 支持 B站 / YouTube / 视频直链" data-en="Click a card to add a video — Bilibili / YouTube / direct links">点击卡片添加视频 — 支持 B站 / YouTube / 视频直链</p>
-            <div class="portfolio-grid" id="portfolioGrid"></div>
+            <p class="portfolio-hint" data-zh="点击视频卡片即可在线播放" data-en="Click video card to play online">点击视频卡片即可在线播放</p>
+            <div class="portfolio-category">
+                <h3 class="portfolio-cat-title ad" data-zh="广告作品" data-en="Advertising Works">广告作品</h3>
+                <div class="portfolio-grid" id="adGrid"></div>
+            </div>
+            <div class="portfolio-category">
+                <h3 class="portfolio-cat-title game" data-zh="游戏作品" data-en="Gaming Works">游戏作品</h3>
+                <div class="portfolio-grid" id="gameGrid"></div>
+            </div>
         </section>
 
         <!-- ===== CONTACT ===== -->
@@ -830,97 +868,92 @@
     <script>
         const ph = {
             zh: { title:'例：品牌广告宣传片', url:'B站 / YouTube / 视频文件链接', desc:'简要描述作品...', tag:'例：品牌广告 / AI视频 / 动效设计',
-                  add:'确认添加', cancel:'取消', err:'请输入视频链接', work:'精彩视频作品', workN:'作品', addVideo:'点击添加视频' },
+                  add:'确认添加', cancel:'取消', err:'请输入视频链接', work:'精彩视频作品', workN:'作品', addVideo:'点击添加视频',
+                  clickPlay:'点击播放', watchOnBili:'在B站观看', noGame:'游戏作品即将上线，敬请期待' },
             en: { title:'e.g. Brand Promo Video', url:'Bilibili / YouTube / video file link', desc:'Briefly describe the work...', tag:'e.g. Brand Ad / AI Video / Motion Design',
-                  add:'Add', cancel:'Cancel', err:'Please enter a video URL', work:'Featured video work', workN:'Work', addVideo:'Click to add video' }
+                  add:'Add', cancel:'Cancel', err:'Please enter a video URL', work:'Featured video work', workN:'Work', addVideo:'Click to add video',
+                  clickPlay:'Click to Play', watchOnBili:'Watch on Bilibili', noGame:'Gaming works coming soon' }
         };
 
-        const portfolioItems = [
-            { t_zh:'ua-不等谁邀请跑团video', t_en:'UA - Run Club Video', d_zh:'ua上马活动', d_en:'UA Shanghai Marathon Campaign', tag:'品牌广告 / 动效设计',
-              url:'<iframe src="//player.bilibili.com/player.html?bvid=BV18f8e6dEpS&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>', type:'iframe' },
-            { t_zh:'burberry case video', t_en:'Burberry Case Video', d_zh:'burberry报奖视频', d_en:'Burberry Award Submission Video', tag:'品牌广告 / 动效设计',
-              url:'<iframe src="//player.bilibili.com/player.html?bvid=BV1Sf8e6REjh&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>', type:'iframe' },
-            { t_zh:'hoka成都广州实景大屏', t_en:'HOKA Chengdu & Guangzhou Screen', d_zh:'hoka-fly human fly户外多媒体投放视频', d_en:'HOKA Fly Human Fly Outdoor Media Campaign', tag:'品牌广告',
-              url:'<iframe src="//player.bilibili.com/player.html?bvid=BV1UohP6zENG&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>', type:'iframe' },
-            { t_zh:'飞利浦信息流-麦麦', t_en:'Philips Feed Ad - MaiMai', d_zh:'信息流广告', d_en:'Feed Stream Advertisement', tag:'品牌广告',
-              url:'<iframe src="//player.bilibili.com/player.html?bvid=BV1TohP6zEmk&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>', type:'iframe' },
-            { t_zh:'福莱恩-线条小狗case video', t_en:'Flanne - Line Puppy Case Video', d_zh:'福莱恩报奖视频', d_en:'Flanne Award Submission Video', tag:'品牌广告 / 动效设计',
-              url:'<iframe src="//player.bilibili.com/player.html?bvid=BV1UdhP6uE8T&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>', type:'iframe' }
+        const adItems = [
+            { t_zh:'ua-不等谁邀请跑团video', t_en:'UA - Run Club Video', d_zh:'ua上马活动', d_en:'UA Shanghai Marathon Campaign', tag:'品牌广告 / 动效设计', bvid:'BV18f8e6dEpS' },
+            { t_zh:'burberry case video', t_en:'Burberry Case Video', d_zh:'burberry报奖视频', d_en:'Burberry Award Submission Video', tag:'品牌广告 / 动效设计', bvid:'BV1Sf8e6REjh' },
+            { t_zh:'hoka成都广州实景大屏', t_en:'HOKA Chengdu & Guangzhou Screen', d_zh:'hoka-fly human fly户外多媒体投放视频', d_en:'HOKA Fly Human Fly Outdoor Media Campaign', tag:'品牌广告', bvid:'BV1UohP6zENG' },
+            { t_zh:'飞利浦信息流-麦麦', t_en:'Philips Feed Ad - MaiMai', d_zh:'信息流广告', d_en:'Feed Stream Advertisement', tag:'品牌广告', bvid:'BV1TohP6zEmk' },
+            { t_zh:'福莱恩-线条小狗case video', t_en:'Flanne - Line Puppy Case Video', d_zh:'福莱恩报奖视频', d_en:'Flanne Award Submission Video', tag:'品牌广告 / 动效设计', bvid:'BV1UdhP6uE8T' }
         ];
 
-        let currentLang = 'zh';
-        let currentEditIndex = -1;
+        const gameItems = [];
 
-        function renderPortfolio(lang) {
-            currentLang = lang || 'zh';
-            const grid = document.getElementById('portfolioGrid');
+        let currentLang = 'zh';
+
+        function getBiliEmbed(bvid) {
+            return `https://player.bilibili.com/player.html?bvid=${bvid}&high_quality=1&autoplay=1&muted=0`;
+        }
+
+        function getBiliLink(bvid) {
+            return `https://www.bilibili.com/video/${bvid}/`;
+        }
+
+        function loadVideo(gridId, index, bvid) {
+            const card = document.querySelector(`#${gridId} [data-index="${index}"]`);
+            if (!card) return;
+            const area = card.querySelector('.video-area');
+            if (area.querySelector('iframe')) return;
+            area.innerHTML = `<iframe src="${getBiliEmbed(bvid)}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" referrerpolicy="no-referrer"></iframe>`;
+        }
+
+        function renderGrid(gridId, items, lang) {
+            const grid = document.getElementById(gridId);
+            if (!grid) return;
             grid.innerHTML = '';
-            const pText = ph[currentLang].addVideo;
-            portfolioItems.forEach((item, index) => {
+
+            if (items.length === 0 && gridId === 'gameGrid') {
+                const pText = ph[lang].noGame;
+                grid.innerHTML = `<div style="grid-column:1/-1;padding:32px 20px;text-align:center;font-family:'Caveat',cursive;font-size:1.1rem;color:var(--ink-faint);background:var(--paper);border-radius:12px;box-shadow:0 2px 8px rgba(58,53,45,0.06);">${pText} ✱</div>`;
+                return;
+            }
+
+            const clickPlay = ph[lang].clickPlay;
+            const watchOnBili = ph[lang].watchOnBili;
+
+            items.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'portfolio-card paper';
-                let videoHTML;
-                if (item.type === 'placeholder' || !item.url) {
-                    videoHTML = `<div class="video-area"><div class="video-placeholder" onclick="openModal(${index})"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="placeholder-text">${pText}</span></div></div>`;
-                } else if (item.type === 'iframe') {
-                    videoHTML = `<div class="video-area">${item.url}</div>`;
-                } else if (item.type === 'video') {
-                    videoHTML = `<div class="video-area"><video src="${item.url}" controls></video></div>`;
-                }
-                const title = currentLang === 'zh' ? item.t_zh : item.t_en;
-                const desc = currentLang === 'zh' ? item.d_zh : item.d_en;
+                card.setAttribute('data-index', index);
+
+                const title = lang === 'zh' ? item.t_zh : item.t_en;
+                const desc = lang === 'zh' ? item.d_zh : item.d_en;
                 const num = String(index + 1).padStart(2, '0');
                 const tapeColors = ['var(--yellow)','var(--green)','var(--rose)','var(--lavender)'];
                 const tapeColor = tapeColors[index % 4];
-                card.innerHTML = `${videoHTML}<div class="tape" style="background:${tapeColor};"></div><span class="card-num">${num}</span><div class="portfolio-meta"><h4>${title}</h4><p>${desc}</p>${item.tag ? `<span class="portfolio-tag">${item.tag}</span>` : ''}</div>`;
+
+                const biliUrl = item.bvid ? getBiliLink(item.bvid) : '#';
+                const videoArea = item.bvid
+                    ? `<div class="video-area">
+                         <a class="bili-link" href="${biliUrl}" target="_blank" rel="noopener">▶ ${watchOnBili}</a>
+                         <div class="video-cover" onclick="loadVideo('${gridId}', ${index}, '${item.bvid}')">
+                           <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                           <span class="video-cover-title">${title}</span>
+                           <span class="cover-hint">${clickPlay}</span>
+                         </div>
+                       </div>`
+                    : `<div class="video-area">
+                         <div class="video-placeholder">
+                           <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                           <span class="placeholder-text">${ph[lang].addVideo}</span>
+                         </div>
+                       </div>`;
+
+                card.innerHTML = `${videoArea}<div class="tape" style="background:${tapeColor};"></div><span class="card-num">${num}</span><div class="portfolio-meta"><h4>${title}</h4><p>${desc}</p>${item.tag ? `<span class="portfolio-tag">${item.tag}</span>` : ''}</div>`;
                 grid.appendChild(card);
             });
         }
 
-        function openModal(index) {
-            currentEditIndex = index;
-            const p = ph[currentLang];
-            document.getElementById('videoTitle').placeholder = p.title;
-            document.getElementById('videoUrl').placeholder = p.url;
-            document.getElementById('videoDesc').placeholder = p.desc;
-            document.getElementById('videoTag').placeholder = p.tag;
-            ['videoTitle','videoUrl','videoDesc','videoTag'].forEach(id => document.getElementById(id).value = '');
-            document.getElementById('videoModal').classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('videoModal').classList.remove('active');
-            currentEditIndex = -1;
-        }
-
-        function saveVideo() {
-            const p = ph[currentLang];
-            const title = document.getElementById('videoTitle').value.trim() || `${p.workN} ${currentEditIndex+1}`;
-            const url = document.getElementById('videoUrl').value.trim();
-            const desc = document.getElementById('videoDesc').value.trim() || p.work;
-            const tag = document.getElementById('videoTag').value.trim();
-            if (!url) { alert(p.err); return; }
-            const embedInfo = parseVideoUrl(url);
-            portfolioItems[currentEditIndex] = { t_zh:title, t_en:title, d_zh:desc, d_en:desc, tag, url:embedInfo.content, type:embedInfo.type };
-            closeModal();
-            renderPortfolio(currentLang);
-        }
-
-        function parseVideoUrl(url) {
-            if (url.includes('bilibili.com') || url.includes('b23.tv')) {
-                const m = url.match(/BV[a-zA-Z0-9]+/);
-                if (m) return { type:'iframe', content:`<iframe src="//player.bilibili.com/player.html?bvid=${m[0]}&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>` };
-            }
-            if (url.includes('youtube.com') || url.includes('youtu.be')) {
-                let vid='';
-                if (url.includes('youtu.be/')) vid=url.split('youtu.be/')[1].split('?')[0];
-                else if (url.includes('watch?v=')) vid=url.split('watch?v=')[1].split('&')[0];
-                else if (url.includes('embed/')) vid=url.split('embed/')[1].split('?')[0];
-                if (vid) return { type:'iframe', content:`<iframe src="https://www.youtube.com/embed/${vid}" allowfullscreen></iframe>` };
-            }
-            if (url.includes('<iframe')) return { type:'iframe', content:url };
-            if (url.match(/\.(mp4|webm|ogg)(\?|$)/i)) return { type:'video', content:url };
-            return { type:'iframe', content:`<iframe src="${url}" allowfullscreen></iframe>` };
+        function renderPortfolio(lang) {
+            currentLang = lang || 'zh';
+            renderGrid('adGrid', adItems, currentLang);
+            renderGrid('gameGrid', gameItems, currentLang);
         }
 
         function setLang(lang, e) {
@@ -940,6 +973,8 @@
         }
 
         document.getElementById('videoModal').addEventListener('click', function(e) { if(e.target===this) closeModal(); });
+
+        function closeModal() { document.getElementById('videoModal').classList.remove('active'); }
 
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section[id]');
