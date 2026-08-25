@@ -364,6 +364,73 @@
         .about-tags span:nth-child(6n+5) { background:var(--orange-soft); }
         .about-tags span:nth-child(6n+6) { background:var(--teal-soft); }
 
+        /* ===== TIMELINE (Education + Experience) ===== */
+        .timeline-card {
+            border-radius:12px; padding:28px 24px;
+            position:relative;
+            box-shadow:0 4px 14px rgba(58,53,45,0.08);
+        }
+        .timeline-card .tape { top:-8px; left:24px; }
+        .timeline-list { display:grid; gap:20px; position:relative; z-index:1; }
+        .timeline-item {
+            display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start;
+            padding-bottom:18px;
+            border-bottom:1px dashed rgba(58,53,45,0.1);
+        }
+        .timeline-item:last-child { border-bottom:none; padding-bottom:0; }
+        .timeline-dot {
+            width:12px; height:12px; border-radius:50%;
+            margin-top:6px;
+            box-shadow:0 0 0 4px rgba(255,255,255,0.8), 0 0 0 5px rgba(58,53,45,0.1);
+        }
+        .timeline-dot.blue { background:var(--blue); }
+        .timeline-dot.green { background:var(--green); }
+        .timeline-dot.orange { background:var(--orange); }
+        .timeline-dot.rose { background:var(--rose); }
+        .timeline-content h4 {
+            font-family:'Plus Jakarta Sans',sans-serif; font-size:0.95rem; font-weight:700;
+            color:var(--ink); margin-bottom:3px;
+        }
+        .timeline-date {
+            font-family:'Fredoka One',sans-serif; font-size:0.72rem;
+            color:var(--paper); background:var(--ink);
+            padding:2px 10px; border-radius:100px; display:inline-block; margin-bottom:8px;
+        }
+        .timeline-org {
+            font-size:0.85rem; color:var(--blue); font-weight:600; margin-bottom:6px;
+        }
+        .timeline-desc {
+            font-size:0.82rem; color:var(--ink-faint); line-height:1.6;
+        }
+        .timeline-desc ul { margin:0; padding-left:16px; }
+        .timeline-desc li { margin-bottom:3px; }
+
+        /* ===== SOFTWARE PROGRESS ===== */
+        .software-grid { display:grid; gap:14px; margin-top:14px; }
+        .software-item { position:relative; z-index:1; }
+        .software-row { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:5px; }
+        .software-name { font-size:0.85rem; font-weight:600; color:var(--ink); }
+        .software-pct { font-family:'Fredoka One',sans-serif; font-size:0.78rem; color:var(--ink-faint); }
+        .software-bar {
+            height:8px; border-radius:100px; background:var(--cream); overflow:hidden;
+        }
+        .software-fill {
+            height:100%; border-radius:100px;
+            transition:width 1s ease;
+        }
+        .software-fill.blue { background:linear-gradient(90deg, var(--blue), #6a9fff); }
+        .software-fill.green { background:linear-gradient(90deg, var(--green), #7fd1c5); }
+        .software-fill.orange { background:linear-gradient(90deg, var(--orange), #ffb478); }
+
+        /* ===== LANGUAGES ===== */
+        .lang-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px; position:relative; z-index:1; }
+        .lang-item {
+            text-align:center; padding:16px 8px; border-radius:10px;
+            background:var(--cream);
+        }
+        .lang-name { font-size:0.85rem; font-weight:700; color:var(--ink); margin-bottom:4px; }
+        .lang-level { font-family:'Caveat',cursive; font-size:0.9rem; color:var(--rose); font-weight:700; }
+
         /* ===== SKILLS — sticker badges on paper ===== */
         .skills-card { border-radius:12px; padding:28px; position:relative; transform:rotate(0.5deg); }
         .skills-card .tape { top:-8px; right:30px; background:var(--green); transform:rotate(12deg); opacity:0.4; }
@@ -606,6 +673,8 @@
     <!-- Nav -->
     <nav class="nav-bar">
         <a href="#about" class="nav-link" data-zh="关于" data-en="About">关于</a>
+        <a href="#education" class="nav-link" data-zh="教育" data-en="Edu">教育</a>
+        <a href="#experience" class="nav-link" data-zh="经历" data-en="Exp">经历</a>
         <a href="#skills" class="nav-link" data-zh="技能" data-en="Skills">技能</a>
         <a href="#portfolio" class="nav-link" data-zh="作品" data-en="Work">作品</a>
         <a href="#contact" class="nav-link" data-zh="联系" data-en="Contact">联系</a>
@@ -659,7 +728,7 @@
                 <div>
                     <div class="about-info">
                         <div class="about-row"><span class="label" data-zh="姓名" data-en="Name">姓名</span><span class="value" data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span></div>
-                        <div class="about-row"><span class="label" data-zh="学历" data-en="Education">学历</span><span class="value" data-zh="数字媒体艺术与动画IT硕士" data-en="MA, Digital Media Art & Animation IT">数字媒体艺术与动画IT硕士</span></div>
+                        <div class="about-row"><span class="label" data-zh="学历" data-en="Education">学历</span><span class="value" data-zh="硕士 · 日本京都情报大学院大学" data-en="MA · Kyoto College of Informatics, Japan">硕士 · 日本京都情报大学院大学</span></div>
                         <div class="about-row"><span class="label" data-zh="城市" data-en="City">城市</span><span class="value" data-zh="上海" data-en="Shanghai">上海</span></div>
                         <div class="about-row"><span class="label" data-zh="经验" data-en="Experience">经验</span><span class="value" data-zh="4年以上" data-en="4+ Years">4年以上</span></div>
                     </div>
@@ -676,10 +745,83 @@
             </div>
         </section>
 
+        <!-- ===== EDUCATION ===== -->
+        <section id="education">
+            <div class="section-head">
+                <span class="section-num green" data-zh="02" data-en="02">02</span>
+                <span class="section-title" data-zh="教育经历" data-en="Education">教育经历</span>
+            </div>
+            <div class="timeline-card paper">
+                <div class="tape" style="background:var(--green);"></div>
+                <div class="timeline-list">
+                    <div class="timeline-item">
+                        <div class="timeline-dot green"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date" data-zh="硕士" data-en="Master's">硕士</span>
+                            <h4 data-zh="日本京都情报大学院大学" data-en="Kyoto College of Graduate Studies for Informatics">日本京都情报大学院大学</h4>
+                            <p class="timeline-org" data-zh="硕士研究生 · 日本京都" data-en="Master's Program · Kyoto, Japan">硕士研究生 · 日本京都</p>
+                            <p class="timeline-desc" data-zh="数字媒体艺术与动画IT方向，深入研究数字内容创作与信息技术融合。" data-en="Focused on Digital Media Art & Animation IT, exploring the integration of digital content creation and information technology.">数字媒体艺术与动画IT方向，深入研究数字内容创作与信息技术融合。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot blue"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date" data-zh="本科" data-en="Bachelor's">本科</span>
+                            <h4 data-zh="上海建桥学院" data-en="Shanghai Jianqiao University">上海建桥学院</h4>
+                            <p class="timeline-org" data-zh="数字媒体艺术 · 上海" data-en="Digital Media Art · Shanghai">数字媒体艺术 · 上海</p>
+                            <p class="timeline-desc" data-zh="系统学习数字媒体艺术理论与创作实践，涵盖视频制作、动画设计、视觉传达等核心领域。" data-en="Systematically studied digital media art theory and practice, covering video production, animation design, and visual communication.">系统学习数字媒体艺术理论与创作实践，涵盖视频制作、动画设计、视觉传达等核心领域。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EXPERIENCE ===== -->
+        <section id="experience">
+            <div class="section-head">
+                <span class="section-num orange" data-zh="03" data-en="03">03</span>
+                <span class="section-title" data-zh="工作经历" data-en="Experience">工作经历</span>
+            </div>
+            <div class="timeline-card paper">
+                <div class="tape" style="background:var(--orange);"></div>
+                <div class="timeline-list">
+                    <div class="timeline-item">
+                        <div class="timeline-dot orange"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date" data-zh="2020.06 — 至今" data-en="2020.06 — Present">2020.06 — 至今</span>
+                            <h4 data-zh="高级视频剪辑师 & 动效设计师" data-en="Senior Video Editor & Motion Designer">高级视频剪辑师 & 动效设计师</h4>
+                            <p class="timeline-org" data-zh="互影集团 / 互影科技 · 上海" data-en="Huying Group / Huying Tech · Shanghai">互影集团 / 互影科技 · 上海</p>
+                            <div class="timeline-desc">
+                                <ul>
+                                    <li data-zh="抖音/TikTok平台视频内容制作，涵盖品牌广告与创意短视频" data-en="Produce video content for TikTok/Douyin, covering brand ads and creative short videos">抖音/TikTok平台视频内容制作，涵盖品牌广告与创意短视频</li>
+                                    <li data-zh="短视频剪辑与包装，涉及游戏、动漫等多个内容领域" data-en="Short video editing and packaging across gaming, anime, and other content domains">短视频剪辑与包装，涉及游戏、动漫等多个内容领域</li>
+                                    <li data-zh="将AIGC工具深度融入日常工作流，显著提升产出效率" data-en="Integrate AIGC tools into daily workflows to significantly boost production efficiency">将AIGC工具深度融入日常工作流，显著提升产出效率</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot rose"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date" data-zh="2019.07 — 2020.06" data-en="2019.07 — 2020.06">2019.07 — 2020.06</span>
+                            <h4 data-zh="游戏视频设计师" data-en="Game Video Designer">游戏视频设计师</h4>
+                            <p class="timeline-org" data-zh="上海游族网络科技有限公司 · 上海" data-en="Shanghai Youzu Interactive · Shanghai">上海游族网络科技有限公司 · 上海</p>
+                            <div class="timeline-desc">
+                                <ul>
+                                    <li data-zh="游戏宣传视频设计与制作，负责游戏产品推广素材" data-en="Design and produce game promotional videos, responsible for game product marketing materials">游戏宣传视频设计与制作，负责游戏产品推广素材</li>
+                                    <li data-zh="游戏营销素材制作，包含实机演示、角色PV等" data-en="Produce game marketing materials including gameplay demos and character PVs">游戏营销素材制作，包含实机演示、角色PV等</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ===== SKILLS ===== -->
         <section id="skills">
             <div class="section-head">
-                <span class="section-num green" data-zh="02" data-en="02">02</span>
+                <span class="section-num blue" data-zh="04" data-en="04">04</span>
                 <span class="section-title" data-zh="技能与工具" data-en="Skills & Tools">技能与工具</span>
             </div>
             <div class="skills-card paper">
@@ -714,13 +856,58 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="skill-group" style="margin-top:20px;">
+                    <h3 data-zh="软件熟练度" data-en="Software Proficiency">软件熟练度</h3>
+                    <div class="software-grid">
+                        <div class="software-item">
+                            <div class="software-row">
+                                <span class="software-name" data-zh="剪映 / CapCut" data-en="CapCut">剪映 / CapCut</span>
+                                <span class="software-pct">90%</span>
+                            </div>
+                            <div class="software-bar"><div class="software-fill blue" style="width:90%"></div></div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-row">
+                                <span class="software-name" data-zh="必剪" data-en="Bicut">必剪</span>
+                                <span class="software-pct">85%</span>
+                            </div>
+                            <div class="software-bar"><div class="software-fill green" style="width:85%"></div></div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-row">
+                                <span class="software-name" data-zh="达芬奇 / DaVinci Resolve" data-en="DaVinci Resolve">达芬奇 / DaVinci Resolve</span>
+                                <span class="software-pct">75%</span>
+                            </div>
+                            <div class="software-bar"><div class="software-fill orange" style="width:75%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-group" style="margin-top:20px;">
+                    <h3 data-zh="语言能力" data-en="Languages">语言能力</h3>
+                    <div class="lang-grid">
+                        <div class="lang-item">
+                            <p class="lang-name" data-zh="中文" data-en="Chinese">中文</p>
+                            <p class="lang-level" data-zh="母语" data-en="Native">母语</p>
+                        </div>
+                        <div class="lang-item">
+                            <p class="lang-name" data-zh="日本語" data-en="Japanese">日本語</p>
+                            <p class="lang-level" data-zh="商务流利" data-en="Business Fluent">商务流利</p>
+                        </div>
+                        <div class="lang-item">
+                            <p class="lang-name" data-zh="English" data-en="English">English</p>
+                            <p class="lang-level" data-zh="日常交流" data-en="Conversational">日常交流</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- ===== PORTFOLIO ===== -->
         <section id="portfolio">
             <div class="portfolio-head-wrap">
-                <span class="section-num orange" data-zh="03" data-en="03">03</span>
+                <span class="section-num rose" data-zh="05" data-en="05">05</span>
                 <span class="section-title" data-zh="作品集" data-en="Portfolio">作品集</span>
                 <span class="portfolio-zuo" data-zh="精选作品 ✱" data-en="Selected Works ✱">精选作品 ✱</span>
             </div>
@@ -731,7 +918,7 @@
         <!-- ===== CONTACT ===== -->
         <section id="contact">
             <div class="section-head">
-                <span class="section-num rose" data-zh="04" data-en="04">04</span>
+                <span class="section-num blue" data-zh="06" data-en="06">06</span>
                 <span class="section-title" data-zh="联系我" data-en="Contact Me">联系我</span>
             </div>
             <div class="contact-card paper">
