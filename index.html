@@ -431,6 +431,22 @@
         .lang-name { font-size:0.85rem; font-weight:700; color:var(--ink); margin-bottom:4px; }
         .lang-level { font-family:'Caveat',cursive; font-size:0.9rem; color:var(--rose); font-weight:700; }
 
+        /* ===== SKILL DETAIL BLOCKS ===== */
+        .skill-detail-list { display:grid; gap:16px; position:relative; z-index:1; }
+        .skill-detail {
+            padding:16px 18px; border-radius:10px; background:var(--cream);
+            border-left:4px solid var(--blue);
+        }
+        .skill-detail:nth-child(2) { border-left-color:var(--rose); }
+        .skill-detail:nth-child(3) { border-left-color:var(--green); }
+        .skill-detail h4 {
+            font-family:'Plus Jakarta Sans',sans-serif; font-size:0.9rem; font-weight:700;
+            color:var(--ink); margin-bottom:8px;
+        }
+        .skill-detail p {
+            font-size:0.8rem; color:var(--ink-faint); line-height:1.75; margin:0;
+        }
+
         /* ===== SKILLS — sticker badges on paper ===== */
         .skills-card { border-radius:12px; padding:28px; position:relative; transform:rotate(0.5deg); }
         .skills-card .tape { top:-8px; right:30px; background:var(--green); transform:rotate(12deg); opacity:0.4; }
@@ -836,17 +852,17 @@
                         <div class="software-grid">
                             <div class="software-item">
                                 <div class="software-row">
-                                    <span class="software-name" data-zh="PR · Premiere Pro" data-en="PR · Premiere Pro">PR · Premiere Pro</span>
+                                    <span class="software-name" data-zh="AE · After Effects" data-en="AE · After Effects">AE · After Effects</span>
                                     <span class="software-pct">90%</span>
                                 </div>
-                                <div class="software-bar"><div class="software-fill blue" style="width:90%"></div></div>
+                                <div class="software-bar"><div class="software-fill green" style="width:90%"></div></div>
                             </div>
                             <div class="software-item">
                                 <div class="software-row">
-                                    <span class="software-name" data-zh="AE · After Effects" data-en="AE · After Effects">AE · After Effects</span>
+                                    <span class="software-name" data-zh="PR · Premiere Pro" data-en="PR · Premiere Pro">PR · Premiere Pro</span>
                                     <span class="software-pct">85%</span>
                                 </div>
-                                <div class="software-bar"><div class="software-fill green" style="width:85%"></div></div>
+                                <div class="software-bar"><div class="software-fill blue" style="width:85%"></div></div>
                             </div>
                             <div class="software-item">
                                 <div class="software-row">
@@ -866,12 +882,19 @@
                     </div>
                     <div class="skill-group">
                         <h3 data-zh="核心技能" data-en="Core Skills">核心技能</h3>
-                        <div class="skill-list">
-                            <span class="skill-badge" data-zh="视频设计 <span class='level'>精通</span>" data-en="Video Design <span class='level'>Expert</span>">视频设计 <span class="level">精通</span></span>
-                            <span class="skill-badge" data-zh="AE动效 <span class='level'>熟练</span>" data-en="AE Motion <span class='level'>Advanced</span>">AE动效 <span class="level">熟练</span></span>
-                            <span class="skill-badge" data-zh="创意策划 <span class='level'>精通</span>" data-en="Creative Planning <span class='level'>Expert</span>">创意策划 <span class="level">精通</span></span>
-                            <span class="skill-badge" data-zh="品牌广告 <span class='level'>熟练</span>" data-en="Brand Ads <span class='level'>Advanced</span>">品牌广告 <span class="level">熟练</span></span>
-                            <span class="skill-badge" data-zh="游戏行业 <span class='level'>熟悉</span>" data-en="Gaming <span class='level'>Familiar</span>">游戏行业 <span class="level">熟悉</span></span>
+                        <div class="skill-detail-list">
+                            <div class="skill-detail">
+                                <h4 data-zh="全场景视频制作与技术应用" data-en="Full-Scenario Video Production & Technical Application">全场景视频制作与技术应用</h4>
+                                <p data-zh="精通视频全流程制作，熟练使用PR进行多轨道剪辑与节奏把控，运用AE完成特效包装、动态图形设计与后期合成，具备专业的音效处理与音频适配能力。熟练掌握2D动画制作技术，可独立完成角色动画、产品展示动画等内容创作；同时具备真人视频拍摄经验，能根据项目需求制定拍摄方案，协调场地、演员等资源，实现实拍素材与后期特效的无缝衔接。熟练运用即梦等主流AI工具，可根据客户需求生成高精度产品渲染图、艺术化视觉效果及短视频素材，将AI技术融入脚本构思、分镜设计等环节，大幅提升创作效率与视觉表现力。" data-en="Master the full video production workflow, proficient in multi-track editing and rhythm control with Premiere Pro, using After Effects for VFX packaging, motion graphics design, and post-compositing, with professional sound processing and audio adaptation capabilities. Proficient in 2D animation production, can independently complete character animation, product demonstration animation, and other content creation. Also experienced in live-action video shooting, able to develop shooting plans, coordinate venues and actors, and seamlessly integrate live footage with post-production effects. Proficient in using mainstream AI tools such as Jimeng to generate high-precision product renders, artistic visual effects, and short video materials based on client needs, integrating AI technology into script conception and storyboard design to significantly boost creative efficiency and visual expression.">精通视频全流程制作，熟练使用PR进行多轨道剪辑与节奏把控，运用AE完成特效包装、动态图形设计与后期合成，具备专业的音效处理与音频适配能力。熟练掌握2D动画制作技术，可独立完成角色动画、产品展示动画等内容创作；同时具备真人视频拍摄经验，能根据项目需求制定拍摄方案，协调场地、演员等资源，实现实拍素材与后期特效的无缝衔接。熟练运用即梦等主流AI工具，可根据客户需求生成高精度产品渲染图、艺术化视觉效果及短视频素材，将AI技术融入脚本构思、分镜设计等环节，大幅提升创作效率与视觉表现力。</p>
+                            </div>
+                            <div class="skill-detail">
+                                <h4 data-zh="创意策划与比稿支持" data-en="Creative Planning & Pitch Support">创意策划与比稿支持</h4>
+                                <p data-zh="拥有4年+品牌广告与游戏行业经验，擅长拆解客户brief，快速提炼核心需求并转化为可视化创意方案。在项目比稿阶段，可高效输出包含创意概念、视觉风格参考、Demo演示在内的完整提案，累计参与20+场重要项目比稿，成功中标率超60%。针对不同平台特性（如社交媒体、户外大屏、移动端）优化内容形式，确保创意方案既符合品牌定位，又能引发目标受众共鸣。" data-en="With 4+ years of experience in brand advertising and gaming industry, skilled at deconstructing client briefs, quickly extracting core needs and transforming them into visual creative solutions. During project pitching, can efficiently output complete proposals including creative concepts, visual style references, and demo presentations, having participated in 20+ major project pitches with a win rate exceeding 60%. Optimizing content formats for different platform characteristics (social media, outdoor screens, mobile) to ensure creative solutions align with brand positioning while resonating with target audiences.">拥有4年+品牌广告与游戏行业经验，擅长拆解客户brief，快速提炼核心需求并转化为可视化创意方案。在项目比稿阶段，可高效输出包含创意概念、视觉风格参考、Demo演示在内的完整提案，累计参与20+场重要项目比稿，成功中标率超60%。针对不同平台特性（如社交媒体、户外大屏、移动端）优化内容形式，确保创意方案既符合品牌定位，又能引发目标受众共鸣。</p>
+                            </div>
+                            <div class="skill-detail">
+                                <h4 data-zh="项目管理与团队协作" data-en="Project Management & Team Collaboration">项目管理与团队协作</h4>
+                                <p data-zh="具备出色的跨部门沟通协调能力，可高效对接客户、设计团队、拍摄团队及后期制作环节，合理分配资源并制定详细项目排期，确保所有项目按时按质交付，平均项目交付准时率达95%以上。搭建并维护团队共享素材库，分类整理历史项目素材、行业案例及AI生成资源，提升团队整体工作效率30%以上。同时具备独立解决项目中突发问题的能力，可在复杂需求下快速调整方案，保障项目顺利推进。" data-en="Excellent cross-departmental communication and coordination skills, efficiently interfacing with clients, design teams, shooting teams, and post-production, reasonably allocating resources and developing detailed project schedules, ensuring all projects are delivered on time and with quality, with an average on-time delivery rate of 95%+. Built and maintained a team shared asset library, categorizing historical project materials, industry cases, and AI-generated resources, improving overall team efficiency by 30%+. Also capable of independently solving unexpected problems in projects, quickly adjusting plans under complex requirements to ensure smooth project advancement.">具备出色的跨部门沟通协调能力，可高效对接客户、设计团队、拍摄团队及后期制作环节，合理分配资源并制定详细项目排期，确保所有项目按时按质交付，平均项目交付准时率达95%以上。搭建并维护团队共享素材库，分类整理历史项目素材、行业案例及AI生成资源，提升团队整体工作效率30%以上。同时具备独立解决项目中突发问题的能力，可在复杂需求下快速调整方案，保障项目顺利推进。</p>
+                            </div>
                         </div>
                     </div>
                     <div class="skill-group">
