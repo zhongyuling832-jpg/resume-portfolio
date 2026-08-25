@@ -330,17 +330,13 @@
         }
         .about-photo {
             width:140px; height:180px; border-radius:6px;
-            background:linear-gradient(135deg, var(--blue-soft), var(--rose-soft));
-            display:flex; align-items:center; justify-content:center;
-            font-family:'Caveat',cursive; font-size:1rem; color:var(--ink-faint);
+            overflow:hidden;
             transform:rotate(-3deg);
             box-shadow:0 4px 12px rgba(58,53,45,0.12);
-            padding:6px;
+            border:3px solid var(--paper);
         }
-        .about-photo-inner {
-            width:100%; height:100%; border-radius:4px;
-            display:flex; align-items:center; justify-content:center;
-            background:var(--paper);
+        .about-photo img {
+            width:100%; height:100%; object-fit:cover;
         }
 
         .about-info { display:grid; gap:10px; position:relative; z-index:1; }
@@ -409,88 +405,60 @@
             font-family:'Caveat',cursive; font-size:1rem; color:var(--ink-faint);
             margin-bottom:20px;
         }
-        .portfolio-category { margin-bottom:32px; }
+        .portfolio-category { margin-bottom:28px; }
         .portfolio-cat-title {
-            font-family:'Caveat',cursive; font-size:1.3rem; font-weight:700;
-            color:var(--ink); margin-bottom:16px; display:flex; align-items:center; gap:8px;
+            font-family:'Plus Jakarta Sans',sans-serif; font-size:1.1rem; font-weight:700;
+            color:var(--ink); margin-bottom:14px; display:flex; align-items:center; gap:8px;
+            padding-bottom:6px; border-bottom:2px solid var(--cream);
         }
-        .portfolio-cat-title::before { content:'▸'; font-size:0.9rem; color:var(--rose); }
-        .portfolio-cat-title.ad { color:var(--blue); }
-        .portfolio-cat-title.ad::before { color:var(--blue); }
-        .portfolio-cat-title.game { color:var(--green); }
-        .portfolio-cat-title.game::before { color:var(--green); }
-        .portfolio-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-        .portfolio-card {
-            border-radius:12px; overflow:hidden; transition:all 0.2s;
+        .portfolio-cat-title::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--rose); }
+        .portfolio-cat-title.cat-blue::before { background:var(--blue); }
+        .portfolio-cat-title.cat-green::before { background:var(--green); }
+        .portfolio-cat-title.cat-rose::before { background:var(--rose); }
+        .portfolio-cat-title.cat-lavender::before { background:var(--lavender); }
+        .portfolio-cat-title.cat-orange::before { background:var(--orange); }
+        .portfolio-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+        .work-card {
+            border-radius:12px; padding:20px; transition:all 0.2s;
             position:relative;
             box-shadow:0 4px 14px rgba(58,53,45,0.08);
         }
-        .portfolio-card:nth-child(odd) { transform:rotate(-0.5deg); }
-        .portfolio-card:nth-child(even) { transform:rotate(0.5deg); }
-        .portfolio-card:hover { box-shadow:0 8px 24px rgba(58,53,45,0.12); transform:rotate(0) translateY(-3px); }
-        .portfolio-card .tape { top:-6px; left:20px; }
-
-        .video-area {
-            position:relative; width:100%; padding-top:56.25%;
-            background:var(--cream); overflow:hidden;
-        }
-        .video-area iframe, .video-area video {
-            position:absolute; top:0; left:0; width:100%; height:100%; border:none;
-        }
-        .video-cover {
-            position:absolute; inset:0; display:flex; flex-direction:column;
-            align-items:center; justify-content:center; cursor:pointer; gap:14px;
-            transition:all 0.2s;
-        }
-        .video-cover:hover { background:rgba(233,196,106,0.08); }
-        .video-cover-title {
-            font-family:'Caveat',cursive; font-size:1.15rem; font-weight:700;
-            color:var(--ink); text-align:center; padding:0 16px; line-height:1.4;
-        }
-        .play-icon {
-            width:48px; height:48px; border-radius:50%;
-            display:flex; align-items:center; justify-content:center;
-            background:var(--yellow);
-            box-shadow:0 2px 8px rgba(58,53,45,0.12);
-            transition:all 0.2s;
-        }
-        .video-cover:hover .play-icon { background:var(--orange); transform:scale(1.08); }
-        .play-icon svg { width:18px; height:18px; fill:var(--ink); margin-left:3px; }
-        .cover-hint {
-            font-family:'Caveat',cursive; font-size:0.9rem; color:var(--ink-faint);
-        }
-        .bili-link {
-            position:absolute; top:10px; left:10px; z-index:5;
-            font-family:'Plus Jakarta Sans',sans-serif; font-size:0.7rem; font-weight:600;
-            color:var(--paper); background:rgba(58,53,45,0.7);
-            padding:3px 10px; border-radius:100px; text-decoration:none;
-            transition:all 0.2s; display:flex; align-items:center; gap:4px;
-        }
-        .bili-link:hover { background:var(--rose); }
-        .video-placeholder {
-            position:absolute; inset:0; display:flex; flex-direction:column;
-            align-items:center; justify-content:center; cursor:pointer; gap:12px;
-        }
-        .video-placeholder:hover { background:rgba(233,196,106,0.06); }
-        .placeholder-text {
-            font-family:'Caveat',cursive; font-size:1rem; color:var(--ink-faint);
-        }
-        .portfolio-meta { padding:14px 18px; position:relative; }
-        .portfolio-meta h4 {
-            font-family:'Plus Jakarta Sans',sans-serif; font-size:0.95rem; font-weight:600;
-            margin-bottom:4px; color:var(--ink);
-        }
-        .portfolio-meta p { font-size:0.8rem; color:var(--ink-faint); }
-        .portfolio-tag {
-            display:inline-block; font-family:'Caveat',cursive;
-            font-size:0.95rem; color:var(--rose); margin-top:6px; font-weight:700;
-        }
-        .card-num {
-            position:absolute; top:10px; right:10px; z-index:5;
+        .work-card:nth-child(odd) { transform:rotate(-0.3deg); }
+        .work-card:nth-child(even) { transform:rotate(0.3deg); }
+        .work-card:hover { box-shadow:0 8px 24px rgba(58,53,45,0.12); transform:rotate(0) translateY(-3px); }
+        .work-card .tape { top:-6px; left:20px; }
+        .work-num {
+            position:absolute; top:12px; right:12px; z-index:5;
             font-family:'Fredoka One',sans-serif; font-size:0.72rem;
             background:var(--ink); color:var(--paper);
             padding:2px 8px; border-radius:6px;
             box-shadow:0 2px 4px rgba(58,53,45,0.15);
+        }
+        .work-title {
+            font-family:'Plus Jakarta Sans',sans-serif; font-size:1rem; font-weight:700;
+            color:var(--ink); margin-bottom:6px; padding-right:36px; line-height:1.3;
+        }
+        .work-desc {
+            font-size:0.85rem; color:var(--ink-faint); margin-bottom:10px; line-height:1.5;
+        }
+        .work-tag {
+            display:inline-block; font-family:'Caveat',cursive;
+            font-size:0.95rem; color:var(--rose); margin-bottom:12px; font-weight:700;
+        }
+        .work-link {
+            display:inline-flex; align-items:center; gap:6px;
+            font-family:'Plus Jakarta Sans',sans-serif; font-size:0.82rem; font-weight:600;
+            color:var(--paper); background:var(--ink);
+            padding:7px 16px; border-radius:100px; text-decoration:none;
+            transition:all 0.2s;
+        }
+        .work-link:hover { background:var(--rose); transform:translateX(3px); }
+        .work-link svg { width:12px; height:12px; fill:currentColor; }
+        .work-empty {
+            grid-column:1/-1; padding:28px 20px; text-align:center;
+            font-family:'Caveat',cursive; font-size:1.1rem; color:var(--ink-faint);
+            background:var(--paper); border-radius:12px;
+            box-shadow:0 2px 8px rgba(58,53,45,0.06);
         }
 
         /* ===== CONTACT — grid paper section ===== */
@@ -685,7 +653,7 @@
                 <div class="about-photo-wrap">
                     <div class="about-photo-clip"></div>
                     <div class="about-photo">
-                        <div class="about-photo-inner" data-zh="照片" data-en="photo">照片</div>
+                        <img src="photo.jpg" alt="钟毓灵" loading="lazy">
                     </div>
                 </div>
                 <div>
@@ -756,15 +724,8 @@
                 <span class="section-title" data-zh="作品集" data-en="Portfolio">作品集</span>
                 <span class="portfolio-zuo" data-zh="精选作品 ✱" data-en="Selected Works ✱">精选作品 ✱</span>
             </div>
-            <p class="portfolio-hint" data-zh="点击视频卡片即可在线播放" data-en="Click video card to play online">点击视频卡片即可在线播放</p>
-            <div class="portfolio-category">
-                <h3 class="portfolio-cat-title ad" data-zh="广告作品" data-en="Advertising Works">广告作品</h3>
-                <div class="portfolio-grid" id="adGrid"></div>
-            </div>
-            <div class="portfolio-category">
-                <h3 class="portfolio-cat-title game" data-zh="游戏作品" data-en="Gaming Works">游戏作品</h3>
-                <div class="portfolio-grid" id="gameGrid"></div>
-            </div>
+            <p class="portfolio-hint" data-zh="点击链接可在B站观看完整作品" data-en="Click links to watch full videos on Bilibili">点击链接可在B站观看完整作品</p>
+            <div id="portfolioContent"></div>
         </section>
 
         <!-- ===== CONTACT ===== -->
@@ -811,123 +772,94 @@
         <p class="footer-sig" data-zh="— by 钟毓灵 —" data-en="— by Zhong Yuling —">— by 钟毓灵 —</p>
     </footer>
 
-    <!-- ===== MODAL ===== -->
-    <div class="modal-overlay" id="videoModal">
-        <div class="modal paper">
-            <div class="tape"></div>
-            <h3 data-zh="添加视频作品" data-en="Add Video Work">添加视频作品</h3>
-            <div class="field">
-                <label data-zh="作品标题" data-en="Title">作品标题</label>
-                <input type="text" id="videoTitle">
-            </div>
-            <div class="field">
-                <label data-zh="视频链接" data-en="Video URL">视频链接</label>
-                <input type="text" id="videoUrl">
-            </div>
-            <div class="field">
-                <label data-zh="作品描述（选填）" data-en="Description (optional)">作品描述（选填）</label>
-                <textarea id="videoDesc"></textarea>
-            </div>
-            <div class="field">
-                <label data-zh="分类标签（选填）" data-en="Tag (optional)">分类标签（选填）</label>
-                <input type="text" id="videoTag">
-            </div>
-            <div class="modal-actions">
-                <button class="btn" onclick="closeModal()" data-zh="取消" data-en="Cancel">取消</button>
-                <button class="btn primary" onclick="saveVideo()" data-zh="确认添加" data-en="Add">确认添加</button>
-            </div>
-        </div>
-    </div>
-
     <script>
         const ph = {
-            zh: { title:'例：品牌广告宣传片', url:'B站 / YouTube / 视频文件链接', desc:'简要描述作品...', tag:'例：品牌广告 / AI视频 / 动效设计',
-                  add:'确认添加', cancel:'取消', err:'请输入视频链接', work:'精彩视频作品', workN:'作品', addVideo:'点击添加视频',
-                  clickPlay:'点击播放', watchOnBili:'在B站观看', noGame:'游戏作品即将上线，敬请期待' },
-            en: { title:'e.g. Brand Promo Video', url:'Bilibili / YouTube / video file link', desc:'Briefly describe the work...', tag:'e.g. Brand Ad / AI Video / Motion Design',
-                  add:'Add', cancel:'Cancel', err:'Please enter a video URL', work:'Featured video work', workN:'Work', addVideo:'Click to add video',
-                  clickPlay:'Click to Play', watchOnBili:'Watch on Bilibili', noGame:'Gaming works coming soon' }
+            zh: { watchOnBili:'在B站观看', noItems:'更多作品即将上线，敬请期待 ✱' },
+            en: { watchOnBili:'Watch on Bilibili', noItems:'More works coming soon ✱' }
         };
 
-        const adItems = [
-            { t_zh:'ua-不等谁邀请跑团video', t_en:'UA - Run Club Video', d_zh:'ua上马活动', d_en:'UA Shanghai Marathon Campaign', tag:'品牌广告 / 动效设计', bvid:'BV18f8e6dEpS' },
-            { t_zh:'burberry case video', t_en:'Burberry Case Video', d_zh:'burberry报奖视频', d_en:'Burberry Award Submission Video', tag:'品牌广告 / 动效设计', bvid:'BV1Sf8e6REjh' },
-            { t_zh:'hoka成都广州实景大屏', t_en:'HOKA Chengdu & Guangzhou Screen', d_zh:'hoka-fly human fly户外多媒体投放视频', d_en:'HOKA Fly Human Fly Outdoor Media Campaign', tag:'品牌广告', bvid:'BV1UohP6zENG' },
-            { t_zh:'飞利浦信息流-麦麦', t_en:'Philips Feed Ad - MaiMai', d_zh:'信息流广告', d_en:'Feed Stream Advertisement', tag:'品牌广告', bvid:'BV1TohP6zEmk' },
-            { t_zh:'福莱恩-线条小狗case video', t_en:'Flanne - Line Puppy Case Video', d_zh:'福莱恩报奖视频', d_en:'Flanne Award Submission Video', tag:'品牌广告 / 动效设计', bvid:'BV1UdhP6uE8T' }
+        const portfolioCats = [
+            {
+                cat_zh:'品牌广告', cat_en:'Brand Advertising', color:'cat-blue',
+                items:[
+                    { t_zh:'ua-不等谁邀请跑团video', t_en:'UA - Run Club Video', d_zh:'ua上马活动', d_en:'UA Shanghai Marathon Campaign', tag:'品牌广告 / 动效设计', bvid:'BV18f8e6dEpS' }
+                ]
+            },
+            {
+                cat_zh:'Case Video', cat_en:'Case Video', color:'cat-rose',
+                items:[
+                    { t_zh:'burberry case video', t_en:'Burberry Case Video', d_zh:'burberry报奖视频', d_en:'Burberry Award Submission Video', tag:'品牌广告 / 动效设计', bvid:'BV1Sf8e6REjh' },
+                    { t_zh:'福莱恩-线条小狗case video', t_en:'Flanne - Line Puppy Case Video', d_zh:'福莱恩报奖视频', d_en:'Flanne Award Submission Video', tag:'品牌广告 / 动效设计', bvid:'BV1UdhP6uE8T' }
+                ]
+            },
+            {
+                cat_zh:'户外大屏', cat_en:'Outdoor Screen', color:'cat-green',
+                items:[
+                    { t_zh:'hoka成都广州实景大屏', t_en:'HOKA Chengdu & Guangzhou Screen', d_zh:'hoka-fly human fly户外多媒体投放视频', d_en:'HOKA Fly Human Fly Outdoor Media Campaign', tag:'品牌广告', bvid:'BV1UohP6zENG' }
+                ]
+            },
+            {
+                cat_zh:'信息流', cat_en:'Feed Ads', color:'cat-lavender',
+                items:[
+                    { t_zh:'飞利浦信息流-麦麦', t_en:'Philips Feed Ad - MaiMai', d_zh:'信息流广告', d_en:'Feed Stream Advertisement', tag:'品牌广告', bvid:'BV1TohP6zEmk' }
+                ]
+            },
+            {
+                cat_zh:'游戏作品', cat_en:'Gaming Works', color:'cat-orange',
+                items:[]
+            }
         ];
 
-        const gameItems = [];
-
         let currentLang = 'zh';
-
-        function getBiliEmbed(bvid) {
-            return `https://player.bilibili.com/player.html?bvid=${bvid}&high_quality=1&autoplay=1&muted=0`;
-        }
 
         function getBiliLink(bvid) {
             return `https://www.bilibili.com/video/${bvid}/`;
         }
 
-        function loadVideo(gridId, index, bvid) {
-            const card = document.querySelector(`#${gridId} [data-index="${index}"]`);
-            if (!card) return;
-            const area = card.querySelector('.video-area');
-            if (area.querySelector('iframe')) return;
-            area.innerHTML = `<iframe src="${getBiliEmbed(bvid)}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" referrerpolicy="no-referrer"></iframe>`;
-        }
-
-        function renderGrid(gridId, items, lang) {
-            const grid = document.getElementById(gridId);
-            if (!grid) return;
-            grid.innerHTML = '';
-
-            if (items.length === 0 && gridId === 'gameGrid') {
-                const pText = ph[lang].noGame;
-                grid.innerHTML = `<div style="grid-column:1/-1;padding:32px 20px;text-align:center;font-family:'Caveat',cursive;font-size:1.1rem;color:var(--ink-faint);background:var(--paper);border-radius:12px;box-shadow:0 2px 8px rgba(58,53,45,0.06);">${pText} ✱</div>`;
-                return;
-            }
-
-            const clickPlay = ph[lang].clickPlay;
-            const watchOnBili = ph[lang].watchOnBili;
-
-            items.forEach((item, index) => {
-                const card = document.createElement('div');
-                card.className = 'portfolio-card paper';
-                card.setAttribute('data-index', index);
-
-                const title = lang === 'zh' ? item.t_zh : item.t_en;
-                const desc = lang === 'zh' ? item.d_zh : item.d_en;
-                const num = String(index + 1).padStart(2, '0');
-                const tapeColors = ['var(--yellow)','var(--green)','var(--rose)','var(--lavender)'];
-                const tapeColor = tapeColors[index % 4];
-
-                const biliUrl = item.bvid ? getBiliLink(item.bvid) : '#';
-                const videoArea = item.bvid
-                    ? `<div class="video-area">
-                         <a class="bili-link" href="${biliUrl}" target="_blank" rel="noopener">▶ ${watchOnBili}</a>
-                         <div class="video-cover" onclick="loadVideo('${gridId}', ${index}, '${item.bvid}')">
-                           <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                           <span class="video-cover-title">${title}</span>
-                           <span class="cover-hint">${clickPlay}</span>
-                         </div>
-                       </div>`
-                    : `<div class="video-area">
-                         <div class="video-placeholder">
-                           <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                           <span class="placeholder-text">${ph[lang].addVideo}</span>
-                         </div>
-                       </div>`;
-
-                card.innerHTML = `${videoArea}<div class="tape" style="background:${tapeColor};"></div><span class="card-num">${num}</span><div class="portfolio-meta"><h4>${title}</h4><p>${desc}</p>${item.tag ? `<span class="portfolio-tag">${item.tag}</span>` : ''}</div>`;
-                grid.appendChild(card);
-            });
-        }
-
         function renderPortfolio(lang) {
             currentLang = lang || 'zh';
-            renderGrid('adGrid', adItems, currentLang);
-            renderGrid('gameGrid', gameItems, currentLang);
+            const container = document.getElementById('portfolioContent');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const watchText = ph[currentLang].watchOnBili;
+            const emptyText = ph[currentLang].noItems;
+
+            portfolioCats.forEach((cat) => {
+                const catTitle = currentLang === 'zh' ? cat.cat_zh : cat.cat_en;
+                const catDiv = document.createElement('div');
+                catDiv.className = 'portfolio-category';
+
+                let gridHTML = '';
+                if (cat.items.length === 0) {
+                    gridHTML = `<div class="portfolio-grid"><div class="work-empty">${emptyText}</div></div>`;
+                } else {
+                    gridHTML = '<div class="portfolio-grid">';
+                    cat.items.forEach((item, index) => {
+                        const title = currentLang === 'zh' ? item.t_zh : item.t_en;
+                        const desc = currentLang === 'zh' ? item.d_zh : item.d_en;
+                        const num = String(index + 1).padStart(2, '0');
+                        const tapeColors = ['var(--yellow)','var(--green)','var(--rose)','var(--lavender)'];
+                        const tapeColor = tapeColors[index % 4];
+                        const link = getBiliLink(item.bvid);
+                        gridHTML += `<div class="work-card paper">
+                            <div class="tape" style="background:${tapeColor};"></div>
+                            <span class="work-num">${num}</span>
+                            <h4 class="work-title">${title}</h4>
+                            <p class="work-desc">${desc}</p>
+                            ${item.tag ? `<span class="work-tag">${item.tag}</span>` : ''}
+                            <a class="work-link" href="${link}" target="_blank" rel="noopener">
+                                ▶ ${watchText}
+                                <svg viewBox="0 0 24 24"><path d="M14 5l7 7-7 7M5 12h16"/></svg>
+                            </a>
+                        </div>`;
+                    });
+                    gridHTML += '</div>';
+                }
+
+                catDiv.innerHTML = `<h3 class="portfolio-cat-title ${cat.color}">${catTitle}</h3>${gridHTML}`;
+                container.appendChild(catDiv);
+            });
         }
 
         function setLang(lang, e) {
@@ -945,10 +877,6 @@
             });
             renderPortfolio(lang);
         }
-
-        document.getElementById('videoModal').addEventListener('click', function(e) { if(e.target===this) closeModal(); });
-
-        function closeModal() { document.getElementById('videoModal').classList.remove('active'); }
 
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section[id]');
