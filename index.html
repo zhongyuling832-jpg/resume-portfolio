@@ -177,7 +177,7 @@
         }
         .intro-zuo {
             font-family:'Fredoka One',sans-serif; font-size:clamp(1.8rem,5vw,2.8rem);
-            color:var(--rose); line-height:1; letter-spacing:0.02em;
+            color:var(--blue); line-height:1; letter-spacing:0.02em;
             text-shadow:2px 2px 0 rgba(58,53,45,0.1);
         }
 
@@ -491,7 +491,22 @@
         .lang-name { font-size:0.85rem; font-weight:700; color:var(--ink); margin-bottom:4px; }
         .lang-level { font-family:'Caveat',cursive; font-size:0.9rem; color:var(--rose); font-weight:700; }
 
-        /* ===== SKILL DETAIL BLOCKS ===== */
+        /* ===== SOFTWARE ICONS ===== */
+        .software-icons {
+            display:flex; flex-wrap:wrap; gap:14px; position:relative; z-index:1;
+        }
+        .software-icon-item {
+            display:flex; flex-direction:column; align-items:center; gap:6px;
+        }
+        .software-icon-item img {
+            width:52px; height:52px; border-radius:12px;
+            transition:transform 0.2s;
+        }
+        .software-icon-item:hover img { transform:scale(1.1); }
+        .software-icon-item span {
+            font-size:0.68rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:600;
+            color:var(--ink-faint);
+        }
         .skill-detail-list { display:grid; gap:16px; position:relative; z-index:1; }
         .skill-detail {
             padding:16px 18px; border-radius:10px; background:var(--cream);
@@ -793,11 +808,11 @@
                         <span class="label" data-zh="城市" data-en="City">城市</span>
                         <span class="value" data-zh="上海" data-en="Shanghai">上海</span>
                         <span class="label" data-zh="经验" data-en="Experience">经验</span>
-                        <span class="value" data-zh="3年以上" data-en="3+ Years">3年以上</span>
+                        <span class="value" data-zh="5年以上" data-en="5+ Years">5年以上</span>
                         <span class="label" data-zh="行业" data-en="Industry">行业</span>
                         <span class="value" data-zh="品牌广告 / 游戏" data-en="Brand Ads / Gaming">品牌广告 / 游戏</span>
                     </div>
-                    <p class="intro-tagline" data-zh="深耕品牌广告与游戏行业，曾服务 HOKA、Michelin、Levi's、Vans 等国际品牌。擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。" data-en="Specializing in brand advertising and gaming, served international brands including HOKA, Michelin, Levi's, and Vans. Skilled in end-to-end production from creative planning to final delivery, with AIGC integrated throughout.">深耕品牌广告与游戏行业，曾服务 HOKA、Michelin、Levi's、Vans 等国际品牌。擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。</p>
+                    <p class="intro-tagline" data-zh="5年以上品牌广告与游戏行业经验，曾服务 HOKA、Michelin、Levi's、Vans 等国际品牌。擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。" data-en="With 5+ years in brand advertising and gaming, served international brands including HOKA, Michelin, Levi's, and Vans. Skilled in end-to-end production from creative planning to final delivery, with AIGC integrated throughout.">5年以上品牌广告与游戏行业经验，曾服务 HOKA、Michelin、Levi's、Vans 等国际品牌。擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。</p>
                     <div class="intro-skills">
                         <span class="intro-skill" data-zh="视频设计" data-en="Video Design">视频设计</span>
                         <span class="intro-skill" data-zh="AE动效" data-en="AE Motion">AE动效</span>
@@ -823,7 +838,7 @@
         <!-- ===== EDUCATION ===== -->
         <section id="education">
             <div class="section-head">
-                <span class="section-num green" data-zh="02" data-en="02">02</span>
+                <span class="section-num green" data-zh="01" data-en="01">01</span>
                 <span class="section-title" data-zh="教育经历" data-en="Education">教育经历</span>
             </div>
             <div class="timeline-card paper">
@@ -854,7 +869,7 @@
         <!-- ===== EXPERIENCE ===== -->
         <section id="experience">
             <div class="section-head">
-                <span class="section-num orange" data-zh="03" data-en="03">03</span>
+                <span class="section-num orange" data-zh="02" data-en="02">02</span>
                 <span class="section-title" data-zh="工作经历" data-en="Experience">工作经历</span>
             </div>
             <div class="timeline-card paper">
@@ -900,42 +915,34 @@
         <!-- ===== SKILLS ===== -->
         <section id="skills">
             <div class="section-head">
-                <span class="section-num blue" data-zh="04" data-en="04">04</span>
+                <span class="section-num blue" data-zh="03" data-en="03">03</span>
                 <span class="section-title" data-zh="技能与工具" data-en="Skills & Tools">技能与工具</span>
             </div>
             <div class="skills-card paper">
                 <div class="tape"></div>
                 <div class="skills-wrap">
                     <div class="skill-group">
-                        <h3 data-zh="软件熟练度" data-en="Software Proficiency">软件熟练度</h3>
-                        <div class="software-grid">
-                            <div class="software-item">
-                                <div class="software-row">
-                                    <span class="software-name" data-zh="AE · After Effects" data-en="AE · After Effects">AE · After Effects</span>
-                                    <span class="software-pct">90%</span>
-                                </div>
-                                <div class="software-bar"><div class="software-fill green" style="width:90%"></div></div>
+                        <h3 data-zh="软件工具" data-en="Software Tools">软件工具</h3>
+                        <div class="software-icons">
+                            <div class="software-icon-item">
+                                <img src="icons/ae.png" alt="After Effects">
+                                <span>AE</span>
                             </div>
-                            <div class="software-item">
-                                <div class="software-row">
-                                    <span class="software-name" data-zh="PR · Premiere Pro" data-en="PR · Premiere Pro">PR · Premiere Pro</span>
-                                    <span class="software-pct">85%</span>
-                                </div>
-                                <div class="software-bar"><div class="software-fill blue" style="width:85%"></div></div>
+                            <div class="software-icon-item">
+                                <img src="icons/pr.png" alt="Premiere Pro">
+                                <span>PR</span>
                             </div>
-                            <div class="software-item">
-                                <div class="software-row">
-                                    <span class="software-name" data-zh="PS · Photoshop" data-en="PS · Photoshop">PS · Photoshop</span>
-                                    <span class="software-pct">80%</span>
-                                </div>
-                                <div class="software-bar"><div class="software-fill orange" style="width:80%"></div></div>
+                            <div class="software-icon-item">
+                                <img src="icons/ps.png" alt="Photoshop">
+                                <span>PS</span>
                             </div>
-                            <div class="software-item">
-                                <div class="software-row">
-                                    <span class="software-name" data-zh="AI · Illustrator" data-en="AI · Illustrator">AI · Illustrator</span>
-                                    <span class="software-pct">75%</span>
-                                </div>
-                                <div class="software-bar"><div class="software-fill blue" style="width:75%"></div></div>
+                            <div class="software-icon-item">
+                                <img src="icons/capcut.png" alt="CapCut">
+                                <span data-zh="剪映" data-en="CapCut">剪映</span>
+                            </div>
+                            <div class="software-icon-item">
+                                <img src="icons/jimeng.png" alt="即梦">
+                                <span data-zh="即梦" data-en="Jimeng">即梦</span>
                             </div>
                         </div>
                     </div>
@@ -948,7 +955,7 @@
                             </div>
                             <div class="skill-detail">
                                 <h4 data-zh="创意策划与比稿支持" data-en="Creative Planning & Pitch Support">创意策划与比稿支持</h4>
-                                <p data-zh="拥有4年+品牌广告与游戏行业经验，擅长拆解客户brief，快速提炼核心需求并转化为可视化创意方案。在项目比稿阶段，可高效输出包含创意概念、视觉风格参考、Demo演示在内的完整提案，累计参与20+场重要项目比稿，成功中标率超60%。针对不同平台特性（如社交媒体、户外大屏、移动端）优化内容形式，确保创意方案既符合品牌定位，又能引发目标受众共鸣。" data-en="With 4+ years of experience in brand advertising and gaming industry, skilled at deconstructing client briefs, quickly extracting core needs and transforming them into visual creative solutions. During project pitching, can efficiently output complete proposals including creative concepts, visual style references, and demo presentations, having participated in 20+ major project pitches with a win rate exceeding 60%. Optimizing content formats for different platform characteristics (social media, outdoor screens, mobile) to ensure creative solutions align with brand positioning while resonating with target audiences.">拥有4年+品牌广告与游戏行业经验，擅长拆解客户brief，快速提炼核心需求并转化为可视化创意方案。在项目比稿阶段，可高效输出包含创意概念、视觉风格参考、Demo演示在内的完整提案，累计参与20+场重要项目比稿，成功中标率超60%。针对不同平台特性（如社交媒体、户外大屏、移动端）优化内容形式，确保创意方案既符合品牌定位，又能引发目标受众共鸣。</p>
+                                <p data-zh="拥有5年+品牌广告与游戏行业经验，擅长拆解客户brief，快速提炼核心需求并转化为可视化创意方案。在项目比稿阶段，可高效输出包含创意概念、视觉风格参考、Demo演示在内的完整提案，累计参与20+场重要项目比稿，成功中标率超60%。针对不同平台特性（如社交媒体、户外大屏、移动端）优化内容形式，确保创意方案既符合品牌定位，又能引发目标受众共鸣。" data-en="With 5+ years of experience in brand advertising and gaming industry, skilled at deconstructing client briefs, quickly extracting core needs and transforming them into visual creative solutions. During project pitching, can efficiently output complete proposals including creative concepts, visual style references, and demo presentations, having participated in 20+ major project pitches with a win rate exceeding 60%. Optimizing content formats for different platform characteristics (social media, outdoor screens, mobile) to ensure creative solutions align with brand positioning while resonating with target audiences.">拥有5年+品牌广告与游戏行业经验，擅长拆解客户brief，快速提炼核心需求并转化为可视化创意方案。在项目比稿阶段，可高效输出包含创意概念、视觉风格参考、Demo演示在内的完整提案，累计参与20+场重要项目比稿，成功中标率超60%。针对不同平台特性（如社交媒体、户外大屏、移动端）优化内容形式，确保创意方案既符合品牌定位，又能引发目标受众共鸣。</p>
                             </div>
                             <div class="skill-detail">
                                 <h4 data-zh="项目管理与团队协作" data-en="Project Management & Team Collaboration">项目管理与团队协作</h4>
@@ -963,6 +970,9 @@
                             <span class="skill-badge" data-zh="AI生图 <span class='level'>熟练</span>" data-en="AI Image <span class='level'>Advanced</span>">AI生图 <span class="level">熟练</span></span>
                             <span class="skill-badge" data-zh="即梦AI <span class='level'>熟练</span>" data-en="Jimeng AI <span class='level'>Advanced</span>">即梦AI <span class="level">熟练</span></span>
                             <span class="skill-badge" data-zh="Suno音乐 <span class='level'>熟练</span>" data-en="Suno Music <span class='level'>Advanced</span>">Suno音乐 <span class="level">熟练</span></span>
+                            <span class="skill-badge" data-zh="Runway <span class='level'>熟练</span>" data-en="Runway <span class='level'>Advanced</span>">Runway <span class="level">熟练</span></span>
+                            <span class="skill-badge" data-zh="Tapnow <span class='level'>熟练</span>" data-en="Tapnow <span class='level'>Advanced</span>">Tapnow <span class="level">熟练</span></span>
+                            <span class="skill-badge" data-zh="Tripo <span class='level'>熟练</span>" data-en="Tripo <span class='level'>Advanced</span>">Tripo <span class="level">熟练</span></span>
                             <span class="skill-badge" data-zh="AIGC工作流 <span class='level'>熟练</span>" data-en="AIGC Workflow <span class='level'>Advanced</span>">AIGC工作流 <span class="level">熟练</span></span>
                         </div>
                     </div>
@@ -995,7 +1005,7 @@
         <!-- ===== PORTFOLIO ===== -->
         <section id="portfolio">
             <div class="portfolio-head-wrap">
-                <span class="section-num rose" data-zh="05" data-en="05">05</span>
+                <span class="section-num rose" data-zh="04" data-en="04">04</span>
                 <span class="section-title" data-zh="作品集" data-en="Portfolio">作品集</span>
                 <span class="portfolio-zuo" data-zh="精选作品 ✱" data-en="Selected Works ✱">精选作品 ✱</span>
             </div>
@@ -1006,7 +1016,7 @@
         <!-- ===== CONTACT ===== -->
         <section id="contact">
             <div class="section-head">
-                <span class="section-num blue" data-zh="06" data-en="06">06</span>
+                <span class="section-num blue" data-zh="05" data-en="05">05</span>
                 <span class="section-title" data-zh="联系我" data-en="Contact Me">联系我</span>
             </div>
             <div class="contact-card paper">
