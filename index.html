@@ -149,72 +149,145 @@
         .lang-btn.active { color:var(--paper); background:var(--rose); }
         .lang-btn:not(.active):hover { color:var(--ink); }
 
-        /* ===== HERO ===== */
-        .hero { padding:120px 0 60px; text-align:center; position:relative; }
+        /* ===== INTRO (merged hero + about) ===== */
+        .intro {
+            padding:110px 0 52px; position:relative; overflow:hidden;
+        }
+        .intro::before {
+            content:''; position:absolute; inset:0; pointer-events:none;
+            background-image:linear-gradient(rgba(224,122,154,0.04) 1px, transparent 1px);
+            background-size:100% 26px;
+        }
+        .intro-grid {
+            display:grid; grid-template-columns:1fr 200px; gap:36px; align-items:start;
+            position:relative; z-index:1;
+        }
 
-        .hero-portfolio {
+        /* Title row */
+        .intro-title-row {
+            display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+            margin-bottom:6px;
+        }
+        .intro-portfolio {
             font-family:'Fredoka One',sans-serif;
-            font-size:clamp(2.8rem,10vw,5.5rem);
+            font-size:clamp(2.2rem,7vw,3.8rem);
             line-height:1; letter-spacing:-0.02em;
-            margin-bottom:4px;
-            display:flex; justify-content:center; gap:0.01em;
-            flex-wrap:wrap;
+            color:var(--blue);
+            text-shadow:3px 3px 0 rgba(58,53,45,0.12);
         }
-        .hero-portfolio span {
-            display:inline-block;
-            text-shadow:2px 2px 0 rgba(58,53,45,0.15);
-        }
-        .hero-portfolio span { color:var(--blue); }
-
-        /* "作品集" label — handwritten, next to PORTFOLIO */
-        .hero-zuo {
-            font-family:'Fredoka One',sans-serif; font-size:3.5rem; font-weight:400;
-            color:var(--rose); display:inline-block; margin-bottom:16px;
-            letter-spacing:0.02em;
+        .intro-zuo {
+            font-family:'Fredoka One',sans-serif; font-size:clamp(1.8rem,5vw,2.8rem);
+            color:var(--rose); line-height:1; letter-spacing:0.02em;
+            text-shadow:2px 2px 0 rgba(58,53,45,0.1);
         }
 
-        .hero-year {
-            font-family:'Fredoka One',sans-serif;
-            font-size:clamp(1.3rem,4vw,2rem);
-            color:var(--lavender); line-height:1; margin-bottom:28px;
-            text-shadow:1px 1px 0 rgba(58,53,45,0.1);
+        /* Year burst badge */
+        .intro-year-burst {
+            display:inline-block; position:relative;
+            background:var(--ink); color:var(--paper);
+            font-family:'Fredoka One',sans-serif; font-size:0.9rem;
+            padding:8px 16px; margin-bottom:20px;
+            clip-path:polygon(8% 0,92% 0,100% 50%,92% 100%,8% 100%,0 50%);
+            transform:rotate(-6deg);
+            box-shadow:0 2px 8px rgba(58,53,45,0.15);
         }
 
-        /* Name — NO frame, handwritten large */
-        .hero-name {
+        /* Name */
+        .intro-name {
             font-family:'Caveat',cursive;
-            font-size:clamp(2.5rem,7vw,3.5rem);
+            font-size:clamp(2.2rem,6vw,3rem);
             font-weight:700; line-height:1.1;
-            color:var(--ink); margin-bottom:8px;
+            color:var(--ink); margin-bottom:4px;
         }
-        .hero-name .accent { color:var(--ink); }
-
-        .hero-name-en {
-            font-family:'Caveat',cursive; font-size:1.1rem;
-            color:var(--ink-faint); letter-spacing:0.1em;
-            margin-bottom:24px;
-        }
-
-        .hero-tagline {
-            font-size:1rem; color:var(--ink-soft); line-height:1.9;
-            max-width:460px; margin:0 auto 24px;
+        .intro-name-en {
+            font-family:'Plus Jakarta Sans',sans-serif; font-size:0.85rem;
+            font-weight:600; color:var(--ink-faint);
+            letter-spacing:0.15em; text-transform:uppercase;
+            margin-bottom:18px;
         }
 
-        .hero-tags { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; }
-        .hero-tag {
-            font-size:0.82rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:600;
-            padding:6px 16px; border-radius:100px;
-            box-shadow:0 2px 6px rgba(58,53,45,0.1);
+        /* Info grid */
+        .intro-info {
+            display:grid; grid-template-columns:repeat(2,auto); gap:8px 20px;
+            margin-bottom:16px; position:relative; z-index:1;
+        }
+        .intro-info .label {
+            font-size:0.68rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700;
+            letter-spacing:0.05em; color:var(--ink-faint);
+        }
+        .intro-info .value {
+            font-size:0.82rem; color:var(--ink-soft);
+        }
+
+        /* Tagline */
+        .intro-tagline {
+            font-size:0.9rem; color:var(--ink-soft); line-height:1.85;
+            margin-bottom:18px;
+        }
+
+        /* Skill tape labels */
+        .intro-skills {
+            display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;
+        }
+        .intro-skill {
+            font-size:0.72rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700;
+            padding:4px 12px; border-radius:3px;
+            color:var(--paper); box-shadow:0 2px 5px rgba(58,53,45,0.1);
+            transform:rotate(-1deg);
             transition:transform 0.2s;
         }
-        .hero-tag:hover { transform:translateY(-2px); }
-        .hero-tag:nth-child(1) { background:var(--yellow); color:var(--ink); }
-        .hero-tag:nth-child(2) { background:var(--green-soft); color:var(--ink); border:1px solid rgba(123,198,126,0.3); }
-        .hero-tag:nth-child(3) { background:var(--rose-soft); color:var(--ink); border:1px solid rgba(224,122,154,0.3); }
+        .intro-skill:hover { transform:rotate(0deg) translateY(-2px); }
+        .intro-skill:nth-child(1) { background:var(--yellow); color:var(--ink); transform:rotate(-2deg); }
+        .intro-skill:nth-child(2) { background:var(--green); color:var(--ink); transform:rotate(1deg); }
+        .intro-skill:nth-child(3) { background:var(--rose); transform:rotate(-1deg); }
+        .intro-skill:nth-child(4) { background:var(--blue); transform:rotate(2deg); }
+        .intro-skill:nth-child(5) { background:var(--lavender); color:var(--ink); transform:rotate(-2deg); }
 
-        .hero-scroll {
-            font-family:'Caveat',cursive; font-size:1.1rem;
-            color:var(--ink-faint); margin-top:24px;
+        .intro-scroll {
+            font-family:'Caveat',cursive; font-size:1rem;
+            color:var(--ink-faint);
+        }
+
+        /* Photo polaroid */
+        .intro-photo-col {
+            position:relative; display:flex; justify-content:center;
+        }
+        .intro-polaroid {
+            width:180px; padding:10px 10px 40px;
+            background:var(--paper);
+            box-shadow:0 6px 20px rgba(58,53,45,0.15);
+            transform:rotate(4deg);
+            position:relative;
+        }
+        .intro-polaroid-tape {
+            position:absolute; top:-10px; left:50%; transform:translateX(-50%) rotate(-3deg);
+            width:70px; height:22px; background:var(--rose);
+            opacity:0.5; border-radius:2px;
+        }
+        .intro-polaroid img {
+            width:100%; aspect-ratio:3/4; object-fit:cover;
+            border-radius:2px;
+        }
+        .intro-polaroid-caption {
+            font-family:'Caveat',cursive; font-size:1rem;
+            text-align:center; color:var(--ink-soft);
+            margin-top:8px;
+        }
+
+        /* Checkered corner decoration */
+        .intro-checker {
+            position:absolute; top:0; right:0; width:80px; height:80px;
+            background-image:
+                conic-gradient(var(--ink) 0deg 90deg, transparent 90deg 180deg, var(--ink) 180deg 270deg, transparent 270deg 360deg);
+            background-size:20px 20px;
+            opacity:0.08; pointer-events:none;
+        }
+
+        /* Paper plane decoration */
+        .intro-plane {
+            position:absolute; top:30%; right:180px;
+            font-size:1.5rem; color:var(--blue); opacity:0.3;
+            transform:rotate(-20deg);
         }
 
         /* Decorative scattered elements */
@@ -226,23 +299,10 @@
             text-shadow:1px 1px 0 rgba(58,53,45,0.1);
         }
         .deco-star.s1 { top:8%; left:6%; transform:rotate(-15deg); color:var(--yellow); }
-        .deco-star.s2 { top:12%; right:8%; transform:rotate(20deg); color:var(--rose); font-size:1.1rem; }
-        .deco-star.s3 { bottom:8%; left:10%; transform:rotate(8deg); color:var(--lavender); }
-        .deco-star.s4 { bottom:12%; right:12%; transform:rotate(-10deg); color:var(--teal); font-size:1.2rem; }
-
-        /* Doodle arrow */
         .deco-arrow {
             font-family:'Caveat',cursive; font-size:1.3rem; color:var(--orange);
         }
         .deco-arrow.a1 { top:5%; right:20%; transform:rotate(-10deg); }
-
-        /* Doodle scribble circle */
-        .deco-scribble {
-            width:40px; height:40px; border:2px solid var(--green);
-            border-radius:50%; opacity:0.3;
-            border-style:dashed;
-        }
-        .deco-scribble.sc1 { top:18%; left:3%; }
 
         /* --- Instagram-style stickers --- */
         .sticker {
@@ -668,15 +728,16 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width:640px) {
-            .about-card { grid-template-columns:1fr; justify-items:center; text-align:center; }
-            .about-row { justify-content:center; }
+            .intro-grid { grid-template-columns:1fr; gap:24px; }
+            .intro-photo-col { order:-1; }
+            .intro-info { grid-template-columns:1fr; }
             .portfolio-grid { grid-template-columns:1fr; }
             section { padding:44px 0; }
-            .hero { padding:100px 0 50px; }
+            .intro { padding:100px 0 40px; }
             .nav-bar { display:none; }
             .lang-switch { top:14px; right:14px; }
             .container { padding:0 20px; }
-            .deco { display:none; }
+            .deco, .intro-checker, .intro-plane { display:none; }
         }
 
         ::selection { background:var(--yellow); color:var(--ink); }
@@ -710,64 +771,54 @@
         <button class="lang-btn" onclick="setLang('en',event)">EN</button>
     </div>
 
-    <!-- ===== HERO ===== -->
-    <header class="hero">
+    <!-- ===== INTRO (merged hero + about) ===== -->
+    <header class="intro" id="about">
         <span class="deco deco-star s1">✱</span>
         <span class="deco deco-arrow a1">↗</span>
+        <div class="intro-checker"></div>
+        <span class="intro-plane">✈</span>
         <div class="container">
-            <div class="hero-portfolio">
-                <span>P</span><span>O</span><span>R</span><span>T</span><span>F</span><span>O</span><span>L</span><span>I</span><span>O</span>
+            <div class="intro-grid">
+                <div class="intro-left">
+                    <div class="intro-title-row">
+                        <span class="intro-portfolio">PORTFOLIO</span>
+                        <span class="intro-zuo" data-zh="作品集" data-en="Portfolio">作品集</span>
+                    </div>
+                    <span class="intro-year-burst">2026</span>
+                    <h1 class="intro-name" data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</h1>
+                    <p class="intro-name-en" data-zh="ZHONG YULING · 上海" data-en="钟毓灵 · Shanghai">ZHONG YULING · 上海</p>
+                    <div class="intro-info">
+                        <span class="label" data-zh="学历" data-en="Education">学历</span>
+                        <span class="value" data-zh="硕士 · 京都情报大学院大学" data-en="MA · Kyoto College of Informatics">硕士 · 京都情报大学院大学</span>
+                        <span class="label" data-zh="城市" data-en="City">城市</span>
+                        <span class="value" data-zh="上海" data-en="Shanghai">上海</span>
+                        <span class="label" data-zh="经验" data-en="Experience">经验</span>
+                        <span class="value" data-zh="3年以上" data-en="3+ Years">3年以上</span>
+                        <span class="label" data-zh="行业" data-en="Industry">行业</span>
+                        <span class="value" data-zh="品牌广告 / 游戏" data-en="Brand Ads / Gaming">品牌广告 / 游戏</span>
+                    </div>
+                    <p class="intro-tagline" data-zh="深耕品牌广告与游戏行业，曾服务 HOKA、Michelin、Levi's、Vans 等国际品牌。擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。" data-en="Specializing in brand advertising and gaming, served international brands including HOKA, Michelin, Levi's, and Vans. Skilled in end-to-end production from creative planning to final delivery, with AIGC integrated throughout.">深耕品牌广告与游戏行业，曾服务 HOKA、Michelin、Levi's、Vans 等国际品牌。擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。</p>
+                    <div class="intro-skills">
+                        <span class="intro-skill" data-zh="视频设计" data-en="Video Design">视频设计</span>
+                        <span class="intro-skill" data-zh="AE动效" data-en="AE Motion">AE动效</span>
+                        <span class="intro-skill" data-zh="AIGC" data-en="AIGC">AIGC</span>
+                        <span class="intro-skill" data-zh="创意策划" data-en="Creative Planning">创意策划</span>
+                        <span class="intro-skill" data-zh="品牌广告" data-en="Brand Ads">品牌广告</span>
+                    </div>
+                    <p class="intro-scroll" data-zh="↓ 向下滚动看看" data-en="↓ scroll to explore">↓ 向下滚动看看</p>
+                </div>
+                <div class="intro-photo-col">
+                    <div class="intro-polaroid">
+                        <div class="intro-polaroid-tape"></div>
+                        <img src="photo.jpg" alt="钟毓灵" loading="lazy">
+                        <p class="intro-polaroid-caption" data-zh="钟毓灵 ✱" data-en="Zhong Yuling ✱">钟毓灵 ✱</p>
+                    </div>
+                </div>
             </div>
-            <p class="hero-zuo" data-zh="作品集" data-en="精选作品">作品集</p>
-            <p class="hero-year">2026</p>
-            <h1 class="hero-name" data-zh="钟毓<span class='accent'>灵</span>" data-en="Zhong <span class='accent'>Yuling</span>">钟毓<span class="accent">灵</span></h1>
-            <p class="hero-name-en" data-zh="ZHONG YULING" data-en="钟 毓 灵">ZHONG YULING</p>
-            <p class="hero-tagline" data-zh="数字媒体艺术与动画IT硕士，4年以上视频设计经验。深耕品牌广告与游戏行业，擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。" data-en="MA in Digital Media Art & Animation IT, 4+ years of video design experience. Specializing in brand advertising and gaming, from creative planning to final delivery, with AIGC integrated throughout.">数字媒体艺术与动画IT硕士，4年以上视频设计经验。深耕品牌广告与游戏行业，擅长从创意策划到成片的全流程制作，将AIGC深度融入工作流。</p>
-            <div class="hero-tags">
-                <span class="hero-tag" data-zh="视频设计" data-en="Video Design">视频设计</span>
-                <span class="hero-tag" data-zh="AE动效" data-en="AE Motion">AE动效</span>
-                <span class="hero-tag" data-zh="AI视频" data-en="AI Video">AI视频</span>
-            </div>
-            <p class="hero-scroll" data-zh="↓ 向下滚动看看" data-en="↓ scroll to explore">↓ 向下滚动看看</p>
         </div>
     </header>
 
     <div class="container">
-
-        <!-- ===== ABOUT ===== -->
-        <section id="about">
-            <div class="section-head">
-                <span class="section-num blue" data-zh="01" data-en="01">01</span>
-                <span class="section-title" data-zh="关于我" data-en="About Me">关于我</span>
-            </div>
-            <div class="about-card paper">
-                <div class="tape"></div>
-                <div class="pushpin"></div>
-                <div class="about-photo-wrap">
-                    <div class="about-photo-clip"></div>
-                    <div class="about-photo">
-                        <img src="photo.jpg" alt="钟毓灵" loading="lazy">
-                    </div>
-                </div>
-                <div>
-                    <div class="about-info">
-                        <div class="about-row"><span class="label" data-zh="姓名" data-en="Name">姓名</span><span class="value" data-zh="钟毓灵" data-en="Zhong Yuling">钟毓灵</span></div>
-                        <div class="about-row"><span class="label" data-zh="学历" data-en="Education">学历</span><span class="value" data-zh="硕士 · 日本京都情报大学院大学" data-en="MA · Kyoto College of Informatics, Japan">硕士 · 日本京都情报大学院大学</span></div>
-                        <div class="about-row"><span class="label" data-zh="城市" data-en="City">城市</span><span class="value" data-zh="上海" data-en="Shanghai">上海</span></div>
-                        <div class="about-row"><span class="label" data-zh="经验" data-en="Experience">经验</span><span class="value" data-zh="3年以上" data-en="3+ Years">3年以上</span></div>
-                    </div>
-                    <p class="about-summary" data-zh="拥有数字媒体艺术与动画IT硕士背景，具备3年以上视频设计经验，深耕品牌广告与游戏行业。曾服务 HOKA、Michelin、Levi's、Vans 等国际品牌，擅长从创意策划到成片的全流程制作，熟练掌握即梦、Suno等主流AI生图、生视频、音乐技术，能够将AIGC工具深度融入工作流以提升产出效率。" data-en="With an MA in Digital Media Art & Animation IT and 3+ years of video design experience, I specialize in brand advertising and gaming. Previously served international brands including HOKA, Michelin, Levi's, and Vans. Skilled in end-to-end production from creative planning to final delivery, proficient in AI tools for image, video, and music generation, integrating AIGC workflows to boost production efficiency.">拥有数字媒体艺术与动画IT硕士背景，具备3年以上视频设计经验，深耕品牌广告与游戏行业。曾服务 HOKA、Michelin、Levi's、Vans 等国际品牌，擅长从创意策划到成片的全流程制作，熟练掌握即梦、Suno等主流AI生图、生视频、音乐技术，能够将AIGC工具深度融入工作流以提升产出效率。</p>
-                    <div class="about-tags">
-                        <span data-zh="创意策划" data-en="Creative Planning">创意策划</span>
-                        <span data-zh="视觉把控" data-en="Visual Direction">视觉把控</span>
-                        <span data-zh="跨部门协作" data-en="Cross-team Collab">跨部门协作</span>
-                        <span data-zh="AIGC" data-en="AIGC">AIGC</span>
-                        <span data-zh="品牌传播" data-en="Brand Strategy">品牌传播</span>
-                        <span data-zh="独立交付" data-en="Solo Delivery">独立交付</span>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- ===== EDUCATION ===== -->
         <section id="education">
